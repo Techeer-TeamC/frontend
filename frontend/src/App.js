@@ -21,7 +21,7 @@ function App() {
                   {/* </a> */}
                 </div>
             
-              <div class="container">
+              <div id="container">
                   <input type="search" placeholder="Search..."/> 
                   {/* onChange={onChange}/>  */}
                   <button type="button" id="search_btn"/></div></div></section>
