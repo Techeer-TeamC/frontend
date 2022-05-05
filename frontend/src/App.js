@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import { BiUser } from 'react-icons/bi';
 import './App.css';
 
 function App() {
@@ -18,6 +19,16 @@ function App() {
           Learn React
         </a>
       </header>
+
+      <header>
+            <nav id="loginbutton"><ul>
+                <li><BiUser /></li>
+                <li><div>LOGIN</div></li></ul></nav></header>
+                <section className="section1">
+        <div id="name_search">
+            <div id="webname"><a href=“teamc_mainpage.html” target="_self">
+                SEARCH.<span>IT</span></a></div>
+
     </div>
   );
 }
