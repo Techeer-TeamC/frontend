@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import { BiUser } from 'react-icons/bi';
 import './App.css';
 
@@ -6,9 +5,10 @@ function App() {
   return (
     <div>
       <header>
-            <nav id="loginbutton"><ul>
-                <li><BiUser /></li>
-                <li><div>LOGIN</div></li></ul></nav></header>
+            <nav id="box">
+              <ul id="loginbutton">
+                <li><div><BiUser/></div></li>
+                <li><span>LOGIN</span></li></ul></nav></header>
       
 
 
