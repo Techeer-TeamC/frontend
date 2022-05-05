@@ -4,30 +4,43 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-
+    <div>
       <header>
             <nav id="loginbutton"><ul>
                 <li><BiUser /></li>
                 <li><div>LOGIN</div></li></ul></nav></header>
-                <section className="section1">
+      
+
+
+      
+      <section className="section1">
         <div id="name_search">
-            <div id="webname"><a href=“teamc_mainpage.html” target="_self">
-                SEARCH.<span>IT</span></a></div>
+              <div id="webname">
+                {/* 새로고침 <a href=“teamc_mainpage.html” target="_self"> */}
+                  SEARCH.<span>IT</span>
+                  {/* </a> */}
+                </div>
+            
+              <div class="container">
+                  <input type="search" placeholder="Search..."/> 
+                  {/* onChange={onChange}/>  */}
+                  <button type="button" id="search_btn"/></div></div></section>
+                  {/* onClick={onClick}/> */}
+                
+
+
+
+
+      <section class="section2">
+        <div id="nav_article">
+            <nav>
+                <ul>
+                    <li id="recent"><a href="recent.html" target="rightFrame">Recent</a></li>
+                    <li>&nbsp;&nbsp;</li><li>&nbsp;&nbsp;</li>
+                    <li id="bag"><a href="bag.html" target="rightFrame">What's In My Bag</a></li></ul></nav>    
+            <article>
+            <iframe name="rightFrame" src="recent.html" width="440"></iframe>
+                 <iframe name="rightFrame" src="bag.html" width="440"></iframe></article></div></section>
 
     </div>
   );
