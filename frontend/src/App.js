@@ -1,4 +1,6 @@
 import { BiUser } from 'react-icons/bi';
+import Login from '@components/Loginbutton.js';
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import './App.css';
 
 function App() {
@@ -8,7 +10,7 @@ function App() {
             <nav id="box">
               <ul id="loginbutton">
                 <li><div><BiUser/></div></li>
-                <li><span>LOGIN</span></li></ul></nav></header>
+                <li><span><Login/></span></li></ul></nav></header>
       
 
 
