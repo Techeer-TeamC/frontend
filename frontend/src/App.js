@@ -1,16 +1,23 @@
 import { BiUser } from 'react-icons/bi';
-import Login from '@components/Loginbutton.js';
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+// import Login from '@components/Loginbutton.js';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import './App.css';
 
+
+
 function App() {
+  let navigate = useNavigate();
+  function handleClick() {
+    navigate("/pages/Loginpage.js");
+  }
   return (
     <div>
       <header>
             <nav id="box">
               <ul id="loginbutton">
                 <li><div><BiUser/></div></li>
-                <li><span><Login/></span></li></ul></nav></header>
+                <li><button onClick={handleClick}>Login</button></li></ul></nav></header>
       
 
 
