@@ -3,9 +3,12 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { BiUser } from 'react-icons/bi';
 import './App.css';
-import Bag from '.components/bag';
-import Recent from '.components/recent';
-import Blank from '.components/blank';
+import Bag from '.components/bag.js';
+import Recent from '.components/recent.js';
+import Blank from '.components/blank.js';
+// import { Bag } from "components";
+// import { Recent } from "components";
+// import { Blank } from "components";
 
 // import App from './App';
 import reportWebVitals from './reportWebVitals';
