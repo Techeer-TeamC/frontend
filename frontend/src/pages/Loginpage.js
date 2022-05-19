@@ -1,13 +1,17 @@
 import logo from './logo.svg';
-import './Loginpage.css';
+import './App.css';
 import React, { useState, useEffect } from 'react';
+import {useDispatch} from 'react-redux';
+import {loginUser} from './_actions/user_action';
 import axios, { Axios } from 'axios';
-import imgA from './assets/loginpage/IMG_9315.JPG';
-import imgB from './assets/loginpage/btn_google.png';
-import imgC from './assets/loginpage/kakao_login_large_narrow.png';
+import imgA from './IMG_9315.JPG';
+import imgB from './btn_google.png';
+import imgC from './kakao_login_large_narrow.png';
 
 
-function App() {
+function App(props) {
+  const dispatch = useDispatch();
+
   const [inputId, setInputId] = useState('')
   const [inputPw, setInputPw] = useState('')
    
@@ -31,9 +35,15 @@ function App() {
             ID: inputId,
             PW: inputPw
         }
-
-    //     Axios.post('api경로넣어주기', body)
-    //     .then(response => console.log(response.data) )
+    
+        dispatch(loginUser(body))
+            .then(response => {
+                if(response.payload.loginSuccess) {
+                    props.history.push('/')
+                } else{
+                    alert('Error')
+                }
+            })
      }
  
 	// // 페이지 렌더링 후 가장 처음 호출되는 함수
