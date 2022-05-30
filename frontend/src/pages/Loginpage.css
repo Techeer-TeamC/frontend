@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+/*.warning -> 클래스 셀렉터
+#list -> id 셀렉터
+*/
+.App{
+
+  display:flex;
+}
+img{
+  display: inline-block;
+  width: 50%;
+  height: 100vh;
+  background: #eff0f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2{
+  font-family: 'Roboto', sans-serif;
+   font-weight: 400;
+}
+.cover {
+  width: 50%;
+	margin: 100px;
+	padding-top: 90px;
+  float: right;
+  
+
+  /* left: 50%; */
+
+	background-color: white;
+}
+
+.blank{
+  padding-top: 80px;
+  padding-left: 110px;
+  padding-right: 150px;
+  
+}
+.bar{
+  border-radius: 2px;
+  border-bottom: solid 2px #00A3FF;
+  font-family: 'Roboto', sans-serif;
+}
+
+input{
+  /* background: none; */
+ 
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  line-height: 45px;
+  padding-left:10px;
+  /* width:00px; */
+}
+
+.button{
+  /* padding-top: 140px;
+  padding-left:70px; */
+  margin:auto;
+  display:block;
+  height: 200px;
+  max-width: 100%;
+  max-height: 100%;
+}
+button{
+  border-radius: 10px;
+  /* box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); */
+  border: none;
+  background-color: #00A3FF;
+  padding: 15px 30px;
+  color: #CCEDFF;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  width: 300px;
+}
+.button img {
+  height: 70px;
+  width: 300px;
+ }

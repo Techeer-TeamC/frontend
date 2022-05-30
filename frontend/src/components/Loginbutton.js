@@ -1,23 +1,16 @@
-import { React } from "react";
-import { button } from "semantic-ui-react";
+// import { React } from "react";
+// import LoginPage from '../pages/Loginpage';
+// import { BrowserRouter, Route, Link } from 'react-router-dom';
+
+// function LoginButton(){
+//    return(
+//       <>
+//        <BrowserRouter>
+//             <Link to="login">Recent</Link>
+//                <Route path="login" element={<LoginPage />} />
+//       </BrowserRouter></>
+//    )
+// }
 
 
-   const clickMe = () => {
-
-       document.location.href('../pages/Loginpage.js')
-
-   
-
-
-
-   return (
-
-      <>
-      <button onClick={clickMe}>Login</button>
-      </>
-
-   );
-
-   }
-
-export default Login;
+// export default LoginButton;

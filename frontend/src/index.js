@@ -1,79 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { BiUser } from 'react-icons/bi';
-import './App.css';
-import Bag from '.components/bag.js';
-import Recent from '.components/recent.js';
-import Blank from '.components/blank.js';
-// import { Bag } from "components";
-// import { Recent } from "components";
-// import { Blank } from "components";
-
-// import App from './App';
+import './index.css';
+// import App from './pages/App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter} from "react-router-dom"
+import { Route, Routes } from 'react-router-dom';
+import MainPage from './pages/Mainpage';
+import LoginPage from './pages/Loginpage';
+import RegisterPage from './pages/Registerpage';
+import Recent from './components/recent';
+import Bag from './components/bag';
 
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
+//렌더링 할 페이지 설정해주는 곳
 
-// // If you want to start measuring performance in your app, pass a function
-// // to log results (for example: reportWebVitals(console.log))
-// // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals();
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage/>} />
+      <Route path="/recent" element={<Recent />} />
+      <Route path="/bag" element={<Bag />} />
+    </Routes>
+  </BrowserRouter>
 
-function App(){
-  return(
-    <div>
-      <header>
-            <nav id="box">
-              <ul id="loginbutton">
-                <li><div><BiUser/></div></li>
-                <li></li></ul></nav></header>
-      
+);
 
-
-      
-      <section className="section1">
-        <div id="name_search">
-              <div id="webname">
-                {/* 새로고침 <a href=“teamc_mainpage.html” target="_self"> */}
-                  SEARCH.<span>IT</span>
-                  {/* </a> */}
-                </div>
-            
-              <div id="container">
-                  <input type="search" placeholder="Search..."/> 
-                  {/* onChange={onChange}/>  */}
-                  <button type="button" id="search_btn"/></div></div></section>
-                  {/* onClick={onClick}/> */}
-                
-
-
-
-
-      <section class="section2">
-        <div id="nav_article">
-            <nav>
-                <ul>
-                    <li id="recent"><Link to="/components/recent">Recent</Link></li>
-                    <li>&nbsp;&nbsp;</li><li>&nbsp;&nbsp;</li>
-                    <li id="bag"><Link to="/components/bag">What's In My Bag</Link></li></ul></nav>    
-            <article>
-              <Routes>
-                <Route exact path="/" element={<Blank />}/>
-                <Route path="/component/recent" element={<Recent/>} />
-                <Route path="/component/bag" element={<Bag/>}/>
-                <Route path="/" element={"Not Found"}/>
-          
-              </Routes></article></div></section>
-
-    </div>
-  )
-}
-
-ReactDOM. render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));
-ServiceWorker.unregister();
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
