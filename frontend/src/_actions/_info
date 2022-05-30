@@ -1,0 +1,4 @@
+리덕스 상태관리 중 action관련 파일들
+
+types.js-> action을 통해 반환할 내용 중 타입관련 내용 정리
+user_action.js -> 백엔드로 보낼 거 보내고 응답 내용 받아 

@@ -51,9 +51,7 @@ header{
 /*		float: left;
    width: 90px;*/
      }
- #box span{
-   float: left;
- }
+
  #box div{
    float: right;
  }

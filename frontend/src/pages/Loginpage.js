@@ -1,16 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-import React, { useState, useEffect } from 'react';
-import {useDispatch} from 'react-redux';
-import {loginUser} from './_actions/user_action';
-import axios, { Axios } from 'axios';
-import imgA from './IMG_9315.JPG';
-import imgB from './btn_google.png';
-import imgC from './kakao_login_large_narrow.png';
+import './Loginpage.css';
+import React, { useState } from 'react';
+// import {useDispatch} from 'react-redux';
+// import {loginUser} from './_actions/user_action';
+// import axios, { Axios } from 'axios';
+import imgA from '../assets/loginpage/IMG_9315.JPG';
+import imgB from '../assets/loginpage/btn_google.png';
+import imgC from '../assets/loginpage/kakao_login_large_narrow.png';
 
 
-function App(props) {
-  const dispatch = useDispatch();
+function LoginPage(props) {
+  // const dispatch = useDispatch();
 
   const [inputId, setInputId] = useState('')
   const [inputPw, setInputPw] = useState('')
@@ -31,29 +30,32 @@ function App(props) {
         console.log('ID',inputId)
         console.log('PW',inputPw)
 
-        let body = {
+        let body = { 
             ID: inputId,
             PW: inputPw
         }
     
-        dispatch(loginUser(body))
-            .then(response => {
-                if(response.payload.loginSuccess) {
-                    props.history.push('/')
-                } else{
-                    alert('Error')
-                }
-            })
+        // dispatch(loginUser(body))
+        //     .then(response => {
+        //         if(response.payload.success) {
+        //             props.history.push('/')
+        //         } else{
+        //             alert('Error')
+        //         }
+                // .then(token => {
+                //     localStorage.setItem("jwt",token.accessToken)
+                // })
+        //     })
      }
  
 	// // 페이지 렌더링 후 가장 처음 호출되는 함수
-  //   useEffect(() => {
-  //       axios.get('/user_inform/login')
-  //       .then(res => console.log(res))
-  //       .catch()
-  //   },
-  //   // 페이지 호출 후 처음 한번만 호출될 수 있도록 [] 추가
-  //   []) 
+    // useEffect(() => {
+    //     axios.get('/user_inform/login')
+    //     .then(res => console.log(res))
+    //     .catch()
+    // },
+    // // 페이지 호출 후 처음 한번만 호출될 수 있도록 [] 추가
+    // []) 
     
     
     return (
@@ -73,7 +75,8 @@ function App(props) {
                 <input type='password' name='input_pw' value={inputPw} onChange={handleInputPw} />
             </div><br></br><br></br><br></br><br></br>
                 <div className="button">
-                <button type='button' onClick={onClickLogin}>Login</button><br></br><br></br>
+                <button type='button' onClick={onClickLogin}>Login</button>
+                <br></br><br></br>
                 <img src={ imgB} /><br></br>
                 <img src={ imgC} /></div>
                 </div>
@@ -83,4 +86,4 @@ function App(props) {
   );
 }
 
-export default App;
+export default LoginPage;
