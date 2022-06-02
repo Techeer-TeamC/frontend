@@ -1,11 +1,6 @@
 import React from 'react';
 import { BiUser } from 'react-icons/bi';
-// import Login from '@components/Loginbutton.js';
 import { Link } from 'react-router-dom';
-// import Recent from '../components/recent';
-// import Bag from '../components/bag';
-// import LoginButton from '../components/Loginbutton';
-// import { useNavigate } from "react-router-dom";
 import './Mainpage.css';
 
 
@@ -13,10 +8,6 @@ import './Mainpage.css';
 function Mainpage() {
   
   //변수, 이벤트 등등 설정 해주는 곳
-
-  //로그인 버튼 이벤트
-  // const handleClick = (e) => {
-  //   <Link to="/login"></Link>}
 
   //로그아웃 버튼 이벤트
 //   const onClickHandler = () => {
