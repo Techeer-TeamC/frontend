@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import PropTypes from "prop-types";
 import "./Movie.css";
 
-function SearchMovie({id, title, poster}) {
+function SearchProductList({id, title, poster}) {
   return (
     <div className="product">
     <a href={"products/detail/"+id} target="_blank">
@@ -19,9 +19,9 @@ function SearchMovie({id, title, poster}) {
   )
 };
 
-SearchMovie.propTypes = {
+SearchProductList.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 
-export default SearchMovie;
+export default SearchProductList;
