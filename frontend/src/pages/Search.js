@@ -3,21 +3,26 @@ import axios from 'axios';
 import SearchProductList from '../components/SearchProductList';
 import "./Search.css";
 import { useParams , useNavigate} from 'react-router-dom';
-
-
+import Pagination from 'rc-pagination';
+import 'rc-pagination/assets/index.css';
 function Search(props) {
 
   const[word, setWord] = useState("");
   const[products, setDataList] =useState([]);
   const[value , setValue] = useState("");
   const mounted = useRef(false);
+  const [pageSize, setPageSize] = useState(10);
+  const [totalCount, setTotalCount] = useState(115);
+  const [currentPage, setCurrentPage] = useState(1);
+
 
   useEffect( () => {
     const fetchData = async () => {
     const result = await axios(
-        `http://localhost:8080/api/v1/products/search/?page=0&keyword=${word}`
+        `http://localhost:8080/api/v1/products/search/?page=${currentPage-1}&keyword=${word}`
     )
       setDataList(result.data.data);
+      setTotalCount(result.data.data.length);
     };
     if(!mounted.current){
       mounted.current=true;
@@ -25,7 +30,7 @@ function Search(props) {
     else{
   fetchData();
       }
-  },[word]);
+  },[word,currentPage]);
 
 
   // state = {
@@ -38,7 +43,8 @@ function Search(props) {
 
 
 
-    return (<section className="container">
+    return (
+        <section className="container">
       {
 
             (
@@ -55,7 +61,11 @@ function Search(props) {
               </div>
            )
       }
+          <Pagination total={totalCount} current={currentPage} pageSize={pageSize}
+                      onChange={(page) => setCurrentPage(page)}></Pagination>
     </section>);
+
+
 
 }
 
