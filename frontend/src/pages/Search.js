@@ -12,7 +12,7 @@ function Search(props) {
   const[value , setValue] = useState("");
   const mounted = useRef(false);
   const [pageSize, setPageSize] = useState(10);
-  const [totalCount, setTotalCount] = useState(115);
+  const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
 
@@ -22,7 +22,8 @@ function Search(props) {
         `http://localhost:8080/api/v1/products/search/?page=${currentPage-1}&keyword=${word}`
     )
       setDataList(result.data.data);
-      setTotalCount(result.data.data.length);
+      setTotalCount(result.data.totalCount);
+      console.log(result.data.totalCount);
     };
     if(!mounted.current){
       mounted.current=true;
