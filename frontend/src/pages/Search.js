@@ -18,12 +18,12 @@ function Search(props) {
 
   useEffect( () => {
     const fetchData = async () => {
-    const result = await axios(
+      window.scrollTo(0, 0);
+      const result = await axios(
         `http://localhost:8080/api/v1/products/search/?page=${currentPage-1}&keyword=${word}`
     )
       setDataList(result.data.data);
       setTotalCount(result.data.totalCount);
-      console.log(result.data.totalCount);
     };
     if(!mounted.current){
       mounted.current=true;
@@ -34,33 +34,29 @@ function Search(props) {
   },[word,currentPage]);
 
 
-  // state = {
-  //   isLoading: true,
-  //   products: [],
-  //   value: "",
-  //   name: ""
-  // };
-
-
 
 
     return (
         <section className="container">
-      {
-
-            (
-
-              <div>
-                <div className="input_div">
-                  <h1>상품 검색</h1>
-                  <input className="input_search" type="text" value={value} onChange={(event) => setValue(event.target.value)} placeholder="Search Something"/>
-                  <button type="button" onClick={() => setWord(value)}> Search </button>
-                </div>
+          {
+            <div className="input_div">
+              <h1>상품 검색</h1>
+              <input className="input_search" type="text" value={value}
+                     onChange={(event) => setValue(event.target.value)}
+                     placeholder="Search Something"/>
+              <button type="button" onClick={() => setWord(value)}> Search
+              </button>
+            </div>
+          }
+          {
+                totalCount ? (
+                <>
                 <div className="products">
                   {products && products.map(product => (<SearchProductList key={product.id} id={product.id} year="year" title={product.name} poster="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp14-spacegray-select-202110_GEO_KR?wid=1808&hei=1680&fmt=jpeg&qlt=90&.v=1647363032344" rating="rating" director="director" actor="actor"/>))}
                 </div>
-              </div>
-           )
+          </>
+        ) : '검색된 상품내역이 존재하지 않습니다.'
+
       }
           <Pagination total={totalCount} current={currentPage} pageSize={pageSize}
                       onChange={(page) => setCurrentPage(page)}></Pagination>
