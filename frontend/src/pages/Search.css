@@ -1,17 +1,11 @@
-.input_search {
-    width: 600px;
-    margin: 0;
-    height: 51px;
-    background: none;
-    border-bottom: 1px solid #ec95ae;
-    border-radius: 0;
-    border-top: 1px solid transparent;
-    border-left: 1px solid transparent;
-    border-right: 1px solid transparent;
-    padding: 0 5px;
-    position: relative;
+
+.page {
+    margin: 0 auto;
+    text-align: center;
+
 }
 
-.input_div {
-  text-align: center;
+.search-container{
+    border: 20px;
+    margin : 20px;
 }

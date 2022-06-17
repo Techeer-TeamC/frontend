@@ -5,9 +5,9 @@ import "./Movie.css";
 
 function SearchProductList({id, title, poster}) {
   return (
-    <div className="product">
+    <div className="col-md-4">
     <a href={"products/detail/"+id} target="_blank">
-      <img src={poster} alt={title} titlt={title}></img>
+      <img className="img-fluid"  className="img-thumbnail" src={poster} alt={title} titlt={title}></img>
     <div className="product__data">
       <h3 className="product__title">{
           title.replace(/<b>/gi,"").replace(/<\/b>/gi,"")
