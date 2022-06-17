@@ -39,26 +39,27 @@ function Search(props) {
     return (
         <section className="container">
           {
-            <div className="input_div">
-              <h1>상품 검색</h1>
-              <input className="input_search" type="text" value={value}
+            <div className = "search-container">
+            <div className="input-group rounded">
+              <input className = "form-control rounded"  type="text" placeholder="Search" aria-label="Search" aria-describedby="search-addon" value={value}
                      onChange={(event) => setValue(event.target.value)}
-                     placeholder="Search Something"/>
-              <button type="button" onClick={() => setWord(value)}> Search
-              </button>
+                    />
+              <button className="btn btn-outline-primary" type="button"  onClick={() => setWord(value)} > SEARCH </button>
+
+            </div>
             </div>
           }
           {
                 totalCount ? (
                 <>
-                <div className="products">
+                <div className="row">
                   {products && products.map(product => (<SearchProductList key={product.id} id={product.id} year="year" title={product.name} poster="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp14-spacegray-select-202110_GEO_KR?wid=1808&hei=1680&fmt=jpeg&qlt=90&.v=1647363032344" rating="rating" director="director" actor="actor"/>))}
                 </div>
           </>
         ) : '검색된 상품내역이 존재하지 않습니다.'
 
       }
-          <Pagination total={totalCount} current={currentPage} pageSize={pageSize}
+          <Pagination className = "page" total={totalCount} current={currentPage} pageSize={pageSize}
                       onChange={(page) => setCurrentPage(page)}></Pagination>
     </section>);
 
