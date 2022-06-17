@@ -11,7 +11,7 @@ function Search(props) {
   const[products, setDataList] =useState([]);
   const[value , setValue] = useState("");
   const mounted = useRef(false);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(9);
   const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
