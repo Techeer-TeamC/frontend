@@ -70,8 +70,8 @@ function LoginPage(props) {
                 <div className="button">
                 <button type='button' onClick={onClickLogin}>Login</button>
                 <br></br><br></br>
-                <img src={ imgB} /><br></br>
-                <img src={ imgC} /></div>
+                <a target="_self" href="https://accounts.google.com/o/oauth2/v2/auth"><img src={ imgB} /></a><br></br>
+                <a target="_self" href="https://kauth.kakao.com/oauth/authorize"><img src={ imgC} /></a></div>
                 </div>
         </form>
     </div>

@@ -53,9 +53,9 @@ function Mainpage() {
         <div id="nav_article">
               <nav>
                   <ul>
-                      <li id="recent"><Link to="recent">Recent</Link></li>
+                      <li id="recent"><Link to="/recent">Recent</Link></li>
                       <li>&nbsp;&nbsp;</li><li>&nbsp;&nbsp;</li>
-                      <li id="bag"><Link to="bag">What's In My Bag</Link></li></ul>
+                      <li id="bag"><Link to="/bag">What's In My Bag</Link></li></ul>
               </nav>    
         </div></section>
 

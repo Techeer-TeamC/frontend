@@ -7,19 +7,13 @@ export default function (state = {}, action) {
     switch (action.type) {
         case REGISTER_USER:
             return { ...state, success: action.payload };
+            break;
+        case LOGIN_USER:
+            return {...state, success: action.payload};
+            break;
       
         default:
             return state;
     }
   }
 
-
-export default function (state = {}, action) {
-    switch (action.type){
-        case LOGIN_USER:
-            return {...state, success: action.payload};
-
-        default:
-            return state;
-    }
-}
