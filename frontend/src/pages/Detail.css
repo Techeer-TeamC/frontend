@@ -1,0 +1,17 @@
+.detail-container {
+  padding: 100px 0 135px;
+}
+
+.product_image{
+  text-align: center;
+}
+
+.product-detail {
+
+}
+
+tr:hover {
+  background: #f2f3ff;
+  outline: none;
+  cursor: pointer;
+}
