@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 // import App from './pages/App';
 import reportWebVitals from './reportWebVitals';
@@ -17,6 +18,7 @@ import Auth from './assets/auth';
 import Search from "./pages/Search";
 import Detail from "./pages/Detail";
 >>>>>>> feat : productSearch and detail page
+
 
 //렌더링 할 페이지 설정해주는 곳
 
