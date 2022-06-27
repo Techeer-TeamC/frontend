@@ -57,7 +57,7 @@ function Detail(props) {
                                                     </thead>
                                                     <tbody>
 
-                                                    <tr onClick={() => window.open(productData.mallInfo[0].name ,'_blank')}>
+                                                    <tr onClick={() => window.open("/"+productData.mallInfo[0].name ,'_blank')}>
                                                         <th>{ productData.mallInfo[0].name }</th>
                                                         <th>{ productData.mallInfo[0].price }</th>
                                                         <th>{ productData.mallInfo[0].delivery }</th>
