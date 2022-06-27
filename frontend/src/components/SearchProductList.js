@@ -4,10 +4,11 @@ import PropTypes from "prop-types";
 import "./searchProductList.css";
 
 function SearchProductList({id, title, poster}) {
+
   return (
     <div className="col-md-4 border-0">
     <a className="link-dark product"
-     href={"products/detail/"+id} target="_blank">
+     href={"/products/detail/"+id} target="_blank">
       <img className="img-fluid mx-auto" src={poster} alt={title} titlt={title}></img>
       <h3 className="text-center">{
           title.replace(/<b>/gi,"").replace(/<\/b>/gi,"")
