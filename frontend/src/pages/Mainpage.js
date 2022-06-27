@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BiUser } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import './Mainpage.css';
 
 
 
+
 function Mainpage() {
-  
+  const[value , setValue] = useState("");
+
   //변수, 이벤트 등등 설정 해주는 곳
 
   //로그아웃 버튼 이벤트
@@ -48,8 +50,11 @@ function Mainpage() {
                 </div>
             
               <div id="container">
-                  <input type="search" placeholder="Search..."/> 
-                  <button type="button" id="search_btn"/></div></div></section>
+                  <input type="search" placeholder="Search..." onChange={(event) => setValue(event.target.value)} />
+                  <button type="button" id="search_btn" onClick={() => window.location.href="/search/"+value}/>
+              </div>
+        </div>
+      </section>
 
                 
 
