@@ -53,7 +53,7 @@ function Search(props) {
                 totalCount ? (
                 <>
                 <div className="row">
-                  {products && products.map(product => (<SearchProductList key={product.id} id={product.id} year="year" title={product.name} poster="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp14-spacegray-select-202110_GEO_KR?wid=1808&hei=1680&fmt=jpeg&qlt=90&.v=1647363032344" rating="rating" director="director" actor="actor"/>))}
+                  {products && products.map(product => (<SearchProductList key={product.productId} id={product.productId} title={product.name} poster="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp14-spacegray-select-202110_GEO_KR?wid=1808&hei=1680&fmt=jpeg&qlt=90&.v=1647363032344"/>))}
                 </div>
           </>
         ) : '검색된 상품내역이 존재하지 않습니다.'
