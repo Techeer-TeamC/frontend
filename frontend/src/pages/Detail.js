@@ -3,6 +3,7 @@ import axios from "axios";
 import React,  { useEffect, useState } from 'react';
 import { useParams , useNavigate} from 'react-router-dom'
 import './Detail.css';
+import SearchBar from "../components/SearchBar";
 
 function Detail(props) {
     let { id } = useParams();
@@ -39,6 +40,7 @@ function Detail(props) {
                         ? (
                             <>
                                 <div className ="container">
+                                    <SearchBar></SearchBar>
                                     <div className = "row">
                                         <div className ="product_image col-md-6">
                                             <img className="img-fluid" src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp14-spacegray-select-202110_GEO_KR?wid=1808&hei=1680&fmt=jpeg&qlt=90&.v=1647363032344" alt="product-image"/>
