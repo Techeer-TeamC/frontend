@@ -31,16 +31,9 @@ root.render(
       <Route path="/register" element={<RegisterPage/>} />
       <Route path="/recent" element={<Recent />} />
       <Route path="/bag" element={<Bag />} />
-<<<<<<< refs/remotes/origin/feature/local_login
+      <Route path="/search/:keyword" element={<Search />} />
       <Route path="/test" element={<Test />} />
       <Route path="/auth" element={<Auth />} />
-      {/* <AuthRouth
-        authenticated={authenticated}
-        path="/mybag"
-        render={props => <Profile user={user} {...props} />}
-      />   */}
-=======
-      <Route path="/search" element={<Search />} />
       <Route path="products/detail/:id" element={<Detail />} />
 >>>>>>> feat : productSearch and detail page
     </Routes>
