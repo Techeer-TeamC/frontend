@@ -27,13 +27,34 @@ function LoginPage(props) {
         
         e.preventDefault(); //새로고침 막기 위함
 
+        
+
+        fetch('http://localhost:8000/api/v1/auth/new', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                'email': inputId,
+                'password': inputPw
+            })
+        })
+
+        .then(response => response.json())
+        .then(response => {
+            if (response.token) {
+            localStorage.setItem('access_token', response.accessToken),
+            localStorage.setItem('refresh_token', response.refreshToken);
+        }
+        })
+        
         console.log('ID',inputId)
         console.log('PW',inputPw)
 
-        let body = { 
-            ID: inputId,
-            PW: inputPw
-        }
+        // let body = { 
+        //     ID: inputId,
+        //     PW: inputPw
+        // }
     
         // dispatch(loginUser(body))
         //     .then(response => {
@@ -52,10 +73,12 @@ function LoginPage(props) {
      
     
     return (
+        
 
     <div className="App">
         <img src={ imgA} />
         <form className="cover">
+            
             <h2>Login to your account</h2>
             
             <div className="blank">
