@@ -4,6 +4,7 @@ import React,  { useEffect, useState } from 'react';
 import { useParams , useNavigate} from 'react-router-dom'
 import './Detail.css';
 import SearchBar from "../components/SearchBar";
+import SearchProductList from "../components/SearchProductList";
 
 function Detail(props) {
     let { id } = useParams();
@@ -53,22 +54,17 @@ function Detail(props) {
                                             <div className="mallInfo row justify-content-between">
                                                 <table className="table">
                                                     <thead>
-
                                                     </thead>
                                                     <tbody>
+                                                        {productData.mallInfo && productData.mallInfo.map(mall => (
+                                                            <tr onClick={() => window.open("/"+mall.name ,'_blank')}>
+                                                                <th>{ mall.name }</th>
+                                                                <th>{ mall.price }</th>
+                                                                <th>{ mall.delivery }</th>
+                                                                <th>{ mall.paymentOption }</th>
+                                                            </tr>
+                                                        ))}
 
-                                                    <tr onClick={() => window.open("/"+productData.mallInfo[0].name ,'_blank')}>
-                                                        <th>{ productData.mallInfo[0].name }</th>
-                                                        <th>{ productData.mallInfo[0].price }</th>
-                                                        <th>{ productData.mallInfo[0].delivery }</th>
-                                                        <th>{ productData.mallInfo[0].paymentOption }</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>{ productData.mallInfo[0].name }</th>
-                                                        <th>{ productData.mallInfo[0].price }</th>
-                                                        <th>{ productData.mallInfo[0].delivery }</th>
-                                                        <th>{ productData.mallInfo[0].paymentOption }</th>
-                                                    </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
