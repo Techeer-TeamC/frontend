@@ -30,7 +30,7 @@ function Alarm({type}) {
       top: "20vh",
       left: "50vw",
       right: "20vw",
-      bottom: "20vh",
+      bottom: "50vh",
       WebkitOverflowScrolling: "touch",
       borderRadius: "14px",
       outline: "none",
@@ -55,29 +55,35 @@ function Alarm({type}) {
   return (
       <div>
         <button type="button" className=" btn-primary"  aria-label="Close"  onClick={()=> setModalIsOpen(true)}>
-          알림 아이콘(임시)
+          알림 등록
         </button>
 
         <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)
         }
         style={modalStyle}>
         <div className="row">
-
           <div className="Alarm">
-            <button className="btn-close close" onClick={()=> setModalIsOpen(false)}>
+
+            <button className="btn-close closeModal" onClick={()=> setModalIsOpen(false)}>
             </button>
-            <p>알림 희망 가격: </p>
-            <input className = "form-control rounded"  type="text" placeholder="Search" aria-label="Search" aria-describedby="search-addon"
+
+            <div>
+
+
+            <label htmlFor="">알림 희망 가격</label>
+            <input className = "form-control"  type="number" placeholder="$" aria-label="Search" aria-describedby="search-addon"
                    onChange={(event) => setPrice(event.target.value)}
             />
-
+            </div>
+            <div>
             <button
-                className="rounded-full  "
+                className="btn btn-primary"
                 type="button"
                 onClick={handleResult}
             >
               알림 등록
             </button>
+            </div>
         </div>
 
 
