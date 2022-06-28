@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-// import { withRouter } from "react-router-dom";
-
 function RegisterPage(props) {
   
   const [Email, setEmail] = useState("");
@@ -33,8 +31,29 @@ function RegisterPage(props) {
             alert("모든 항목을 입력하세요")
         }
         else{
-            console.log('email',Email)
-            console.log('password',Password)
+            fetch('http://localhost:8000/api/v1/users/new', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                  'email': Email,
+                  'password': Password,
+                  'memberName': Name
+              })
+          })
+
+          .then(response => response.json())
+          .then(response => {
+              if (response.success) {
+                alert("가입 완료");
+                props.history.push("/login");
+              }
+          })
+              // console.log('name', Name)
+              // console.log('email',Email)
+              // console.log('password',Password)
+
 
             // let body = {
             //     email: Email,
@@ -68,11 +87,12 @@ function RegisterPage(props) {
       <form
         onSubmit={onSubmitHandler}
         style={{ display: "flex", flexDirection: "column" }}>
+        
+        <label>Name</label>
+        <input type="text" value={Name} onChange={onNameHandler} />
+        
         <label>Email</label>
         <input type="email" value={Email} onChange={onEmailHandler} />
-
-        <label>Name</label>
-        <input type="test" value={Name} onChange={onNameHandler} />
 
         <label>Password</label>
         <input type="password" value={Password} onChange={onPasswordHandler} />

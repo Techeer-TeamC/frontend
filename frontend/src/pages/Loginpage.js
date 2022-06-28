@@ -42,10 +42,10 @@ function LoginPage(props) {
 
         .then(response => response.json())
         .then(response => {
-            if (response.token) {
+            if (response.accessToken && response.refreshToken) {
             localStorage.setItem('access_token', response.accessToken),
             localStorage.setItem('refresh_token', response.refreshToken);
-        }
+            }
         })
         
         console.log('ID',inputId)
