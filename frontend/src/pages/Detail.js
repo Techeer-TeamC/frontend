@@ -4,6 +4,7 @@ import React,  { useEffect, useState } from 'react';
 import { useParams , useNavigate} from 'react-router-dom'
 import './Detail.css';
 import SearchBar from "../components/SearchBar";
+import Alarm from "../components/Alarm";
 import SearchProductList from "../components/SearchProductList";
 
 function Detail(props) {
@@ -71,6 +72,7 @@ function Detail(props) {
                                         </div>
 
                                     </div>
+                                    <Alarm></Alarm>
                                 </div>
 
 
