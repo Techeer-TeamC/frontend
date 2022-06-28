@@ -7,9 +7,11 @@ import { BrowserRouter} from "react-router-dom"
 import { Route, Routes } from 'react-router-dom';
 import MainPage from './pages/Mainpage';
 import LoginPage from './pages/Loginpage';
+import Test from './pages/Test.tsx';
 import RegisterPage from './pages/Registerpage';
 import Recent from './components/recent';
 import Bag from './components/bag';
+
 
 //렌더링 할 페이지 설정해주는 곳
 
@@ -22,6 +24,7 @@ root.render(
       <Route path="/register" element={<RegisterPage/>} />
       <Route path="/recent" element={<Recent />} />
       <Route path="/bag" element={<Bag />} />
+      <Route path="/test" element={<Test />} />
     </Routes>
   </BrowserRouter>
 
