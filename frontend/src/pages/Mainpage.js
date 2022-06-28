@@ -29,6 +29,13 @@ function Mainpage() {
               <ul id="loginbutton">
                 <li><div><BiUser/></div></li>
                 <li><Link to="/login"><button>Login</button></Link></li>
+                {/* <li>{authenticated ? (
+                    <LogoutButton logout={logout} />
+                  ) : (
+                    <Link to="/login">
+                      <button>Login</button>
+                    </Link>
+        )}</li> */}
               </ul></nav></header>
       
 

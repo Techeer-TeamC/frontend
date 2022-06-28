@@ -31,7 +31,7 @@ function RegisterPage(props) {
             alert("모든 항목을 입력하세요")
         }
         else{
-            fetch('http://localhost:8000/api/v1/users/new', {
+            fetch('http://3.39.75.19:8080/api/v1/users/new', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ function RegisterPage(props) {
           .then(response => {
               if (response.success) {
                 alert("가입 완료");
-                props.history.push("/login");
+                // props.history.push("/login");
               }
           })
               // console.log('name', Name)
@@ -71,7 +71,9 @@ function RegisterPage(props) {
           alert("비밀번호가 일치하지 않습니다");
         }
 
-
+  // const { from } = location.state || { from: { pathname: "/" } };
+  // if (authenticated) return <Redirect to={from} />;
+          
   };
 
   

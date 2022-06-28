@@ -25,6 +25,11 @@ root.render(
       <Route path="/recent" element={<Recent />} />
       <Route path="/bag" element={<Bag />} />
       <Route path="/test" element={<Test />} />
+      {/* <AuthRouth
+        authenticated={authenticated}
+        path="/mybag"
+        render={props => <Profile user={user} {...props} />}
+      />   */}
     </Routes>
   </BrowserRouter>
 

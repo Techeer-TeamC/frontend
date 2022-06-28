@@ -3,17 +3,21 @@ import React, { useState } from 'react';
 // import {useDispatch} from 'react-redux';
 // import {loginUser} from './_actions/user_action';
 // import axios, { Axios } from 'axios';
+import { useNavigate } from 'react-router-dom'
 import imgA from '../assets/loginpage/IMG_9315.JPG';
 import imgB from '../assets/loginpage/btn_google.png';
 import imgC from '../assets/loginpage/kakao_login_large_narrow.png';
-
+// {authenticated, login, location
 
 function LoginPage(props) {
   // const dispatch = useDispatch();
+  const [isLogin , setIsLogin] = useState(false);
 
   const [inputId, setInputId] = useState('')
   const [inputPw, setInputPw] = useState('')
-   
+  
+  const navigate = useNavigate();
+
   const handleInputId = (e) => {
         setInputId(e.target.value)
     }
@@ -24,32 +28,35 @@ function LoginPage(props) {
  
 	// login 버튼 클릭 이벤트
     const onClickLogin = (e) => {
-        
-        e.preventDefault(); //새로고침 막기 위함
+        useEffect(()=>{
+            e.preventDefault(); //새로고침 막기 위함
 
-        
-
-        fetch('http://localhost:8000/api/v1/auth/new', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                'email': inputId,
-                'password': inputPw
+            fetch('http://3.39.75.19:8080/api/v1/auth/new', {
+                method: 'POST',
+                headers: { //get일 때는 없어도 됨
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    'email': inputId,
+                    'password': inputPw
+                })
             })
-        })
 
-        .then(response => response.json())
-        .then(response => {
-            if (response.accessToken && response.refreshToken) {
-            localStorage.setItem('access_token', response.accessToken),
-            localStorage.setItem('refresh_token', response.refreshToken);
-            }
-        })
-        
-        console.log('ID',inputId)
-        console.log('PW',inputPw)
+            .then(response => response.json())
+            .then(response => {
+
+                if (response.data.accessToken && response.data.refreshToken) {
+                localStorage.setItem('access_token', response.data.accessToken);
+                localStorage.setItem('refresh_token', response.data.refreshToken);
+                setIsLogin(true);    
+                // console.log('access_token', response.data.accessToken);
+                navigate('/', {replace: true});
+
+                }
+            })
+        },[]);
+        // console.log('ID',inputId)
+        // console.log('PW',inputPw)
 
         // let body = { 
         //     ID: inputId,
