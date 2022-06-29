@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69ed111d-fff4-471a-9b16-cc88b8b0b972" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CommonNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CommonNavbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/bag.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/bag.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CommonNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CommonNavbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Detail.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +71,7 @@
       <workItem from="1656225667312" duration="45001000" />
       <workItem from="1656494756399" duration="1431000" />
       <workItem from="1656496263291" duration="5206000" />
-      <workItem from="1656504503970" duration="1796000" />
+      <workItem from="1656504503970" duration="2194000" />
     </task>
     <servers />
   </component>

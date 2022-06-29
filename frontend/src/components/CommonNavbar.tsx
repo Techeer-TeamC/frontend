@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Nav, Navbar, NavItem, NavDropdown, Container} from "react-bootstrap";
 import { Link } from "react-router-dom";
-import imgLogo from '../assets/logo.png';
+import imgLogo from '../assets/images/logo.png';
 function CommonNavbar() {
   
   const [isAuthentication, setAuthentication] = useState(false);
@@ -25,8 +25,8 @@ function CommonNavbar() {
                     </NavDropdown>
                 ) : ( 
                       <>
-                        <Nav.Link href="/">Login</Nav.Link>
-                        <Nav.Link href="#link">Signup</Nav.Link>
+                        <Nav.Link href="/login">Login</Nav.Link>
+                        <Nav.Link href="/register">Signup</Nav.Link>
                         </>)}
                 
               </Nav>
