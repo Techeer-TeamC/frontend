@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import "./SearchProductList.css";
 import "../pages/Search"
 import axios from "axios";
 import Modal from 'react-modal';

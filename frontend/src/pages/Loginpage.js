@@ -1,5 +1,5 @@
 import './Loginpage.css';
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 // import {useDispatch} from 'react-redux';
 // import {loginUser} from './_actions/user_action';
 // import axios, { Axios } from 'axios';
@@ -28,9 +28,7 @@ function LoginPage(props) {
  
 	// login 버튼 클릭 이벤트
     const onClickLogin = (e) => {
-        useEffect(()=>{
-            e.preventDefault(); //새로고침 막기 위함
-
+    
             fetch('http://3.39.75.19:8080/api/v1/auth/new', {
                 method: 'POST',
                 headers: { //get일 때는 없어도 됨
@@ -53,8 +51,7 @@ function LoginPage(props) {
                 navigate('/', {replace: true});
 
                 }
-            })
-        },[]);
+            });
         // console.log('ID',inputId)
         // console.log('PW',inputPw)
 

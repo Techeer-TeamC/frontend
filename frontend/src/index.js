@@ -12,12 +12,9 @@ import Test from './pages/Test.tsx';
 import RegisterPage from './pages/Registerpage';
 import Recent from './components/recent';
 import Bag from './components/bag';
-<<<<<<< refs/remotes/origin/feature/local_login
 import Auth from './assets/auth';
-=======
 import Search from "./pages/Search";
 import Detail from "./pages/Detail";
->>>>>>> feat : productSearch and detail page
 
 
 //렌더링 할 페이지 설정해주는 곳
@@ -35,7 +32,6 @@ root.render(
       <Route path="/test" element={<Test />} />
       <Route path="/auth" element={<Auth />} />
       <Route path="products/detail/:id" element={<Detail />} />
->>>>>>> feat : productSearch and detail page
     </Routes>
   </BrowserRouter>
 

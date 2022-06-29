@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="69ed111d-fff4-471a-9b16-cc88b8b0b972" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/SearchBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SearchProductList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchProductList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/searchProductList.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchProductList.css" afterDir="false" />
-    </list>
+    <list default="true" id="69ed111d-fff4-471a-9b16-cc88b8b0b972" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,7 +63,7 @@
       <workItem from="1654709300110" duration="15703000" />
       <workItem from="1654883219804" duration="861000" />
       <workItem from="1654885768496" duration="23515000" />
-      <workItem from="1656225667312" duration="42072000" />
+      <workItem from="1656225667312" duration="44167000" />
     </task>
     <servers />
   </component>
