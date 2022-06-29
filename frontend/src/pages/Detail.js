@@ -6,6 +6,7 @@ import './Detail.css';
 import SearchBar from "../components/SearchBar";
 import Alarm from "../components/Alarm";
 import SearchProductList from "../components/SearchProductList";
+import CommonNavbar from "../components/CommonNavbar"
 
 function Detail(props) {
     let { id } = useParams();
@@ -32,7 +33,10 @@ function Detail(props) {
 
 
         return (
-                <section className="detail-container">
+                <section className="container">
+                    {
+                        <CommonNavbar />
+                    }
             {
                 isLoading
                     ? (<div className="loader">
