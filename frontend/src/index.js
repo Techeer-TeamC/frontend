@@ -15,6 +15,7 @@ import Bag from './components/bag';
 import Auth from './assets/auth';
 import Search from "./pages/Search";
 import Detail from "./pages/Detail";
+import ProductRegisterList from "./pages/ProductRegisterPage"
 
 
 //렌더링 할 페이지 설정해주는 곳
@@ -31,7 +32,8 @@ root.render(
       <Route path="/search/:keyword" element={<Search />} />
       <Route path="/test" element={<Test />} />
       <Route path="/auth" element={<Auth />} />
-      <Route path="products/detail/:id" element={<Detail />} />
+      <Route path="/products/detail/:id" element={<Detail />} />
+      <Route path="/products/list" element={<ProductRegisterList />} />
     </Routes>
   </BrowserRouter>
 
