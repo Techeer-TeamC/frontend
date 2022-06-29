@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import imgLogo from '../assets/images/logo.png';
 function CommonNavbar() {
   
-  const [isAuthentication, setAuthentication] = useState(false);
+  const [isAuthentication, setAuthentication] = useState(false); //향후 auth의 값을 통해 ture, false여부 확인 필요. 
   
   return (
       <div>
@@ -21,7 +21,7 @@ function CommonNavbar() {
                       <NavDropdown.Item href="#action/3.1">회원 정보</NavDropdown.Item>
                       <NavDropdown.Item href="#action/3.2">로그아웃</NavDropdown.Item>
                       <NavDropdown.Divider />
-                      <NavDropdown.Item href="#action/3.4">등록한 알림 설정</NavDropdown.Item>
+                      <NavDropdown.Item href="#action/3.4">등록한 상품</NavDropdown.Item>
                     </NavDropdown>
                 ) : ( 
                       <>
