@@ -6,6 +6,8 @@ import Pagination from 'rc-pagination';
 import 'rc-pagination/assets/index.css';
 import SearchBar from "../components/SearchBar";
 import {useParams} from "react-router-dom";
+import CommonNavbar from "../components/CommonNavbar"
+
 function Search() {
 
   let { keyword } = useParams();
@@ -37,8 +39,13 @@ function Search() {
     return (
         <section className="container">
           {
+            <CommonNavbar></CommonNavbar>
+          }
+          
+          {
               <SearchBar></SearchBar>
           }
+          
           {
                 totalCount ? (
                 <>
