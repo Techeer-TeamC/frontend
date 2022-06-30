@@ -29,7 +29,7 @@ function ProductRegisterList() {
       , {
         headers: {
           'Authorization':
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1NjUzMTE4MX0.u6zAKUYxNkseQGvAKit1BrjrRCdc9yKLFUGlbRz-c-w'
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1NjYxMzgzNH0.K4U0xwGktFhAegXXnebCv_n3JGOkSbsDIMDz9rYMrwA'
         }
 
       })
@@ -48,20 +48,26 @@ function ProductRegisterList() {
         {
           <CommonNavbar></CommonNavbar>
         }
-        
 
         {
+          <div>
+          <h2>마이 페이지</h2>
+          <hr />
+          </div>
+        }
+
+        {
+         
           totalCount ? (
               <>
                 <div>
-                  <h2>마이 페이지</h2>
-                  
                 <div className="row">
                   {products && products.map(product => (<RegisterProduct key={product.productId} productId={product.productId} desiredPrice={product.desiredPrice}/>))}
                 </div>
                 </div>
               </>
-          ) : '알림을 등록한 상품 내역이 없습니다.'
+          ) : 
+              '알림을 등록한 상품 내역이 없습니다.'
 
         }
       </section>);

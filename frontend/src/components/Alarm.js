@@ -37,11 +37,18 @@ function Alarm({type}) {
     },
   };
 
+
+
   const handleResult = () => {
     const fd = new FormData();
     fd.append("desiredPrice", desirePrice);
     axios
-      .post('http://localhost:8080/api/v1/products/register/1') //userId값을 헤더로부터 가져와서 넣을 것
+      .post('http://localhost:8080/api/v1/products/register/1', {
+        headers: {
+          'Authorization':
+              'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1NjYxMzgzNH0.K4U0xwGktFhAegXXnebCv_n3JGOkSbsDIMDz9rYMrwA'
+        }
+      })//userId값을 헤더로부터 가져와서 넣을 것
       .then((res) => {
         window.alert("정상적으로 알림 등록이 완료되었습니다.");
       })
