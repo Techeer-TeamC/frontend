@@ -5,7 +5,7 @@ import Modal from 'react-modal';
 import "./Alarm.css"
 Modal.setAppElement('#root');
 
-function Alarm({type}) {
+function Alarm({type,productId}) {
 
   const apiType = type;
   const [desirePrice, setPrice] = useState(0);
@@ -38,25 +38,35 @@ function Alarm({type}) {
   };
 
 
-
+  
   const handleResult = () => {
     const fd = new FormData();
     fd.append("desiredPrice", desirePrice);
-    axios
-      .post('http://localhost:8080/api/v1/products/register/1', {
-        headers: {
-          'Authorization':
-              'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1NjYxMzgzNH0.K4U0xwGktFhAegXXnebCv_n3JGOkSbsDIMDz9rYMrwA'
-        }
+
+    if (apiType == "post") {
+
+      axios({
+        method: 'post',
+        url: `http://localhost:8080/api/v1/products/register/${productId}`,
+        data: {
+          desiredPrice: parseInt({desirePrice})
+        },
+        headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1NjY3MjMzOH0.XuIelFc-CyB6LoEWyYViNIWzDEk96mtxXcXXL7FaGAo'}
       })//userId값을 헤더로부터 가져와서 넣을 것
-      .then((res) => {
+      .then(function (response) {
         window.alert("정상적으로 알림 등록이 완료되었습니다.");
       })
-    .catch((err) => {
-      console.log(err);
-      window.alert("알림 등록 중 오류가 발생하였습니다.");
-    })
+      .catch(function (error) {
+        console.error(error);
+        window.alert("알림 등록 중 오류가 발생하였습니다.");
+      })
+    }
+
+    else{
+      console.log("not!!!");
+    }
   }
+  
 
   return (
       <div>
