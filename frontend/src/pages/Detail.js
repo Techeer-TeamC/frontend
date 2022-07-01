@@ -13,6 +13,7 @@ function Detail(props) {
     const navigate = useNavigate();
     const[isLoading, setLoading] = useState(true);
     const[productData , setData] = useState({});
+    const [isVisible, setIsVisible] = useState(false);
 
 
 
@@ -79,7 +80,10 @@ function Detail(props) {
                                         </div>
 
                                     </div>
-                                    <Alarm key={id} type="post" productId={id} />
+                                    <button type="button" className=" btn-primary"  onClick={()=> setIsVisible(true)}>
+                                        알림 등록
+                                    </button>
+                                    {isVisible && <Alarm key={id} type="post" productId={id} modalVisible={setIsVisible} />}
                                 </div>
 
 

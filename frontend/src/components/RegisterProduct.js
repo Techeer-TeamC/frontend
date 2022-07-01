@@ -11,7 +11,7 @@ import Alarm from "../components/Alarm";
 function RegisterProduct({productId, desiredPrice}) {
 
   const[productData , setDataList] = useState([]);
-
+  const [isVisible, setIsVisible] = useState(false);
   
   
   useEffect( () => {
@@ -88,7 +88,7 @@ function RegisterProduct({productId, desiredPrice}) {
                 <button className="btn" onClick={confirmDelete}>
                   <AiOutlineClose size='22' />
                 </button>
-                <button className="btn">
+                <button className="btn" onClick={()=> setIsVisible(true)}>
                   <AiOutlineSetting size='22' />
                 </button>
 
@@ -96,6 +96,7 @@ function RegisterProduct({productId, desiredPrice}) {
 
                 <p className="text-center">설정 가격 :  {desiredPrice}</p>
                 <p className="text-center">현재 가격 : {productData.mallInfo[0].price}</p>
+                {isVisible && <Alarm key={productId} type="patch" productId={productId} modalVisible={setIsVisible} />}
               </>
           ) : 'Loading. . .'
 
