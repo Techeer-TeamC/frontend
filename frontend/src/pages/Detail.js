@@ -62,12 +62,15 @@ function Detail(props) {
                                                     </thead>
                                                     <tbody>
                                                         {productData.mallInfo && productData.mallInfo.map(mall => (
+                                                            
                                                             <tr onClick={() => window.open("/"+mall.name ,'_blank')}>
                                                                 <th>{ mall.name }</th>
                                                                 <th>{ mall.price }</th>
                                                                 <th>{ mall.delivery }</th>
                                                                 <th>{ mall.paymentOption }</th>
                                                             </tr>
+                                                          
+                                                                
                                                         ))}
 
                                                     </tbody>
@@ -76,7 +79,7 @@ function Detail(props) {
                                         </div>
 
                                     </div>
-                                    <Alarm></Alarm>
+                                    <Alarm key={id} type="post" productId={id} />
                                 </div>
 
 

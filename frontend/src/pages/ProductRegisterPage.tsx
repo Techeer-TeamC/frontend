@@ -29,7 +29,7 @@ function ProductRegisterList() {
       , {
         headers: {
           'Authorization':
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1NjYxMzgzNH0.K4U0xwGktFhAegXXnebCv_n3JGOkSbsDIMDz9rYMrwA'
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1NjY4MjgyN30.5JhOqkTPlCTcl3LrfmJ3GRNXVfqRS0TundahdQophWM'
         }
 
       })
