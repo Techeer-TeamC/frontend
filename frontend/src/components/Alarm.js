@@ -5,12 +5,16 @@ import Modal from 'react-modal';
 import "./Alarm.css"
 Modal.setAppElement('#root');
 
-function Alarm({type,productId}) {
+function Alarm({type,productId, modalVisible}) {
 
   const apiType = type;
   const [desirePrice, setPrice] = useState(0);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  const onSubmitBtn = () => {
+    modalVisible(false);
+  }
+  
+  
   const modalStyle = {
     overlay: {
       position: "fixed",
@@ -63,24 +67,34 @@ function Alarm({type,productId}) {
     }
 
     else{
-      console.log("not!!!");
+      axios({
+        method: 'patch',
+        url: `http://localhost:8080/api/v1/products/register/${productId}`,
+        data: {
+          desiredPrice: parseInt({desirePrice})
+        },
+        headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1NjY3MjMzOH0.XuIelFc-CyB6LoEWyYViNIWzDEk96mtxXcXXL7FaGAo'}
+      })//userId값을 헤더로부터 가져와서 넣을 것
+      .then(function (response) {
+        window.alert("정상적으로 알림 등록이 완료되었습니다.");
+      })
+      .catch(function (error) {
+        console.error(error);
+        window.alert("알림 등록 중 오류가 발생하였습니다.");
+      })
     }
+    
   }
   
 
   return (
       <div>
-        <button type="button" className=" btn-primary"  aria-label="Close"  onClick={()=> setModalIsOpen(true)}>
-          알림 등록
-        </button>
-
-        <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)
-        }
+        <Modal isOpen="true" onRequestClose={() => modalVisible(false)}
         style={modalStyle}>
         <div className="row">
           <div className="Alarm">
 
-            <button className="btn-close closeModal" onClick={()=> setModalIsOpen(false)}>
+            <button className="btn-close closeModal" onClick={()=> modalVisible(false)}>
             </button>
 
             <div>
