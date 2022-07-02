@@ -86,7 +86,7 @@ function Detail(props) {
                                     <button type="button" className=" btn-primary"  onClick={()=> setIsVisible(true)}>
                                         알림 등록
                                     </button>
-                                    {isVisible && <Alarm type="post" title={productData.title} url={id} modalVisible={setIsVisible} />}
+                                    {isVisible && <Alarm type="post" title={productData.title} urlValue={id} modalVisible={setIsVisible} />}
                                 </div>
                               
 

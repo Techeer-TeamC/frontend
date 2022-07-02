@@ -5,10 +5,11 @@ import Modal from 'react-modal';
 import "./Alarm.css"
 Modal.setAppElement('#root');
 
-function Alarm({type, title, modalVisible , url}) {
+function Alarm({type, title, modalVisible , urlValue}) {
 
   const apiType = type;
-  const [desirePrice, setPrice] = useState(0);
+  const [price, setPrice] = useState(0);
+ 
 
   const onSubmitBtn = () => {
     modalVisible(false);
@@ -44,45 +45,59 @@ function Alarm({type, title, modalVisible , url}) {
 
   
   const handleResult = () => {
-    const fd = new FormData();
-    fd.append("desiredPrice", desirePrice);
-
     if (apiType == "post") {
 
       axios({
         method: 'post',
-        url: `http://localhost:8080/api/v1/products/register/${title}`,
+        url: `http://localhost:8080/api/v1/products/register?product=${title}`,
         data: {
-          desiredPrice: parseInt({desirePrice}),
-          url : {url}
+          desiredPrice: parseInt(price),
+          url: urlValue,
         },
-        headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1NjY3MjMzOH0.XuIelFc-CyB6LoEWyYViNIWzDEk96mtxXcXXL7FaGAo'}
+        headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1Njc2MTk3MX0.p4jAWlQiwfnCC1VKzFifNzYogR3kSm1cJTRGsz4jqt4'}
       })//userId값을 헤더로부터 가져와서 넣을 것
       .then(function (response) {
         window.alert("정상적으로 알림 등록이 완료되었습니다.");
+        modalVisible(false);
       })
       .catch(function (error) {
-        console.error(error);
-        window.alert("알림 등록 중 오류가 발생하였습니다.");
+      
+        const errorType = error.response.data.code;
+        
+        if(errorType=="I003"){
+          window.alert("이미 알림이 등록된 상품입니다.");
+        }
+        else { 
+          window.alert("알림 등록 중 오류가 발생하였습니다.");
+        }
+        modalVisible(false);
       })
     }
 
     else{
       axios({
         method: 'patch',
-        url: `http://localhost:8080/api/v1/products/register/${title}`,
+        url: `http://localhost:8080/api/v1/products/register?product=${title}`,
         data: {
-          desiredPrice: parseInt({desirePrice}),
-          url : {url}
+          desiredPrice: parseInt(price),
+          url: urlValue,
         },
-        headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1NjY3MjMzOH0.XuIelFc-CyB6LoEWyYViNIWzDEk96mtxXcXXL7FaGAo'}
+        headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1Njc2MTk3MX0.p4jAWlQiwfnCC1VKzFifNzYogR3kSm1cJTRGsz4jqt4'}
       })//userId값을 헤더로부터 가져와서 넣을 것
       .then(function (response) {
         window.alert("정상적으로 알림 등록이 완료되었습니다.");
       })
       .catch(function (error) {
-        console.error(error);
-        window.alert("알림 등록 중 오류가 발생하였습니다.");
+
+        const errorType = error.response.data.code;
+
+        if(errorType=="I003"){
+          window.alert("이미 알림이 등록된 상품입니다.");
+        }
+        else {
+          window.alert("알림 등록 중 오류가 발생하였습니다.");
+        }
+        modalVisible(false);
       })
     }
     
