@@ -5,7 +5,7 @@ import Modal from 'react-modal';
 import "./Alarm.css"
 Modal.setAppElement('#root');
 
-function Alarm({type,productId, modalVisible}) {
+function Alarm({type, title, modalVisible , url}) {
 
   const apiType = type;
   const [desirePrice, setPrice] = useState(0);
@@ -51,9 +51,10 @@ function Alarm({type,productId, modalVisible}) {
 
       axios({
         method: 'post',
-        url: `http://localhost:8080/api/v1/products/register/${productId}`,
+        url: `http://localhost:8080/api/v1/products/register/${title}`,
         data: {
-          desiredPrice: parseInt({desirePrice})
+          desiredPrice: parseInt({desirePrice}),
+          url : {url}
         },
         headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1NjY3MjMzOH0.XuIelFc-CyB6LoEWyYViNIWzDEk96mtxXcXXL7FaGAo'}
       })//userId값을 헤더로부터 가져와서 넣을 것
@@ -69,9 +70,10 @@ function Alarm({type,productId, modalVisible}) {
     else{
       axios({
         method: 'patch',
-        url: `http://localhost:8080/api/v1/products/register/${productId}`,
+        url: `http://localhost:8080/api/v1/products/register/${title}`,
         data: {
-          desiredPrice: parseInt({desirePrice})
+          desiredPrice: parseInt({desirePrice}),
+          url : {url}
         },
         headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1NjY3MjMzOH0.XuIelFc-CyB6LoEWyYViNIWzDEk96mtxXcXXL7FaGAo'}
       })//userId값을 헤더로부터 가져와서 넣을 것

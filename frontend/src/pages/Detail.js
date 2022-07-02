@@ -86,9 +86,9 @@ function Detail(props) {
                                     <button type="button" className=" btn-primary"  onClick={()=> setIsVisible(true)}>
                                         알림 등록
                                     </button>
-                                    {isVisible && <Alarm key={id} type="post" productId={id} modalVisible={setIsVisible} />}
+                                    {isVisible && <Alarm type="post" title={productData.title} url={id} modalVisible={setIsVisible} />}
                                 </div>
-
+                              
 
                         </>
                     ) : '해당 게시글을 찾을 수 없습니다.'
