@@ -25,11 +25,10 @@ function Search() {
     const fetchData = async () => {
       window.scrollTo(0, 0);
       const result = await axios(
-        `http://localhost:8080/api/v1/products/search/?page=${currentPage-1}&keyword=${word}`
+        `http://localhost:8080/api/v1/crawler/search/products?word=${word}`
     )
-      setDataList(result.data.data);
-      console.log(products);
-      setTotalCount(result.data.totalCount);
+      setDataList(result.data.productListDtoList);
+      setTotalCount(result.data.totalNumber);
     }
     fetchData();
   },[word,currentPage]);
@@ -51,7 +50,7 @@ function Search() {
                 totalCount ? (
                 <>
                 <div className="row">
-                  {products && products.map(product => (<SearchProductList key={product.productId} id={product.productId} year="year" title={product.name} poster="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp14-spacegray-select-202110_GEO_KR?wid=1808&hei=1680&fmt=jpeg&qlt=90&.v=1647363032344" />))}
+                  {products && products.map(product => (<SearchProductList  url={product.url} minimumPrice={product.minimumPrice} title={product.title} imageUrl={product.imageUrl} />))}
                 </div>
           </>
         ) : '검색된 상품내역이 존재하지 않습니다.'

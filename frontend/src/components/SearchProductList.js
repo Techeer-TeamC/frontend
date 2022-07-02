@@ -2,17 +2,17 @@ import React from "react";
 import {Link} from 'react-router-dom';
 import PropTypes from "prop-types";
 
-function SearchProductList({id, title, poster}) {
+function SearchProductList({title, url, imageUrl, minimumPrice}) {
 
   return (
     <div className="col-md-4 border-0">
     <a className="link-dark product"
-     href={"/products/detail/"+id} target="_blank">
-      <img className="img-fluid mx-auto" src={poster} alt={title} titlt={title}></img>
+     href={"/products/detail/"+url} target="_blank">
+      <img className="img-fluid mx-auto" src={imageUrl} alt={title} titlt={title}></img>
       <h3 className="text-center">{
           title.replace(/<b>/gi,"").replace(/<\/b>/gi,"")
         }</h3>
-
+      <h3 className="text-center">최저가 {minimumPrice}</h3>
   </a>
   </div>
   )
