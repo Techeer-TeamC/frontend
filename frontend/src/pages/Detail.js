@@ -7,6 +7,7 @@ import SearchBar from "../components/SearchBar";
 import Alarm from "../components/Alarm";
 import SearchProductList from "../components/SearchProductList";
 import CommonNavbar from "../components/CommonNavbar"
+import Loading from "../components/Loading"
 
 function Detail(props) {
     
@@ -14,7 +15,6 @@ function Detail(props) {
     const location = useLocation();
 
     const id = location.state.url;
-    console.log(id);
     const[isLoading, setLoading] = useState(true);
     const[productData , setData] = useState({});
     const [isVisible, setIsVisible] = useState(false);
@@ -26,7 +26,7 @@ function Detail(props) {
             const result = await axios(` http://localhost:8080/api/v1/crawler/search/product?url=${id}`);
             setData(result.data);
             setLoading(false);
-            console.log(result.data);
+         
         };
 
         fetchData();
@@ -44,9 +44,7 @@ function Detail(props) {
                     }
             {
                 isLoading
-                    ? (<div className="loader">
-                        <span className="loader__text">Loading..</span>
-                    </div>)
+                    ? <Loading />
                     :  productData
                         ? (
                             

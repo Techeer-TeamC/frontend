@@ -7,6 +7,7 @@ import 'rc-pagination/assets/index.css';
 import SearchBar from "../components/SearchBar";
 import {useParams} from "react-router-dom";
 import CommonNavbar from "../components/CommonNavbar"
+import Loading from "../components/Loading"
 
 function Search() {
 
@@ -19,7 +20,7 @@ function Search() {
   const [pageSize, setPageSize] = useState(9);
   const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-
+  const[isLoading, setLoading] = useState(true);
 
   useEffect( () => {
     const fetchData = async () => {
@@ -29,6 +30,7 @@ function Search() {
     )
       setDataList(result.data.productListDtoList);
       setTotalCount(result.data.totalNumber);
+      setLoading(false);
     }
     fetchData();
   },[word,currentPage]);
@@ -45,21 +47,32 @@ function Search() {
           {
               <SearchBar></SearchBar>
           }
-          
+
+
           {
-                totalCount ? (
-                <>
-                <div className="row">
-                  {products && products.map(product => (<SearchProductList  url={product.url} minimumPrice={product.minimumPrice} title={product.title} imageUrl={product.imageUrl} />))}
-                </div>
-          </>
-        ) : '검색된 상품내역이 존재하지 않습니다.'
+            isLoading
+                ? <Loading/>
+                : totalCount ? (
+                    <>
+                      <div className="row">
+                        {products && products.map(product => (
+                            <SearchProductList url={product.url}
+                                               minimumPrice={product.minimumPrice}
+                                               title={product.title}
+                                               imageUrl={product.imageUrl}/>))}
+                      </div>
+                    </>
+                ) : '검색된 상품내역이 존재하지 않습니다.'
 
-      }
-          <Pagination className = "page" total={totalCount} current={currentPage} pageSize={pageSize}
-                      onChange={(page) => setCurrentPage(page)}></Pagination>
+          }
+
+          {
+
+            <Pagination className = "page" total={totalCount} current={currentPage} pageSize={pageSize}
+            onChange={(page) => setCurrentPage(page)}></Pagination>
+          }
     </section>);
-
+          
 
 
 }
