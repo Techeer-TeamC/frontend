@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import React,  { useEffect, useState } from 'react';
-import { useParams , useNavigate} from 'react-router-dom'
+import { useNavigate, useLocation} from 'react-router-dom'
 import './Detail.css';
 import SearchBar from "../components/SearchBar";
 import Alarm from "../components/Alarm";
@@ -9,20 +9,24 @@ import SearchProductList from "../components/SearchProductList";
 import CommonNavbar from "../components/CommonNavbar"
 
 function Detail(props) {
-    let { id } = useParams();
+    
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const id = location.state.url;
+    console.log(id);
     const[isLoading, setLoading] = useState(true);
     const[productData , setData] = useState({});
     const [isVisible, setIsVisible] = useState(false);
 
-
-
+    
     useEffect( () => {
 
         const fetchData = async () => {
-            const result = await axios(`http://localhost:8080/api/v1/products/${id}`);
+            const result = await axios(` http://localhost:8080/api/v1/crawler/search/product?url=${id}`);
             setData(result.data);
             setLoading(false);
+            console.log(result.data);
         };
 
         fetchData();
@@ -45,26 +49,27 @@ function Detail(props) {
                     </div>)
                     :  productData
                         ? (
+                            
                             <>
                                 <div className ="container">
                                     <SearchBar></SearchBar>
                                     <div className = "row">
                                         <div className ="product_image col-md-6">
-                                            <img className="img-fluid" src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp14-spacegray-select-202110_GEO_KR?wid=1808&hei=1680&fmt=jpeg&qlt=90&.v=1647363032344" alt="product-image"/>
+                                            <img className="img-fluid" src={productData.image} alt="product-image"/>
                                         </div>
                                         <div className="product-detail col-md-6">
                                             <div className="top-info">
-                                                <h2>{ productData.name }</h2>
-                                                <h3> 최저가 {productData.mallInfo[0].price}</h3>
+                                                <h2>{ productData.title }</h2>
+                                                <h3> 최저가 {productData.mallDtoInfo[0].price}</h3>
                                             </div>
                                             <div className="mallInfo row justify-content-between">
                                                 <table className="table">
                                                     <thead>
                                                     </thead>
                                                     <tbody>
-                                                        {productData.mallInfo && productData.mallInfo.map(mall => (
+                                                        {productData.mallDtoInfo && productData.mallDtoInfo.map(mall => (
                                                             
-                                                            <tr onClick={() => window.open("/"+mall.name ,'_blank')}>
+                                                            <tr onClick={() => window.open(mall.link ,'_blank')}>
                                                                 <th>{ mall.name }</th>
                                                                 <th>{ mall.price }</th>
                                                                 <th>{ mall.delivery }</th>
