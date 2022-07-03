@@ -29,10 +29,11 @@ function ProductRegisterList() {
       , {
         headers: {
           'Authorization':
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1Njc1ODE1M30.sozWf4F6c1bnTji-LqQIhyyHVqlKhMzN3UDM7PQFgNk'
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1Njg2ODc2MH0.rSggJi3S27g2ZIz99JjnsGpsUFPmcUgybHXgm-Ia3Os'
         }
 
       })
+      console.log(result.data);
       setDataList(result.data);
       setTotalCount(result.data.length);
 

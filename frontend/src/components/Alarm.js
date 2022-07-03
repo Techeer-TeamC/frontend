@@ -5,7 +5,7 @@ import Modal from 'react-modal';
 import "./Alarm.css"
 Modal.setAppElement('#root');
 
-function Alarm({type, title, modalVisible , urlValue}) {
+function Alarm({type, title, modalVisible , urlValue, productId}) {
 
   const apiType = type;
   const [price, setPrice] = useState(0);
@@ -54,7 +54,7 @@ function Alarm({type, title, modalVisible , urlValue}) {
           desiredPrice: parseInt(price),
           url: urlValue,
         },
-        headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1Njc2MTk3MX0.p4jAWlQiwfnCC1VKzFifNzYogR3kSm1cJTRGsz4jqt4'}
+        headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1Njc3MzExNn0.MsD679cI3koOJZH6Bfc3PUQanZP5ckE6apac6t1vJ1Y'}
       })//userId값을 헤더로부터 가져와서 넣을 것
       .then(function (response) {
         window.alert("정상적으로 알림 등록이 완료되었습니다.");
@@ -77,26 +77,16 @@ function Alarm({type, title, modalVisible , urlValue}) {
     else{
       axios({
         method: 'patch',
-        url: `http://localhost:8080/api/v1/products/register?product=${title}`,
+        url: `http://localhost:8080/api/v1/products/register/${productId}`,
         data: {
-          desiredPrice: parseInt(price),
-          url: urlValue,
+          desiredPrice: parseInt(price)
         },
-        headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1Njc2MTk3MX0.p4jAWlQiwfnCC1VKzFifNzYogR3kSm1cJTRGsz4jqt4'}
+        headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1Njg2ODc2MH0.rSggJi3S27g2ZIz99JjnsGpsUFPmcUgybHXgm-Ia3Os'}
       })//userId값을 헤더로부터 가져와서 넣을 것
       .then(function (response) {
         window.alert("정상적으로 알림 등록이 완료되었습니다.");
       })
       .catch(function (error) {
-
-        const errorType = error.response.data.code;
-
-        if(errorType=="I003"){
-          window.alert("이미 알림이 등록된 상품입니다.");
-        }
-        else {
-          window.alert("알림 등록 중 오류가 발생하였습니다.");
-        }
         modalVisible(false);
       })
     }

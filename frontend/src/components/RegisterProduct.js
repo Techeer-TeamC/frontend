@@ -52,7 +52,7 @@ function RegisterProduct({productId, desiredPrice}) {
     axios.delete(`/api/v1/products/register/${productId}` , {
       headers: {
         Authorization:
-           'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1NjY0Mjk0OH0.Q9TE_YyX00nsELLkoPCD5jj4T8ACQIZ6SBVev-smm-s'
+           'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1Njc3MDgxMH0.chLzdZnZwR23ZQiVDaNPpOWvFFBwd4lzgnkrpysR3lI'
       }
     })
     .then(function (response) {
@@ -92,11 +92,11 @@ function RegisterProduct({productId, desiredPrice}) {
                   <AiOutlineSetting size='22' />
                 </button>
 
-                <img className="img-fluid mx-auto"  src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp14-spacegray-select-202110_GEO_KR?wid=1808&hei=1680&fmt=jpeg&qlt=90&.v=1647363032344" alt="" ></img>
+                <img className="img-fluid mx-auto"  src={productData.image} alt="" ></img>
 
-                <p className="text-center">설정 가격 :  {desiredPrice}</p>
-                <p className="text-center">현재 가격 : {productData.mallInfo[0].price}</p>
-                {isVisible && <Alarm key={productId} type="patch" productId={productId} modalVisible={setIsVisible} />}
+                <p className="text-center">설정 가격 : {desiredPrice}</p>
+
+                {isVisible && <Alarm type="patch" title={productData.image} urlValue={productData.url} modalVisible={setIsVisible} productId={productId}/>}
               </>
           ) : 'Loading. . .'
 
