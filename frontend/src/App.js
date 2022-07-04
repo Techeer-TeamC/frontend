@@ -11,6 +11,9 @@ import RegisterPage from './pages/Registerpage';
 import Recent from './components/recent';
 import Bag from './components/bag';
 import Tokenfunction from './assets/Tokenfunction';
+import Detail from './pages/Detail'
+import Search from './pages/Search'
+import ProductRegisterList from './pages/Registerpage'
 
 //렌더링 할 페이지 설정해주는 곳
 
@@ -31,8 +34,16 @@ export default function() {
       <Route path="/recent" element={<Recent />} />
       <Route path="/bag" element={<Bag />} />
       <Route path="/test" element={<Test />} />
-
       <Route path="/tf" element={<Tokenfunction />} />
+      <Route path="/search/:keyword" element={<Search />} />
+
+      <Route path="/products/detail/" element={<Detail />} />
+      <Route path="/products/list" element={<ProductRegisterList />} />
+
+
+
+
+
       {/* {isLoggedin ? (<Route exact path="/" element={<MainPage/>} />
       ):(
         <Route exact path="/" element={<Test/>} />
