@@ -16,6 +16,7 @@ import Search from './pages/Search'
 import ProductRegisterList from './pages/ProductRegisterPage'
 import client from './util/client'
 import axios from 'axios';
+import RequireAuth from './components/RequireAuth'
 //렌더링 할 페이지 설정해주는 곳
 
 function App() {
@@ -68,10 +69,11 @@ function App() {
   }
 
     return(
-
+        
   <BrowserRouter>
+    
     <Routes>
-
+     
       <Route path="/" element={<MainPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage/>} />
@@ -82,8 +84,9 @@ function App() {
       <Route path="/search/:keyword" element={<Search />} />
 
       <Route path="/products/detail/" element={<Detail />} />
-      <Route path="/products/list" element={<ProductRegisterList />} />
+      <Route path="/products/list" element={  <RequireAuth> <ProductRegisterList /> </RequireAuth>} />
 
+ 
 
 
 
@@ -101,8 +104,9 @@ function App() {
         render={props => <Profile user={user} {...props} />}
       />   */}
     </Routes>
+  
   </BrowserRouter>
-
+   
 
     );
 };

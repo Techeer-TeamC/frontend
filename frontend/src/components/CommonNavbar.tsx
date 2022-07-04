@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import imgLogo from '../assets/images/logo.png';
 function CommonNavbar() {
   
-  const [isAuthentication, setAuthentication] = useState(true); //향후 auth의 값을 통해 ture, false여부 확인 필요. 
+  const [isAuthentication, setAuthentication] = useState((localStorage.accessToken!=null)); //향후 auth의 값을 통해 ture, false여부 확인 필요. 
   
   return (
       <div>
