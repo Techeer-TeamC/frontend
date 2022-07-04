@@ -2,11 +2,12 @@ import './Loginpage.css';
 import React, { useState , useEffect} from 'react';
 // import {useDispatch} from 'react-redux';
 // import {loginUser} from './_actions/user_action';
-// import axios, { Axios } from 'axios';
 import { useNavigate } from 'react-router-dom'
 import imgA from '../assets/loginpage/IMG_9315.JPG';
 import imgB from '../assets/loginpage/btn_google.png';
 import imgC from '../assets/loginpage/kakao_login_large_narrow.png';
+import axios from "axios";
+
 // {authenticated, login, location
 
 function LoginPage(props) {
@@ -25,54 +26,93 @@ function LoginPage(props) {
     const handleInputPw = (e) => {
         setInputPw(e.target.value)
     }
- 
+
+
+  const onClickLogin = (e) => {
+    try{
+        axios({
+          method: 'post',
+          url: `http://localhost:8080/api/v1/auth/new`,
+          data: {
+            email: inputId,
+            password: inputPw
+          }}
+        )
+        .then(function (response) {
+          console.log(response.data.accessToken);
+          window.alert("로그인 성공.");
+          localStorage.setItem('refreshToken',response.data.refreshToken);
+          localStorage.setItem('accessToken', response.data.accessToken);
+          localStorage.setItem('tokenValidTime', response.data.accessTokenExpiresIn);
+         // axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.accessToken;
+          props.loginCallBack(true);
+          props.history.push('/')
+        })
+        .catch(function (error) {
+  
+          const errorType = error.response.data.code;
+  
+          if(errorType=="I003"){
+            window.alert("이미 알림이 등록된 상품입니다.");
+          }
+          else {
+            window.alert("알림 등록 중 오류가 발생하였습니다.");
+          }
+
+        })
+    } catch(e){
+  console.log(e);
+}
+  }
+
+
 	// login 버튼 클릭 이벤트
-    const onClickLogin = (e) => {
-    
-            fetch('http://3.39.75.19:8080/api/v1/auth/new', {
-                method: 'POST',
-                headers: { //get일 때는 없어도 됨
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    'email': inputId,
-                    'password': inputPw
-                })
-            })
-
-            .then(response => response.json())
-            .then(response => {
-
-                if (response.data.accessToken && response.data.refreshToken) {
-                localStorage.setItem('access_token', response.data.accessToken);
-                localStorage.setItem('refresh_token', response.data.refreshToken);
-                setIsLogin(true);    
-                // console.log('access_token', response.data.accessToken);
-                navigate('/', {replace: true});
-
-                }
-            });
-        // console.log('ID',inputId)
-        // console.log('PW',inputPw)
-
-        // let body = { 
-        //     ID: inputId,
-        //     PW: inputPw
-        // }
-    
-        // dispatch(loginUser(body))
-        //     .then(response => {
-        //         if(response.payload.success) {
-        //             props.history.push('/')
-        //         } else{
-        //             alert('Error')
-        //         }
-                // .then(token => {
-                //     localStorage.setItem("jwt",token.accessToken)
-                // })
-        //     })
-     }
- 
+  //   const onClickLogin = (e) => {
+  //
+  //           fetch('http://3.39.75.19:8080/api/v1/auth/new', {
+  //               method: 'POST',
+  //               headers: { //get일 때는 없어도 됨
+  //                   'Content-Type': 'application/json',
+  //               },
+  //               body: JSON.stringify({
+  //                   'email': inputId,
+  //                   'password': inputPw
+  //               })
+  //           })
+  //
+  //           .then(response => response.json())
+  //           .then(response => {
+  //
+  //               if (response.data.accessToken && response.data.refreshToken) {
+  //               localStorage.setItem('access_token', response.data.accessToken);
+  //               localStorage.setItem('refresh_token', response.data.refreshToken);
+  //               setIsLogin(true);
+  //               // console.log('access_token', response.data.accessToken);
+  //               navigate('/', {replace: true});
+  //
+  //               }
+  //           });
+  //       // console.log('ID',inputId)
+  //       // console.log('PW',inputPw)
+  //
+  //       // let body = {
+  //       //     ID: inputId,
+  //       //     PW: inputPw
+  //       // }
+  //
+  //       // dispatch(loginUser(body))
+  //       //     .then(response => {
+  //       //         if(response.payload.success) {
+  //       //             props.history.push('/')
+  //       //         } else{
+  //       //             alert('Error')
+  //       //         }
+  //               // .then(token => {
+  //               //     localStorage.setItem("jwt",token.accessToken)
+  //               // })
+  //       //     })
+  //    }
+  //
 
      
     

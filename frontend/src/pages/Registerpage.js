@@ -72,20 +72,15 @@ function RegisterPage(props) {
 
             // .then(response => response.json())
             .then(response => {
-                // console.log("api응답반환 완료");
-                // console.log(response);
-                
-                // 실패시
-                if (!response.ok) {
-                  
-                  alert("실패: "+ response.message);
-                }
-                //성공시
-                else {
+           
                   alert("가입 완료");
                   navigate('/login', {replace: true});
-                }
+                
             })
+            .catch(() => {
+                console.log('에러')
+              })
+
         }        
     } 
 

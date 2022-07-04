@@ -52,7 +52,7 @@ function RegisterProduct({productId, desiredPrice}) {
     axios.delete(`/api/v1/products/register/${productId}` , {
       headers: {
         Authorization:
-           'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1Njc3MDgxMH0.chLzdZnZwR23ZQiVDaNPpOWvFFBwd4lzgnkrpysR3lI'
+            'Bearer ' +  localStorage.accessToken
       }
     })
     .then(function (response) {

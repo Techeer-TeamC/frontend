@@ -23,13 +23,13 @@ function ProductRegisterList() {
   useEffect( () => {
     const fetchData = async () => {
       window.scrollTo(0, 0);
-
+      console.log(localStorage.accessToken);
       const result = await axios.get(
           `http://localhost:8080/api/v1/products/list`
       , {
         headers: {
           'Authorization':
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1Njg2ODc2MH0.rSggJi3S27g2ZIz99JjnsGpsUFPmcUgybHXgm-Ia3Os'
+          'Bearer ' +  localStorage.accessToken
         }
 
       })

@@ -41,8 +41,7 @@ function Alarm({type, title, modalVisible , urlValue, productId}) {
       zIndex: 10,
     },
   };
-
-
+  
   
   const handleResult = () => {
     if (apiType == "post") {
@@ -54,7 +53,7 @@ function Alarm({type, title, modalVisible , urlValue, productId}) {
           desiredPrice: parseInt(price),
           url: urlValue,
         },
-        headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1Njc3MzExNn0.MsD679cI3koOJZH6Bfc3PUQanZP5ckE6apac6t1vJ1Y'}
+        headers: {'Authorization': 'Bearer ' +  localStorage.accessToken}
       })//userId값을 헤더로부터 가져와서 넣을 것
       .then(function (response) {
         window.alert("정상적으로 알림 등록이 완료되었습니다.");
@@ -81,7 +80,7 @@ function Alarm({type, title, modalVisible , urlValue, productId}) {
         data: {
           desiredPrice: parseInt(price)
         },
-        headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY1Njg2ODc2MH0.rSggJi3S27g2ZIz99JjnsGpsUFPmcUgybHXgm-Ia3Os'}
+        headers: {'Authorization': 'Bearer ' +  localStorage.accessToken}
       })//userId값을 헤더로부터 가져와서 넣을 것
       .then(function (response) {
         window.alert("정상적으로 알림 등록이 완료되었습니다.");

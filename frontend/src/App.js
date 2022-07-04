@@ -13,21 +13,65 @@ import Bag from './components/bag';
 import Tokenfunction from './assets/Tokenfunction';
 import Detail from './pages/Detail'
 import Search from './pages/Search'
-import ProductRegisterList from './pages/Registerpage'
-
+import ProductRegisterList from './pages/ProductRegisterPage'
+import client from './util/client'
+import axios from 'axios';
 //렌더링 할 페이지 설정해주는 곳
 
-export default function() {
-//  App = ({isLoggedin}) => {
+function App() {
+  const [isLogin , setIsLogin] = useState(false);
+  const [loading , setLoading] = useState(false);
+  const nowDate = new Date().getTime();
 
-    useEffect(()=>{
-     
-    },[]);
+
+  useEffect(()=>{
+    try{
+      if(!localStorage.accessToken)
+      {
+        setIsLogin(false);
+      }
+      else {
+        if (nowDate > localStorage.tokenValidTime + 60) {
+          axios({
+            method: 'post',
+            url: `http://localhost:8080/api/v1/auth/reissue`,
+            data: {
+              accessToken: localStorage.accessToken,
+              refreshToken: localStorage.refreshToken
+            }
+          })//userId값을 헤더로부터 가져와서 넣을 것
+          .then(function (response) {
+            localStorage.setItem('refreshToken', response.data.refreshToken);
+            localStorage.setItem('accessToken', response.data.accessToken);
+            console.log("refresh정상 처리")
+          })
+          .catch(function (error) {
+            console.error("refresh에러");
+            localStorage.removeItem('refreshToken');
+            localStorage.removeItem('accessToken');
+            setIsLogin(true);
+          })
+          .finally(() => {
+            console.log("login request end");
+            setLoading(true);
+          });
+        }
+      }
+  }catch(e){
+      console.log(e);
+    }
+  },[]);
+
+
+  function loginCallBack(login){
+    setIsLogin(login);
+  }
 
     return(
 
   <BrowserRouter>
     <Routes>
+
       <Route path="/" element={<MainPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage/>} />
@@ -44,10 +88,7 @@ export default function() {
 
 
 
-      {/* {isLoggedin ? (<Route exact path="/" element={<MainPage/>} />
-      ):(
-        <Route exact path="/" element={<Test/>} />
-      )} */}
+
 
 
       {/* <AuthRoute exact isLogin={isLogin} path="/" element={<MainPage/>} />
@@ -62,5 +103,8 @@ export default function() {
     </Routes>
   </BrowserRouter>
 
+
     );
-};    
+};
+
+export default App;
