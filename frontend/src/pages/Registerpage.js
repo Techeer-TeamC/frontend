@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function RegisterPage(props) {
   
@@ -22,6 +24,7 @@ function RegisterPage(props) {
   const onConfirmPasswordHandler = (e) => {
     setConfirmPassword(e.currentTarget.value);
   };
+  const navigate = useNavigate(); 
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -31,6 +34,30 @@ function RegisterPage(props) {
             alert("모든 항목을 입력하세요")
         }
         else{
+          //   axios.post("http://3.39.75.19:8080/api/v1/users/new", {
+          //     'email': Email,
+          //     'password': Password,
+          //     'memberName': Name
+          // })
+          //   .then(function(response) {
+          //       // response 
+          //       console.log("okay");
+
+          //   }).catch(function(error) {
+          //       console.log("error"+response.code);
+          //   })
+            // .then( {
+            //     // 항상 실행
+            // });
+          
+          // async await 함수를 사용할 때, 
+          
+          // try {
+          //   const data = await axios.post("url");
+          // } catch {
+          //   // 오류 발생시 실행
+          // }
+
             fetch('http://3.39.75.19:8080/api/v1/users/new', {
               method: 'POST',
               headers: {
@@ -43,33 +70,29 @@ function RegisterPage(props) {
               })
           })
 
-          .then(response => response.json())
-          .then(response => {
-              if (response.success) {
-                alert("가입 완료");
-                // props.history.push("/login");
-              }
-          })
-              // console.log('name', Name)
-              // console.log('email',Email)
-              // console.log('password',Password)
-
-
-            // let body = {
-            //     email: Email,
-            //     password: Password
-            // }
-            
-            // dispatch(registerUser(body)).then((res) => {
-            //     alert("가입 완료");
-            //     props.history.push("/login");
-            //   });
-        }
-        
+            // .then(response => response.json())
+            .then(response => {
+                // console.log("api응답반환 완료");
+                // console.log(response);
+                
+                // 실패시
+                if (!response.ok) {
+                  
+                  alert("실패: "+ response.message);
+                }
+                //성공시
+                else {
+                  alert("가입 완료");
+                  navigate('/login', {replace: true});
+                }
+            })
+        }        
     } 
+
+
     else {
           alert("비밀번호가 일치하지 않습니다");
-        }
+    }
 
   // const { from } = location.state || { from: { pathname: "/" } };
   // if (authenticated) return <Redirect to={from} />;
