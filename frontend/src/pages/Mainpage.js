@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { BiUser } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import './Mainpage.css';
-
+import CommonNavbar from "../components/CommonNavbar"
 
 
 
@@ -27,6 +27,7 @@ function Mainpage() {
   return ( //실제 화면에 출력할 내용들 설정 해주는 곳
     <div>
       <header>
+        <CommonNavbar />
             <nav id="box">
               <ul id="loginbutton">
                 <li><div><BiUser/></div></li>

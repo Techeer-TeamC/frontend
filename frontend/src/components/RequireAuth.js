@@ -1,10 +1,10 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-function RequireAuth({ children }) {
+function RequireAuth({ children , isLogin}) {
   
-  console.log(localStorage.acessToken);
-  if (localStorage.acessToken==null) {
+  
+  if (!isLogin) {
     return <Navigate to="/login" />;
   }
   return children;

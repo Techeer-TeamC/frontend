@@ -44,9 +44,8 @@ function LoginPage(props) {
           localStorage.setItem('refreshToken',response.data.refreshToken);
           localStorage.setItem('accessToken', response.data.accessToken);
           localStorage.setItem('tokenValidTime', response.data.accessTokenExpiresIn);
-         // axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.accessToken;
-          props.loginCallBack(true);
-          props.history.push('/')
+          navigate("/");
+          
         })
         .catch(function (error) {
   

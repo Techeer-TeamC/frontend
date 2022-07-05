@@ -62,9 +62,12 @@ function Alarm({type, title, modalVisible , urlValue, productId}) {
       .catch(function (error) {
       
         const errorType = error.response.data.code;
-        
+      
         if(errorType=="I003"){
           window.alert("이미 알림이 등록된 상품입니다.");
+        }
+        else if(errorType == "J001") {
+          window.alert("로그인이 필요한 기능입니다.");
         }
         else { 
           window.alert("알림 등록 중 오류가 발생하였습니다.");
@@ -86,6 +89,11 @@ function Alarm({type, title, modalVisible , urlValue, productId}) {
         window.alert("정상적으로 알림 등록이 완료되었습니다.");
       })
       .catch(function (error) {
+        const errorType = error.response.data.code;
+        
+        if(errorType == "J001") {
+          window.alert("로그인이 필요한 기능입니다.");
+        }
         modalVisible(false);
       })
     }

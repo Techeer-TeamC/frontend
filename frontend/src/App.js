@@ -21,7 +21,6 @@ import RequireAuth from './components/RequireAuth'
 
 function App() {
   const [isLogin , setIsLogin] = useState(false);
-  const [loading , setLoading] = useState(false);
   const nowDate = new Date().getTime();
 
 
@@ -32,6 +31,7 @@ function App() {
         setIsLogin(false);
       }
       else {
+        setIsLogin(true);
         if (nowDate > localStorage.tokenValidTime + 60) {
           axios({
             method: 'post',
@@ -50,24 +50,18 @@ function App() {
             console.error("refresh에러");
             localStorage.removeItem('refreshToken');
             localStorage.removeItem('accessToken');
-            setIsLogin(true);
+            setIsLogin(false);
           })
-          .finally(() => {
-            console.log("login request end");
-            setLoading(true);
-          });
         }
       }
-  }catch(e){
+      console.log(localStorage.accessToken);
+    }catch(e){
       console.log(e);
     }
   },[]);
 
 
-  function loginCallBack(login){
-    setIsLogin(login);
-  }
-
+  
     return(
         
   <BrowserRouter>
@@ -75,7 +69,7 @@ function App() {
     <Routes>
      
       <Route path="/" element={<MainPage />} />
-      <Route path="/login" element={<LoginPage />} />
+      <Route path="/login" element={  <RequireAuth isLogin={localStorage.accessToken == null}>  <LoginPage />  </RequireAuth>} />
       <Route path="/register" element={<RegisterPage/>} />
       <Route path="/recent" element={<Recent />} />
       <Route path="/bag" element={<Bag />} />
@@ -84,10 +78,8 @@ function App() {
       <Route path="/search/:keyword" element={<Search />} />
 
       <Route path="/products/detail/" element={<Detail />} />
-      <Route path="/products/list" element={  <RequireAuth> <ProductRegisterList /> </RequireAuth>} />
-
- 
-
+      <Route path="/products/list" element={  <RequireAuth isLogin={localStorage.accessToken != null}>  <ProductRegisterList /> </RequireAuth>} />
+      
 
 
 
