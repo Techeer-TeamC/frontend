@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-
-// import { withRouter } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function RegisterPage(props) {
   
@@ -24,6 +24,7 @@ function RegisterPage(props) {
   const onConfirmPasswordHandler = (e) => {
     setConfirmPassword(e.currentTarget.value);
   };
+  const navigate = useNavigate(); 
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -33,26 +34,64 @@ function RegisterPage(props) {
             alert("모든 항목을 입력하세요")
         }
         else{
-            console.log('email',Email)
-            console.log('password',Password)
+          //   axios.post("http://3.39.75.19:8080/api/v1/users/new", {
+          //     'email': Email,
+          //     'password': Password,
+          //     'memberName': Name
+          // })
+          //   .then(function(response) {
+          //       // response 
+          //       console.log("okay");
 
-            // let body = {
-            //     email: Email,
-            //     password: Password
-            // }
-            
-            // dispatch(registerUser(body)).then((res) => {
-            //     alert("가입 완료");
-            //     props.history.push("/login");
-            //   });
-        }
-        
+          //   }).catch(function(error) {
+          //       console.log("error"+response.code);
+          //   })
+            // .then( {
+            //     // 항상 실행
+            // });
+          
+          // async await 함수를 사용할 때, 
+          
+          // try {
+          //   const data = await axios.post("url");
+          // } catch {
+          //   // 오류 발생시 실행
+          // }
+
+            fetch('http://3.39.75.19:8080/api/v1/users/new', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                  'email': Email,
+                  'password': Password,
+                  'memberName': Name
+              })
+          })
+
+            // .then(response => response.json())
+            .then(response => {
+           
+                  alert("가입 완료");
+                  navigate('/login', {replace: true});
+                
+            })
+            .catch(() => {
+                console.log('에러')
+              })
+
+        }        
     } 
+
+
     else {
           alert("비밀번호가 일치하지 않습니다");
-        }
+    }
 
-
+  // const { from } = location.state || { from: { pathname: "/" } };
+  // if (authenticated) return <Redirect to={from} />;
+          
   };
 
   
@@ -68,16 +107,17 @@ function RegisterPage(props) {
       <form
         onSubmit={onSubmitHandler}
         style={{ display: "flex", flexDirection: "column" }}>
+        
+        <label>Name</label>
+        <input type="text" value={Name} onChange={onNameHandler} />
+        
         <label>Email</label>
         <input type="email" value={Email} onChange={onEmailHandler} />
-
-        <label>Name</label>
-        <input type="test" value={Name} onChange={onNameHandler} />
 
         <label>Password</label>
         <input type="password" value={Password} onChange={onPasswordHandler} />
 
-        <label>ConfirmPasword</label>
+        <label>ConfirmPassword</label>
         <input
           type="password"
           value={ConfirmPassword}

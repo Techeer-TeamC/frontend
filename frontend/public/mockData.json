@@ -1,0 +1,7 @@
+{
+    "message": "Invalid password",
+    "status": 400,
+    "errors": [],
+    "code": "J004",
+    "success": false
+}

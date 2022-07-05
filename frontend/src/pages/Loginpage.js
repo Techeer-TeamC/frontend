@@ -1,19 +1,24 @@
 import './Loginpage.css';
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 // import {useDispatch} from 'react-redux';
 // import {loginUser} from './_actions/user_action';
-// import axios, { Axios } from 'axios';
+import { useNavigate } from 'react-router-dom'
 import imgA from '../assets/loginpage/IMG_9315.JPG';
 import imgB from '../assets/loginpage/btn_google.png';
 import imgC from '../assets/loginpage/kakao_login_large_narrow.png';
+import axios from "axios";
 
+// {authenticated, login, location
 
 function LoginPage(props) {
   // const dispatch = useDispatch();
+  const [isLogin , setIsLogin] = useState(false);
 
   const [inputId, setInputId] = useState('')
   const [inputPw, setInputPw] = useState('')
-   
+  
+  const navigate = useNavigate();
+
   const handleInputId = (e) => {
         setInputId(e.target.value)
     }
@@ -21,48 +26,102 @@ function LoginPage(props) {
     const handleInputPw = (e) => {
         setInputPw(e.target.value)
     }
- 
+
+
+  const onClickLogin = (e) => {
+    try{
+        axios({
+          method: 'post',
+          url: `http://localhost:8080/api/v1/auth/new`,
+          data: {
+            email: inputId,
+            password: inputPw
+          }}
+        )
+        .then(function (response) {
+          console.log(response.data.accessToken);
+          window.alert("로그인 성공.");
+          localStorage.setItem('refreshToken',response.data.refreshToken);
+          localStorage.setItem('accessToken', response.data.accessToken);
+          localStorage.setItem('tokenValidTime', response.data.accessTokenExpiresIn);
+          navigate("/");
+          
+        })
+        .catch(function (error) {
+  
+          const errorType = error.response.data.code;
+  
+          if(errorType=="I003"){
+            window.alert("이미 알림이 등록된 상품입니다.");
+          }
+          else {
+            window.alert("알림 등록 중 오류가 발생하였습니다.");
+          }
+
+        })
+    } catch(e){
+  console.log(e);
+}
+  }
+
+
 	// login 버튼 클릭 이벤트
-    const onClickLogin = (e) => {
-        
-        e.preventDefault(); //새로고침 막기 위함
+  //   const onClickLogin = (e) => {
+  //
+  //           fetch('http://3.39.75.19:8080/api/v1/auth/new', {
+  //               method: 'POST',
+  //               headers: { //get일 때는 없어도 됨
+  //                   'Content-Type': 'application/json',
+  //               },
+  //               body: JSON.stringify({
+  //                   'email': inputId,
+  //                   'password': inputPw
+  //               })
+  //           })
+  //
+  //           .then(response => response.json())
+  //           .then(response => {
+  //
+  //               if (response.data.accessToken && response.data.refreshToken) {
+  //               localStorage.setItem('access_token', response.data.accessToken);
+  //               localStorage.setItem('refresh_token', response.data.refreshToken);
+  //               setIsLogin(true);
+  //               // console.log('access_token', response.data.accessToken);
+  //               navigate('/', {replace: true});
+  //
+  //               }
+  //           });
+  //       // console.log('ID',inputId)
+  //       // console.log('PW',inputPw)
+  //
+  //       // let body = {
+  //       //     ID: inputId,
+  //       //     PW: inputPw
+  //       // }
+  //
+  //       // dispatch(loginUser(body))
+  //       //     .then(response => {
+  //       //         if(response.payload.success) {
+  //       //             props.history.push('/')
+  //       //         } else{
+  //       //             alert('Error')
+  //       //         }
+  //               // .then(token => {
+  //               //     localStorage.setItem("jwt",token.accessToken)
+  //               // })
+  //       //     })
+  //    }
+  //
 
-        console.log('ID',inputId)
-        console.log('PW',inputPw)
-
-        let body = { 
-            ID: inputId,
-            PW: inputPw
-        }
-    
-        // dispatch(loginUser(body))
-        //     .then(response => {
-        //         if(response.payload.success) {
-        //             props.history.push('/')
-        //         } else{
-        //             alert('Error')
-        //         }
-                // .then(token => {
-                //     localStorage.setItem("jwt",token.accessToken)
-                // })
-        //     })
-     }
- 
-	// // 페이지 렌더링 후 가장 처음 호출되는 함수
-    // useEffect(() => {
-    //     axios.get('/user_inform/login')
-    //     .then(res => console.log(res))
-    //     .catch()
-    // },
-    // // 페이지 호출 후 처음 한번만 호출될 수 있도록 [] 추가
-    // []) 
-    
+     
     
     return (
+        
 
     <div className="App">
         <img src={ imgA} />
         <form className="cover">
+            
             <h2>Login to your account</h2>
             
             <div className="blank">
@@ -77,8 +136,8 @@ function LoginPage(props) {
                 <div className="button">
                 <button type='button' onClick={onClickLogin}>Login</button>
                 <br></br><br></br>
-                <img src={ imgB} /><br></br>
-                <img src={ imgC} /></div>
+                <a target="_self" href="https://accounts.google.com/o/oauth2/v2/auth"><img src={ imgB} /></a><br></br>
+                <a target="_self" href="https://kauth.kakao.com/oauth/authorize"><img src={ imgC} /></a></div>
                 </div>
         </form>
     </div>
