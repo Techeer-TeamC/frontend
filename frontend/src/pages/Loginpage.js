@@ -42,7 +42,7 @@ function LoginPage(props) {
           console.log(response.data.accessToken);
           localStorage.setItem('refreshToken',response.data.refreshToken);
           localStorage.setItem('accessToken', response.data.accessToken);
-          localStorage.setItem('tokenValidTime', response.data.accessTokenExpiresIn);
+          localStorage.setItem('tokenValidTime', Number(response.data.accessTokenExpiresIn));
           navigate("/");
           
         })
