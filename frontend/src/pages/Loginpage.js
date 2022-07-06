@@ -42,7 +42,7 @@ function LoginPage(props) {
           console.log(response.data.accessToken);
           localStorage.setItem('refreshToken',response.data.refreshToken);
           localStorage.setItem('accessToken', response.data.accessToken);
-          localStorage.setItem('tokenValidTime', Number(response.data.accessTokenExpiresIn));
+          localStorage.setItem('tokenValidTime', response.data.accessTokenExpiresIn);
           navigate("/");
           
         })
@@ -67,57 +67,7 @@ function LoginPage(props) {
 }
   }
 
-
-	// login 버튼 클릭 이벤트
-  //   const onClickLogin = (e) => {
-  //
-  //           fetch('http://3.39.75.19:8080/api/v1/auth/new', {
-  //               method: 'POST',
-  //               headers: { //get일 때는 없어도 됨
-  //                   'Content-Type': 'application/json',
-  //               },
-  //               body: JSON.stringify({
-  //                   'email': inputId,
-  //                   'password': inputPw
-  //               })
-  //           })
-  //
-  //           .then(response => response.json())
-  //           .then(response => {
-  //
-  //               if (response.data.accessToken && response.data.refreshToken) {
-  //               localStorage.setItem('access_token', response.data.accessToken);
-  //               localStorage.setItem('refresh_token', response.data.refreshToken);
-  //               setIsLogin(true);
-  //               // console.log('access_token', response.data.accessToken);
-  //               navigate('/', {replace: true});
-  //
-  //               }
-  //           });
-  //       // console.log('ID',inputId)
-  //       // console.log('PW',inputPw)
-  //
-  //       // let body = {
-  //       //     ID: inputId,
-  //       //     PW: inputPw
-  //       // }
-  //
-  //       // dispatch(loginUser(body))
-  //       //     .then(response => {
-  //       //         if(response.payload.success) {
-  //       //             props.history.push('/')
-  //       //         } else{
-  //       //             alert('Error')
-  //       //         }
-  //               // .then(token => {
-  //               //     localStorage.setItem("jwt",token.accessToken)
-  //               // })
-  //       //     })
-  //    }
-  //
-
-     
-    
+  
     return (
         
 

@@ -26,13 +26,15 @@ function App() {
 
   useEffect(()=>{
     try{
+      
+     
       if(!localStorage.accessToken)
       {
         setIsLogin(false);
       }
       else {
         setIsLogin(true);
-        if (nowDate > localStorage.tokenValidTime + 60) {
+        if (nowDate > (Number(localStorage.tokenValidTime + 60))) {
           axios({
             method: 'post',
             url: `http://localhost:8080/api/v1/auth/reissue`,

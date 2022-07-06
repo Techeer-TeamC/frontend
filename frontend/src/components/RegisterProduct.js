@@ -8,10 +8,11 @@ import Alarm from "../components/Alarm";
 
 
 
-function RegisterProduct({productId, desiredPrice}) {
+function RegisterProduct({productId, desiredPrice, parentProp}) {
 
   const[productData , setDataList] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
+
   
   
   useEffect( () => {
@@ -56,6 +57,7 @@ function RegisterProduct({productId, desiredPrice}) {
       }
     })
     .then(function (response) {
+      parentProp(false);
       console.log(response);
     })
     .catch(function (error) {
@@ -96,7 +98,7 @@ function RegisterProduct({productId, desiredPrice}) {
 
                 <p className="text-center">설정 가격 : {desiredPrice}</p>
 
-                {isVisible && <Alarm type="patch" title={productData.image} urlValue={productData.url} modalVisible={setIsVisible} productId={productId}/>}
+                {isVisible && <Alarm type="patch" parentProp={parentProp} title={productData.image} urlValue={productData.url} modalVisible={setIsVisible} productId={productId}/>}
               </>
           ) : 'Loading. . .'
 
