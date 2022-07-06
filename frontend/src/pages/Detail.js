@@ -53,7 +53,11 @@ function Detail(props) {
                                     <SearchBar></SearchBar>
                                     <div className = "row">
                                         <div className ="product_image col-md-6">
-                                            <img className="img-fluid" src={productData.image} alt="product-image"/>
+                                            <img className="img-fluid  mx-auto" src={productData.image} alt="product-image"/>
+
+                                            <button type="button" className=" btn-primary text-center"   onClick={()=> setIsVisible(true)}>
+                                                알림 등록
+                                            </button>
                                         </div>
                                         <div className="product-detail col-md-6">
                                             <div className="top-info">
@@ -80,12 +84,9 @@ function Detail(props) {
                                                     </tbody>
                                                 </table>
                                             </div>
+                                            
                                         </div>
-
                                     </div>
-                                    <button type="button" className=" btn-primary"  onClick={()=> setIsVisible(true)}>
-                                        알림 등록
-                                    </button>
                                     {isVisible && <Alarm type="post" title={productData.title} urlValue={id} modalVisible={setIsVisible} />}
                                 </div>
                               
