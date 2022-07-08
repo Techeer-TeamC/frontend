@@ -8,6 +8,7 @@ import Alarm from "../components/Alarm";
 import SearchProductList from "../components/SearchProductList";
 import CommonNavbar from "../components/CommonNavbar"
 import Loading from "../components/Loading"
+import Graph from "../components/Graph"
 
 function Detail(props) {
     
@@ -84,9 +85,11 @@ function Detail(props) {
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            
+                                          
                                         </div>
                                     </div>
+                                    <hr />
+                                    <Graph />
                                     {isVisible && <Alarm type="post" title={productData.title} urlValue={id} modalVisible={setIsVisible} />}
                                 </div>
                               
