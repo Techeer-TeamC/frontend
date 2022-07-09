@@ -68,6 +68,13 @@ function Detail(props) {
                                             <div className="mallInfo row justify-content-between">
                                                 <table className="table">
                                                     <thead>
+                                                    <tr>
+                                                        <th>쇼핑몰</th>
+                                                        <th>가격</th>
+                                                        <th>배송비</th>
+                                                        <th>할부</th>
+                                                        
+                                                    </tr>
                                                     </thead>
                                                     <tbody>
                                                         {productData.mallDtoInfo && productData.mallDtoInfo.map(mall => (
@@ -76,6 +83,7 @@ function Detail(props) {
                                                                 <th>{ mall.name }</th>
                                                                 <th>{ mall.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }</th>
                                                                 <th>{ mall.delivery }</th>
+                                                                <th>{ mall.interestFree}</th>
                                                                 <th>{ mall.paymentOption }</th>
                                                             </tr>
                                                           
