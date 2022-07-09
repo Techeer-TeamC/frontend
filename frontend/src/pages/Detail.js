@@ -63,7 +63,7 @@ function Detail(props) {
                                         <div className="product-detail col-md-6">
                                             <div className="top-info">
                                                 <h2>{ productData.title }</h2>
-                                                <h3> 최저가 {productData.mallDtoInfo[0].price}</h3>
+                                                <h3> 최저가 {productData.mallDtoInfo[0].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h3>
                                             </div>
                                             <div className="mallInfo row justify-content-between">
                                                 <table className="table">
@@ -74,7 +74,7 @@ function Detail(props) {
                                                             
                                                             <tr onClick={() => window.open(mall.link ,'_blank')}>
                                                                 <th>{ mall.name }</th>
-                                                                <th>{ mall.price }</th>
+                                                                <th>{ mall.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }</th>
                                                                 <th>{ mall.delivery }</th>
                                                                 <th>{ mall.paymentOption }</th>
                                                             </tr>

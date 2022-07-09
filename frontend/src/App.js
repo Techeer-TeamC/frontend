@@ -33,7 +33,7 @@ function App() {
       }
       else {
         setIsLogin(true);
-        if (nowDate > (Number(localStorage.tokenValidTime)) + 60) {
+        if (nowDate > ((Number(localStorage.tokenValidTime)) + 60)) {
           axios({
             method: 'post',
             url: `http://localhost:8080/api/v1/auth/reissue`,
@@ -53,11 +53,6 @@ function App() {
             localStorage.removeItem('accessToken');
             setIsLogin(false);
           })
-        }
-        else{
-          console.log("로그인 만료");
-          localStorage.removeItem('refreshToken');
-          localStorage.removeItem('accessToken');
         }
       }
  

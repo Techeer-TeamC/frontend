@@ -96,7 +96,7 @@ function RegisterProduct({productId, desiredPrice, parentProp}) {
 
                 <img className="img-fluid mx-auto"  src={productData.image} alt="" ></img>
 
-                <p className="text-center">설정 가격 : {desiredPrice}</p>
+                <p className="text-center">설정 가격 : {desiredPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
 
                 {isVisible && <Alarm type="patch" parentProp={parentProp} title={productData.image} urlValue={productData.url} modalVisible={setIsVisible} productId={productId}/>}
               </>
