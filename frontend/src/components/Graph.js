@@ -10,7 +10,6 @@ import HighchartsReact from "highcharts-react-official";
 
 
 function Graph(){
-
   
   const [chart, setChart] = useState({
     title: {
@@ -20,7 +19,6 @@ function Graph(){
     subtitle: {
       text: '(30분)'
     },
-    
 
     yAxis: {
       title: {
@@ -29,9 +27,7 @@ function Graph(){
     },
 
     xAxis: {
-      accessibility: {
-        rangeDescription: 'Range: 2009 to 2020'
-      }
+      type: "datetime"
     },
 
     legend: {
@@ -40,29 +36,9 @@ function Graph(){
       verticalAlign: 'middle'
     },
 
-    plotOptions: {
-      series: {
-        label: {
-          connectorAllowed: false
-        },
-        pointStart: 2000
-
-      }
+      plotOptions: {
     },
 
-    series: [{
-      name: "asd",
-      data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-    }, {
-      name: 'bcd',
-      data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
-    }, {
-      name: 'efg',
-      data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
-    }, {
-      name: 'asdasd',
-      data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
-    }],
     series: [],
 
     responsive: {
@@ -91,22 +67,29 @@ function Graph(){
           `https://ea27c19b-8e3f-4b60-a355-e4ef6cd5a1ee.mock.pstmn.io//chart`
       )
         .then(function (response) {
-          response= response.data.data;
-          console.log("성공");
-          console.log(response);
+          response= response.data;
           setChart({
 
             series: [{
-              name: response[0].mallName,
-              data: response[0].price
+              name: response.data[0].mallName,
+              data: response.data[0].price
             }, {
-              name: response[1].mallName,
-              data: response[1].price
+              name: response.data[1].mallName,
+              data: response.data[1].price
             }, {
-              name: response[2].mallName,
-              data: response[2].price
+              name: response.data[2].mallName,
+              data: response.data[2].price
             }
-          ]
+          ],
+
+            plotOptions: {
+              series: {
+                pointStart: new Date(response.date).getTime(),
+                pointInterval: 0.5 * 3600 * 1000 * 1
+
+              }  
+            }
+            
         });
 
 
@@ -120,18 +103,6 @@ function Graph(){
   
   return(
       <div>
-        {/*<ui>*/}
-        {/*  <li>*/}
-        {/*    <a onClick={() => setChart("1") }>*/}
-        {/*      <span>1번 차트</span>*/}
-        {/*    </a>*/}
-        {/*  </li>*/}
-        {/*  <li>*/}
-        {/*    <a onClick={() => setChart(option2) }>*/}
-        {/*      <span> 2번 차트</span>*/}
-        {/*    </a>*/}
-        {/*  </li>*/}
-        {/*</ui>*/}
         <HighchartsReact
             containerProps={{ className: "home_body-chart" }}
             highcharts={Highcharts}
