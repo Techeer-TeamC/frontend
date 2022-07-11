@@ -21,6 +21,7 @@ function Search() {
   const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const[isLoading, setLoading] = useState(true);
+  
 
   useEffect( () => {
     const fetchData = async () => {
@@ -35,6 +36,14 @@ function Search() {
     fetchData();
   },[word,currentPage]);
 
+  
+  const indexOfLast = currentPage * pageSize;
+  const indexOfFirst = indexOfLast - pageSize;
+  const currentPosts = (products) => {
+    let currentPosts = 0;
+    currentPosts = products.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  };
 
 
 
@@ -55,7 +64,7 @@ function Search() {
                 : totalCount ? (
                     <>
                       <div className="row">
-                        {products && products.map(product => (
+                        {products && currentPosts(products).map(product => (
                             <SearchProductList url={product.url}
                                                minimumPrice={product.minimumPrice}
                                                title={product.title}
