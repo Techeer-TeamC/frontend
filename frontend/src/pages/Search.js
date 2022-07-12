@@ -21,12 +21,13 @@ function Search() {
   const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const[isLoading, setLoading] = useState(true);
+  
 
   useEffect( () => {
     const fetchData = async () => {
       window.scrollTo(0, 0);
       const result = await axios(
-        `http://localhost:8080/api/v1/crawler/search/products?word=${word}`
+        `http://3.39.75.19:8080/api/v1/crawler/search/products?word=${word}`
     )
       setDataList(result.data.productListDtoList);
       setTotalCount(result.data.totalNumber);
@@ -35,6 +36,14 @@ function Search() {
     fetchData();
   },[word,currentPage]);
 
+  
+  const indexOfLast = currentPage * pageSize;
+  const indexOfFirst = indexOfLast - pageSize;
+  const currentPosts = (products) => {
+    let currentPosts = 0;
+    currentPosts = products.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  };
 
 
 
@@ -55,9 +64,9 @@ function Search() {
                 : totalCount ? (
                     <>
                       <div className="row">
-                        {products && products.map(product => (
+                        {products && currentPosts(products).map(product => (
                             <SearchProductList url={product.url}
-                                               minimumPrice={product.minimumPrice}
+                                               minimumPrice={product.minimumPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                                                title={product.title}
                                                imageUrl={product.imageUrl}/>))}
                       </div>
