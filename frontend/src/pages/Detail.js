@@ -8,6 +8,7 @@ import Alarm from "../components/Alarm";
 import SearchProductList from "../components/SearchProductList";
 import CommonNavbar from "../components/CommonNavbar"
 import Loading from "../components/Loading"
+import Graph from "../components/Graph"
 
 function Detail(props) {
     
@@ -53,24 +54,36 @@ function Detail(props) {
                                     <SearchBar></SearchBar>
                                     <div className = "row">
                                         <div className ="product_image col-md-6">
-                                            <img className="img-fluid" src={productData.image} alt="product-image"/>
+                                            <img className="img-fluid  mx-auto" src={productData.image} alt="product-image"/>
+
+                                            <button type="button" className=" btn-primary text-center"   onClick={()=> setIsVisible(true)}>
+                                                알림 등록
+                                            </button>
                                         </div>
                                         <div className="product-detail col-md-6">
                                             <div className="top-info">
                                                 <h2>{ productData.title }</h2>
-                                                <h3> 최저가 {productData.mallDtoInfo[0].price}</h3>
+                                                <h3> 최저가 {productData.mallDtoInfo[0].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h3>
                                             </div>
                                             <div className="mallInfo row justify-content-between">
                                                 <table className="table">
                                                     <thead>
+                                                    <tr>
+                                                        <th>쇼핑몰</th>
+                                                        <th>가격</th>
+                                                        <th>배송비</th>
+                                                        <th>할부</th>
+                                                        
+                                                    </tr>
                                                     </thead>
                                                     <tbody>
                                                         {productData.mallDtoInfo && productData.mallDtoInfo.map(mall => (
                                                             
                                                             <tr onClick={() => window.open(mall.link ,'_blank')}>
                                                                 <th>{ mall.name }</th>
-                                                                <th>{ mall.price }</th>
+                                                                <th>{ mall.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }</th>
                                                                 <th>{ mall.delivery }</th>
+                                                                <th>{ mall.interestFree}</th>
                                                                 <th>{ mall.paymentOption }</th>
                                                             </tr>
                                                           
@@ -80,12 +93,11 @@ function Detail(props) {
                                                     </tbody>
                                                 </table>
                                             </div>
+                                          
                                         </div>
-
                                     </div>
-                                    <button type="button" className=" btn-primary"  onClick={()=> setIsVisible(true)}>
-                                        알림 등록
-                                    </button>
+                                    <hr />
+                                    <Graph />
                                     {isVisible && <Alarm type="post" title={productData.title} urlValue={id} modalVisible={setIsVisible} />}
                                 </div>
                               

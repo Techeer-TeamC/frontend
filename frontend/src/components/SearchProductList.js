@@ -12,7 +12,7 @@ function SearchProductList({title, url, imageUrl, minimumPrice}) {
       <h3 className="text-center">{
           title.replace(/<b>/gi,"").replace(/<\/b>/gi,"")
         }</h3>
-      <h3 className="text-center">최저가 {minimumPrice}</h3>
+      <h3 className="text-center">최저가 {minimumPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h3>
   </Link>
   </div>
   )

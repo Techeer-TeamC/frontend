@@ -26,13 +26,14 @@ function App() {
 
   useEffect(()=>{
     try{
+      
       if(!localStorage.accessToken)
       {
         setIsLogin(false);
       }
       else {
         setIsLogin(true);
-        if (nowDate > localStorage.tokenValidTime + 60) {
+        if (nowDate > ((Number(localStorage.tokenValidTime)) + 60)) {
           axios({
             method: 'post',
             url: `http://localhost:8080/api/v1/auth/reissue`,
@@ -44,17 +45,17 @@ function App() {
           .then(function (response) {
             localStorage.setItem('refreshToken', response.data.refreshToken);
             localStorage.setItem('accessToken', response.data.accessToken);
-            console.log("refresh정상 처리")
+            console.log("토큰 갱신 처리 완료")
           })
           .catch(function (error) {
-            console.error("refresh에러");
+            console.error("refresh토큰 만료");
             localStorage.removeItem('refreshToken');
             localStorage.removeItem('accessToken');
             setIsLogin(false);
           })
         }
       }
-      console.log(localStorage.accessToken);
+ 
     }catch(e){
       console.log(e);
     }

@@ -8,10 +8,11 @@ import Alarm from "../components/Alarm";
 
 
 
-function RegisterProduct({productId, desiredPrice}) {
+function RegisterProduct({productId, desiredPrice, parentProp}) {
 
   const[productData , setDataList] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
+
   
   
   useEffect( () => {
@@ -56,6 +57,7 @@ function RegisterProduct({productId, desiredPrice}) {
       }
     })
     .then(function (response) {
+      parentProp(false);
       console.log(response);
     })
     .catch(function (error) {
@@ -85,18 +87,17 @@ function RegisterProduct({productId, desiredPrice}) {
         {
           productData.mallInfo ? (
               <>
+             
                 <button className="btn" onClick={confirmDelete}>
                   <AiOutlineClose size='22' />
                 </button>
                 <button className="btn" onClick={()=> setIsVisible(true)}>
                   <AiOutlineSetting size='22' />
                 </button>
-
                 <img className="img-fluid mx-auto"  src={productData.image} alt="" ></img>
-
-                <p className="text-center">설정 가격 : {desiredPrice}</p>
-
-                {isVisible && <Alarm type="patch" title={productData.image} urlValue={productData.url} modalVisible={setIsVisible} productId={productId}/>}
+                <p className="text-center">설정 가격 : {desiredPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                <p className="text-center">현재 가격 : {productData.mallInfo[0].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                {isVisible && <Alarm type="patch" parentProp={parentProp} title={productData.image} urlValue={productData.url} modalVisible={setIsVisible} productId={productId}/>}
               </>
           ) : 'Loading. . .'
 
