@@ -5,7 +5,7 @@ import Modal from 'react-modal';
 import "./Alarm.css"
 Modal.setAppElement('#root');
 
-function Alarm({type, title, modalVisible , urlValue, productId}) {
+function Alarm({type, title, modalVisible , urlValue, productId, parentProp}) {
 
   const apiType = type;
   const [price, setPrice] = useState(0);
@@ -86,7 +86,9 @@ function Alarm({type, title, modalVisible , urlValue, productId}) {
         headers: {'Authorization': 'Bearer ' +  localStorage.accessToken}
       })//userId값을 헤더로부터 가져와서 넣을 것
       .then(function (response) {
-        window.alert("정상적으로 알림 등록이 완료되었습니다.");
+        parentProp(false);
+        window.alert("정상적으로 알림 수정이 완료되었습니다.");
+        modalVisible(false);
       })
       .catch(function (error) {
         const errorType = error.response.data.code;

@@ -8,7 +8,7 @@ import CommonNavbar from "../components/CommonNavbar"
 
 function Mainpage() {
   const[value , setValue] = useState("");
-
+  // console.log(localStorage.tokenValidTime);
   //변수, 이벤트 등등 설정 해주는 곳
 
   //로그아웃 버튼 이벤트
@@ -28,10 +28,10 @@ function Mainpage() {
     <div>
       <header>
         <CommonNavbar />
-            <nav id="box">
+            {/* <nav id="box">
               <ul id="loginbutton">
                 <li><div><BiUser/></div></li>
-                <li><Link to="/login"><button>Login</button></Link></li>
+                <li><Link to="/login"><button>Login</button></Link></li> */}
                 {/* <li>{authenticated ? (
                     <LogoutButton logout={logout} />
                   ) : (
@@ -39,7 +39,8 @@ function Mainpage() {
                       <button>Login</button>
                     </Link>
         )}</li> */}
-              </ul></nav></header>
+              {/* </ul></nav> */}
+              </header>
       
 
 
@@ -69,7 +70,7 @@ function Mainpage() {
                       <li id="recent"><Link to="/recent">Recent</Link></li>
                       <li>&nbsp;&nbsp;</li><li>&nbsp;&nbsp;</li>
                       <li id="bag"><Link to="/bag">What's In My Bag</Link></li></ul>
-              </nav>    
+              </nav>
         </div></section>
 
     </div>

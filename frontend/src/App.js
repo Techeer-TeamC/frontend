@@ -10,6 +10,7 @@ import KakaoRedirectHandler from './assets/KakaoAuth/KakaoRedirectHandler';
 import Test from './pages/Test.tsx';
 import RegisterPage from './pages/Registerpage';
 import Recent from './components/recent';
+// import Graph from './components/Graph';
 import Bag from './components/bag';
 import Tokenfunction from './assets/Tokenfunction';
 import Detail from './pages/Detail'
@@ -83,7 +84,7 @@ function App() {
 
       <Route path="/products/detail/" element={<Detail />} />
       <Route path="/products/list" element={  <RequireAuth isLogin={localStorage.accessToken != null}>  <ProductRegisterList /> </RequireAuth>} />
-      
+      {/* <Route path="/chart" element={<Graph/>} /> */}
 
 
 

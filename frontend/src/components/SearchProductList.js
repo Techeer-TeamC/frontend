@@ -8,7 +8,7 @@ function SearchProductList({title, url, imageUrl, minimumPrice}) {
     <div className="col-md-4 border-0">
     <Link to="/products/detail/" state={{url: url}}  className="link-dark product">
    
-      <img className="img-fluid mx-auto" src={imageUrl} alt={title} titlt={title}></img>
+      <img className="img-fluid mx-auto" src={imageUrl} alt={title} title={title}></img>
       <h3 className="text-center">{
           title.replace(/<b>/gi,"").replace(/<\/b>/gi,"")
         }</h3>

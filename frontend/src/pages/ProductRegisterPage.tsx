@@ -18,6 +18,7 @@ function ProductRegisterList() {
   const [pageSize, setPageSize] = useState(9);
   const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const [change,setChange] = useState(true);
 
 
   useEffect( () => {
@@ -36,10 +37,11 @@ function ProductRegisterList() {
       console.log(result.data);
       setDataList(result.data);
       setTotalCount(result.data.length);
+      setChange(true);
 
     }
     fetchData();
-  },[]);
+  },[change]);
 
 
 
@@ -63,7 +65,7 @@ function ProductRegisterList() {
               <>
                 <div>
                 <div className="row">
-                  {products && products.map(product => (<RegisterProduct key={product.productId} productId={product.productId} desiredPrice={product.desiredPrice}/>))}
+                  {products && products.map(product => (<RegisterProduct key={product.productId} parentProp={setChange} productId={product.productId} desiredPrice={product.desiredPrice}/>))}
                 </div>
                 </div>
               </>
