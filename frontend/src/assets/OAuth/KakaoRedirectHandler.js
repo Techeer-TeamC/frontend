@@ -34,7 +34,7 @@ const KakaoRedirectHandler = () => {
     	try {
             axios({
                 method: "GET",
-                url: `http://3.35.208.142/api/v1/auth/kakao/token?code=${code}`,
+                url: `http://3.35.208.142/api/v1/auth/token/kakao?code=${code}`,
               })
                 .then((response) => {
                   

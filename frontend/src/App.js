@@ -6,7 +6,8 @@ import {BrowserRouter, Route, Routes} from "react-router-dom"
 import { useEffect,useState } from 'react';
 import MainPage from './pages/Mainpage';
 import LoginPage from './pages/Loginpage';
-import KakaoRedirectHandler from './assets/KakaoAuth/KakaoRedirectHandler';
+import KakaoRedirectHandler from './assets/OAuth/KakaoRedirectHandler';
+import GoogleRedirectHandler from './assets/OAuth/GoogleRedirectHandler';
 import Test from './pages/Test.tsx';
 import RegisterPage from './pages/Registerpage';
 import Recent from './components/recent';
@@ -75,6 +76,7 @@ function App() {
       <Route path="/login" element={  <RequireAuth isLogin={localStorage.accessToken == null}>  <LoginPage />  </RequireAuth>} />
       {/* <Route path="/login" element={<LoginPage />} /> */}
       <Route path="/oauth/kakao" element={<KakaoRedirectHandler/>} />
+      <Route path="/oauth/google" element={<GoogleRedirectHandler/>} />
       <Route path="/register" element={<RegisterPage/>} />
       <Route path="/recent" element={<Recent />} />
       <Route path="/bag" element={<Bag />} />
