@@ -39,7 +39,7 @@ function App() {
         if (nowDate > ((Number(localStorage.tokenValidTime)) + 60)) {
           axios({
             method: 'post',
-            url: `http://localhost:8080/api/v1/auth/reissue`,
+            url: `http://3.39.75.19:8080/api/v1/auth/reissue`,
             data: {
               accessToken: localStorage.accessToken,
               refreshToken: localStorage.refreshToken
@@ -62,7 +62,7 @@ function App() {
     }catch(e){
       console.log(e);
     }
-  },[]);
+  },[nowDate]);
 
 
   
