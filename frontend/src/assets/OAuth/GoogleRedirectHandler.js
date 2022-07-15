@@ -27,11 +27,11 @@ const GoogleRedirectHandler = () => {
     try {
         axios({
           method: "GET",
-          url: `http://3.35.208.142/api/v1/auth/token/google?code=${code}`,
+          url: `http://3.39.75.19:8080/api/v1/auth/token/google?code=${code}`,
         })
         
         .then((response) => {            
-          console.log(response.data.accessToken);
+          console.log(response);
           localStorage.setItem('refreshToken',response.data.refreshToken);
           localStorage.setItem('accessToken', response.data.accessToken);
           localStorage.setItem('tokenValidTime', response.data.accessTokenExpiresIn);
