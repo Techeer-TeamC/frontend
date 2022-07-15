@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import KLoading from "../../components/KLoading";
 // import { GoogleLogin } from 'react-google-login';
 import { useNavigate } from 'react-router-dom'
@@ -9,29 +9,34 @@ import { convertCompilerOptionsFromJson } from "typescript";
 const GoogleRedirectHandler = () => {
   const[isLoading, setLoading] = useState(true);
   const navigate = useNavigate();
-  
-  useEffect( () => {        
-    setLoading(true);
-    console.log();
-    api(code);
-  },[]);
-
+  const mounted = useRef(false);
 
   let params = new URL(document.location.toString()).searchParams;
   let code = params.get("code"); // 인가코드 받는 부분
-  console.log("인가코드:" + code);
-  
+
+  useEffect( () => {
+        if(!mounted.current){
+          console.log("인가코드:  " + code);
+          setLoading(true);
+          mounted.current = true;
+
+        } else{
+            api(code);
+        }      
+       
+      }, [code]);
 
   const api = async (code) => {
     console.log("api 작동 요청 중")
     try {
         axios({
           method: "GET",
-          url: `http://3.39.75.19:8080/api/v1/auth/token/google?code=${code}`,
+          url: 'https://5c0f38d7-aa9b-4bef-8f92-95fc1224135b.mock.pstmn.io/mock-api/auth/token/google?code=${code}'
+          // `http://3.39.75.19:8080/api/v1/auth/token/google?code=${code}`,
         })
         
         .then((response) => {            
-          console.log(response);
+          console.log(response.data.accessToken);
           localStorage.setItem('refreshToken',response.data.refreshToken);
           localStorage.setItem('accessToken', response.data.accessToken);
           localStorage.setItem('tokenValidTime', response.data.accessTokenExpiresIn);
@@ -53,7 +58,7 @@ const GoogleRedirectHandler = () => {
   
   return (<div>
     {
-        isLoading? <KLoading/>: "페이지 이동"
+        isLoading? <KLoading/>: "페이지 이동 중입니다 !"
       
   
     } 
