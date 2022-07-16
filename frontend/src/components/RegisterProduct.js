@@ -97,11 +97,11 @@ function RegisterProduct({productId, desiredPrice, parentProp}) {
                   <AiOutlineSetting size='22' />
                 </button>
                 <img className="img-fluid mx-auto"  src={productData.image} alt="" onClick={()=> setIsVisibleChart(true)} ></img>
-             
+                <h5 className="text-center">{productData.name}</h5>
                 <p className="text-center">설정 가격 : {desiredPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
                 <p className="text-center">현재 가격 : {productData.mallInfo[0].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
                 {isVisible && <Alarm type="patch" parentProp={parentProp} title={productData.image} urlValue={productData.url} modalVisible={setIsVisible} productId={productId}/>}
-                {isVisibleChart &&  <Graph productId= {productData.productId} modalVisible={setIsVisibleChart} />}
+                {isVisibleChart &&  <Graph productId= {productData.productId} modalVisible={setIsVisibleChart} productName={productData.name}/>}
               </>
           ) : 'Loading. . .'
 
