@@ -5,6 +5,7 @@ import axios from 'axios';
 import {AiOutlineSetting, AiOutlineClose}  from 'react-icons/ai';
 import "./RegisterProduct.css"
 import Alarm from "../components/Alarm";
+import Graph from "../components/Graph";
 
 
 
@@ -12,6 +13,7 @@ function RegisterProduct({productId, desiredPrice, parentProp}) {
 
   const[productData , setDataList] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
+  const [isVisibleChart, setIsVisibleChart] = useState(false);
 
   
   
@@ -94,10 +96,12 @@ function RegisterProduct({productId, desiredPrice, parentProp}) {
                 <button className="btn" onClick={()=> setIsVisible(true)}>
                   <AiOutlineSetting size='22' />
                 </button>
-                <img className="img-fluid mx-auto"  src={productData.image} alt="" ></img>
+                <img className="img-fluid mx-auto"  src={productData.image} alt="" onClick={()=> setIsVisibleChart(true)} ></img>
+             
                 <p className="text-center">설정 가격 : {desiredPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
                 <p className="text-center">현재 가격 : {productData.mallInfo[0].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
                 {isVisible && <Alarm type="patch" parentProp={parentProp} title={productData.image} urlValue={productData.url} modalVisible={setIsVisible} productId={productId}/>}
+                {isVisibleChart &&  <Graph productId= {productData.productId} modalVisible={setIsVisibleChart} />}
               </>
           ) : 'Loading. . .'
 
