@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,Navigate} from 'react';
 import "../pages/Search"
 import axios from "axios";
 import Modal from 'react-modal';
@@ -48,7 +48,7 @@ function Alarm({type, title, modalVisible , urlValue, productId, parentProp}) {
 
       axios({
         method: 'post',
-        url: `http://localhost:8080/api/v1/products/register?product=${title}`,
+        url: `http://3.39.75.19:8080/api/v1/products/register?product=${title}`,
         data: {
           desiredPrice: parseInt(price),
           url: urlValue,
@@ -68,6 +68,7 @@ function Alarm({type, title, modalVisible , urlValue, productId, parentProp}) {
         }
         else if(errorType == "J001") {
           window.alert("로그인이 필요한 기능입니다.");
+          <Navigate to="/login" />;
         }
         else { 
           window.alert("알림 등록 중 오류가 발생하였습니다.");
@@ -79,7 +80,7 @@ function Alarm({type, title, modalVisible , urlValue, productId, parentProp}) {
     else{
       axios({
         method: 'patch',
-        url: `http://localhost:8080/api/v1/products/register/${productId}`,
+        url: `http://3.39.75.19:8080/api/v1/products/register/${productId}`,
         data: {
           desiredPrice: parseInt(price)
         },

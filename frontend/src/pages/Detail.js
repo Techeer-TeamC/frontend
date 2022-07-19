@@ -8,7 +8,7 @@ import Alarm from "../components/Alarm";
 import SearchProductList from "../components/SearchProductList";
 import CommonNavbar from "../components/CommonNavbar"
 import Loading from "../components/Loading"
-import Graph from "../components/Graph"
+// import Graph from "../components/Graph"
 
 function Detail(props) {
     
@@ -24,7 +24,7 @@ function Detail(props) {
     useEffect( () => {
 
         const fetchData = async () => {
-            const result = await axios(` http://localhost:8080/api/v1/crawler/search/product?url=${id}`);
+            const result = await axios(`http://3.39.75.19:8080/api/v1/crawler/search/product?url=${id}`);
             setData(result.data);
             setLoading(false);
          
@@ -97,7 +97,7 @@ function Detail(props) {
                                         </div>
                                     </div>
                                     <hr />
-                                    <Graph />
+                                    {/* <Graph /> */}
                                     {isVisible && <Alarm type="post" title={productData.title} urlValue={id} modalVisible={setIsVisible} />}
                                 </div>
                               

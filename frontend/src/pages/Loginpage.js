@@ -3,6 +3,7 @@ import React, { useState , useEffect} from 'react';
 // import {useDispatch} from 'react-redux';
 // import {loginUser} from './_actions/user_action';
 import { useNavigate } from 'react-router-dom'
+import {KAKAO_AUTH_URL, GOOGLE_AUTH_URL} from '../assets/OAuth/OAuth';
 import imgA from '../assets/loginpage/IMG_9315.JPG';
 import imgB from '../assets/loginpage/btn_google.png';
 import imgC from '../assets/loginpage/kakao_login_large_narrow.png';
@@ -10,7 +11,7 @@ import axios from "axios";
 
 // {authenticated, login, location
 
-function LoginPage(props) {
+function LoginPage() {
   // const dispatch = useDispatch();
   const [isLogin , setIsLogin] = useState(false);
 
@@ -32,7 +33,7 @@ function LoginPage(props) {
     try{
         axios({
           method: 'post',
-          url: `http://localhost:8080/api/v1/auth/new`,
+          url: `http://3.39.75.19:8080/api/v1/auth/new`,
           data: {
             email: inputId,
             password: inputPw
@@ -89,8 +90,8 @@ function LoginPage(props) {
                 <div className="button">
                 <button type='button' onClick={onClickLogin}>Login</button>
                 <br></br><br></br>
-                <a target="_self" href="https://accounts.google.com/o/oauth2/v2/auth"><img src={ imgB} /></a><br></br>
-                <a target="_self" href="https://kauth.kakao.com/oauth/authorize"><img src={ imgC} /></a></div>
+                <a target="_self" href={GOOGLE_AUTH_URL}><img src={ imgB} /></a><br></br>
+                <a target="_self" href={KAKAO_AUTH_URL}><img src={ imgC} /></a></div>
                 </div>
         </form>
     </div>

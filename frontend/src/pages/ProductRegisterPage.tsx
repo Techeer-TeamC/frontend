@@ -26,7 +26,7 @@ function ProductRegisterList() {
       window.scrollTo(0, 0);
       console.log(localStorage.accessToken);
       const result = await axios.get(
-          `http://localhost:8080/api/v1/products/list`
+          `http://3.39.75.19:8080/api/v1/products/list`
       , {
         headers: {
           'Authorization':

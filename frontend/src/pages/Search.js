@@ -27,7 +27,7 @@ function Search() {
     const fetchData = async () => {
       window.scrollTo(0, 0);
       const result = await axios(
-        `http://localhost:8080/api/v1/crawler/search/products?word=${word}`
+        `http://3.39.75.19:8080/api/v1/crawler/search/products?word=${word}`
     )
       setDataList(result.data.productListDtoList);
       setTotalCount(result.data.totalNumber);
@@ -66,7 +66,7 @@ function Search() {
                       <div className="row">
                         {products && currentPosts(products).map(product => (
                             <SearchProductList url={product.url}
-                                               minimumPrice={product.minimumPrice}
+                                               minimumPrice={product.minimumPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                                                title={product.title}
                                                imageUrl={product.imageUrl}/>))}
                       </div>

@@ -9,37 +9,13 @@ import CommonNavbar from "../components/CommonNavbar"
 function Mainpage() {
   const[value , setValue] = useState("");
 
-  //변수, 이벤트 등등 설정 해주는 곳
-
-  //로그아웃 버튼 이벤트
-//   const onClickHandler = () => {
-//     axios.get('주소')
-//     .then(response => {
-//         if (response.data.success) {
-//             props.history.push('/');
-//         } else {
-//             alert('로그아웃 실패');
-//         }
-        
-//     })
-// }  
-
   return ( //실제 화면에 출력할 내용들 설정 해주는 곳
+  
+
     <div>
       <header>
         <CommonNavbar />
-            <nav id="box">
-              <ul id="loginbutton">
-                <li><div><BiUser/></div></li>
-                <li><Link to="/login"><button>Login</button></Link></li>
-                {/* <li>{authenticated ? (
-                    <LogoutButton logout={logout} />
-                  ) : (
-                    <Link to="/login">
-                      <button>Login</button>
-                    </Link>
-        )}</li> */}
-              </ul></nav></header>
+      </header>
       
 
 
@@ -54,6 +30,9 @@ function Mainpage() {
                   <input type="search" placeholder="Search..." onChange={(event) => setValue(event.target.value)} />
                   <button type="button" id="search_btn" onClick={() => window.location.href="/search/"+value}/>
               </div>
+              {/* <style>
+                #search_btn {border-radius:50%}
+              </style> */}
         </div>
       </section>
 
@@ -69,10 +48,11 @@ function Mainpage() {
                       <li id="recent"><Link to="/recent">Recent</Link></li>
                       <li>&nbsp;&nbsp;</li><li>&nbsp;&nbsp;</li>
                       <li id="bag"><Link to="/bag">What's In My Bag</Link></li></ul>
-              </nav>    
+              </nav>
         </div></section>
 
     </div>
+
   );
 }
 

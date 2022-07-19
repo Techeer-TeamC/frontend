@@ -72,13 +72,14 @@ function RegisterPage(props) {
 
             // .then(response => response.json())
             .then(response => {
-           
-                  alert("가입 완료");
-                  navigate('/login', {replace: true});
-                
+              if(response.status === 204) {
+              navigate('/login', {replace: true});
+              alert(`${response.status} : 가입 완료`);
+              } else { alert(`Failed Request : reponse state ${response.status} `)}
+
             })
-            .catch(() => {
-                console.log('에러')
+            .catch((err) => {
+                console.log(err);
               })
 
         }        
@@ -89,8 +90,6 @@ function RegisterPage(props) {
           alert("비밀번호가 일치하지 않습니다");
     }
 
-  // const { from } = location.state || { from: { pathname: "/" } };
-  // if (authenticated) return <Redirect to={from} />;
           
   };
 

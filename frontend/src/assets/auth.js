@@ -40,5 +40,5 @@ const onClickLogin = (e) => {
 return(
     <div>
     <button type='button' onClick={onClickLogin}>Login</button> </div>
-);}    
+);    
 export default Auth;

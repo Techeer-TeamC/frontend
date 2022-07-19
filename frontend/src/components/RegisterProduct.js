@@ -18,7 +18,7 @@ function RegisterProduct({productId, desiredPrice, parentProp}) {
   useEffect( () => {
 
     const fetchData = async () => {
-      const result = await axios(`http://localhost:8080/api/v1/products/${productId}`)
+      const result = await axios(`http://3.39.75.19:8080/api/v1/products/${productId}`)
       
       setDataList(result.data);
       
@@ -110,4 +110,3 @@ function RegisterProduct({productId, desiredPrice, parentProp}) {
 
 
 export default RegisterProduct;
-

@@ -112,9 +112,13 @@ header{
      color:  #00A3FF;
      font-weight: 900;
    }	
-
-   #container search{
-      
+   /* #container{
+    border: 1px solid black;
+   } */
+   #search_btn{
+    height: 48px;
+    width: 150px;
+    border-radius: 30px;
    }
 
 .section2{
