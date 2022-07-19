@@ -31,8 +31,9 @@ const GoogleRedirectHandler = () => {
     try {
         axios({
           method: "GET",
-          url: 'https://5c0f38d7-aa9b-4bef-8f92-95fc1224135b.mock.pstmn.io/mock-api/auth/token/google?code=${code}'
-          // `http://3.39.75.19:8080/api/v1/auth/token/google?code=${code}`,
+          url: 
+          // 'https://5c0f38d7-aa9b-4bef-8f92-95fc1224135b.mock.pstmn.io/mock-api/auth/token/google?code=${code}'
+          `http://3.39.75.19:8080/api/v1/auth/token/google?code=${code}`,
         })
         
         .then((response) => {            
@@ -40,7 +41,7 @@ const GoogleRedirectHandler = () => {
           localStorage.setItem('refreshToken',response.data.refreshToken);
           localStorage.setItem('accessToken', response.data.accessToken);
           localStorage.setItem('tokenValidTime', response.data.accessTokenExpiresIn);
-                    
+          console.log('구글 로그인 성공');          
           setLoading(false);                
           navigate('/', {replace: true});
   

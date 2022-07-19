@@ -7,32 +7,33 @@ import { convertCompilerOptionsFromJson } from "typescript";
 
 
 const KakaoRedirectHandler = () => {
-    const[isLoading, setLoading] = useState(true);
-    const navigate = useNavigate();
-    const mounted = useRef(false);
+  const[isLoading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const mounted = useRef(false);
 
-    let params = new URL(document.location.toString()).searchParams;
-    let code = params.get("code"); // 인가코드 받는 부분
+  let params = new URL(document.location.toString()).searchParams;
+  let code = params.get("code"); // 인가코드 받는 부분
 
-    useEffect( () => {
-          if(!mounted.current){
-            console.log("인가코드:  " + code);
-            setLoading(true);
-            mounted.current = true;
+  useEffect( () => {
+        if(!mounted.current){
+          console.log("인가코드:  " + code);
+          setLoading(true);
+          mounted.current = true;
 
-          } else{
-              api(code);
-          }      
-         
-        }, [code]);
+        } else{
+            api(code);
+        }      
+       
+      }, [code]);
 
     const api = async (code) => {
       console.log("api 작동 요청 중")
     	try {
-            axios({
+            axios.get
+            ({
                 method: "GET",
-                url: 'https://5c0f38d7-aa9b-4bef-8f92-95fc1224135b.mock.pstmn.io/mock-api/auth/token/kakao?code=${code}', 
-                // `http://3.39.75.19:8080/api/v1/auth/token/kakao?code=${code}`,
+                url: 
+                `http://3.39.75.19:8080/api/v1/auth/token/kakao?code=${code}`,
               })
                 .then((response) => {
                   
@@ -40,7 +41,7 @@ const KakaoRedirectHandler = () => {
                   localStorage.setItem('refreshToken',response.data.refreshToken);
                   localStorage.setItem('accessToken', response.data.accessToken);
                   localStorage.setItem('tokenValidTime', response.data.accessTokenExpiresIn);
-                  
+                  console.log('카카오 로그인 성공');
                   setLoading(false);                
                   navigate('/', {replace: true});
 
