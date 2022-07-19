@@ -8,21 +8,6 @@ import CommonNavbar from "../components/CommonNavbar"
 
 function Mainpage() {
   const[value , setValue] = useState("");
-  // console.log(localStorage.tokenValidTime);
-  //변수, 이벤트 등등 설정 해주는 곳
-
-  //로그아웃 버튼 이벤트
-//   const onClickHandler = () => {
-//     axios.get('주소')
-//     .then(response => {
-//         if (response.data.success) {
-//             props.history.push('/');
-//         } else {
-//             alert('로그아웃 실패');
-//         }
-        
-//     })
-// }  
 
   return ( //실제 화면에 출력할 내용들 설정 해주는 곳
   

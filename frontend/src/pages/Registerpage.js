@@ -90,8 +90,6 @@ function RegisterPage(props) {
           alert("비밀번호가 일치하지 않습니다");
     }
 
-  // const { from } = location.state || { from: { pathname: "/" } };
-  // if (authenticated) return <Redirect to={from} />;
           
   };
 

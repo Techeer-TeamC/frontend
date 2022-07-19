@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import './index.css';
-// import App from './pages/App';
 import {BrowserRouter, Route, Routes} from "react-router-dom"
 import { useEffect,useState } from 'react';
 import MainPage from './pages/Mainpage';
@@ -11,16 +9,14 @@ import GoogleRedirectHandler from './assets/OAuth/GoogleRedirectHandler';
 import Test from './pages/Test.tsx';
 import RegisterPage from './pages/Registerpage';
 import Recent from './components/recent';
-// import Graph from './components/Graph';
-import Bag from './components/bag';
-import Tokenfunction from './assets/Tokenfunction';
+import Graph from './components/Graph/GraphHandler';
+// import Tokenfunction from './assets/Tokenfunction';
 import Detail from './pages/Detail'
 import Search from './pages/Search'
 import ProductRegisterList from './pages/ProductRegisterPage'
-// import client from './util/client'
 import axios from 'axios';
 import RequireAuth from './components/RequireAuth'
-//렌더링 할 페이지 설정해주는 곳
+
 
 function App() {
   const [isLogin , setIsLogin] = useState(false);
@@ -74,19 +70,16 @@ function App() {
      
       <Route path="/" element={<MainPage />} />
       <Route path="/login" element={  <RequireAuth isLogin={localStorage.accessToken == null}>  <LoginPage />  </RequireAuth>} />
-      {/* <Route path="/login" element={<LoginPage />} /> */}
       <Route path="/oauth/kakao" element={<KakaoRedirectHandler/>} />
       <Route path="/oauth/google" element={<GoogleRedirectHandler/>} />
       <Route path="/register" element={<RegisterPage/>} />
       <Route path="/recent" element={<Recent />} />
-      <Route path="/bag" element={<Bag />} />
       <Route path="/test" element={<Test />} />
-      <Route path="/tf" element={<Tokenfunction />} />
       <Route path="/search/:keyword" element={<Search />} />
 
       <Route path="/products/detail/" element={<Detail />} />
       <Route path="/products/list" element={  <RequireAuth isLogin={localStorage.accessToken != null}>  <ProductRegisterList /> </RequireAuth>} />
-      {/* <Route path="/chart" element={<Graph/>} /> */}
+      <Route path="/chart" element={<Graph/>} />
 
 
 
