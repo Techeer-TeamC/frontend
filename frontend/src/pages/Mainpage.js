@@ -25,22 +25,12 @@ function Mainpage() {
 // }  
 
   return ( //실제 화면에 출력할 내용들 설정 해주는 곳
+  
+
     <div>
       <header>
         <CommonNavbar />
-            {/* <nav id="box">
-              <ul id="loginbutton">
-                <li><div><BiUser/></div></li>
-                <li><Link to="/login"><button>Login</button></Link></li> */}
-                {/* <li>{authenticated ? (
-                    <LogoutButton logout={logout} />
-                  ) : (
-                    <Link to="/login">
-                      <button>Login</button>
-                    </Link>
-        )}</li> */}
-              {/* </ul></nav> */}
-              </header>
+      </header>
       
 
 
@@ -55,6 +45,9 @@ function Mainpage() {
                   <input type="search" placeholder="Search..." onChange={(event) => setValue(event.target.value)} />
                   <button type="button" id="search_btn" onClick={() => window.location.href="/search/"+value}/>
               </div>
+              {/* <style>
+                #search_btn {border-radius:50%}
+              </style> */}
         </div>
       </section>
 
@@ -74,6 +67,7 @@ function Mainpage() {
         </div></section>
 
     </div>
+
   );
 }
 
