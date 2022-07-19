@@ -97,7 +97,7 @@ function Graph({productId , modalVisible, productName}){
   useEffect( () => {
     const fetchData = async () => {
       const result = await axios(
-          `http://localhost:8080/api/v1/products/price-history/${productId}`
+          `http://3.39.75.19:8080/api/v1/products/price-history/${productId}`
       )
         .then(function (response) {
           response= response.data;
