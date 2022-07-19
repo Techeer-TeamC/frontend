@@ -8,7 +8,6 @@ import KakaoRedirectHandler from './assets/OAuth/KakaoRedirectHandler';
 import GoogleRedirectHandler from './assets/OAuth/GoogleRedirectHandler';
 import Test from './pages/Test.tsx';
 import RegisterPage from './pages/Registerpage';
-import Recent from './components/recent';
 import Graph from './components/Graph/GraphHandler';
 // import Tokenfunction from './assets/Tokenfunction';
 import Detail from './pages/Detail'
@@ -73,7 +72,6 @@ function App() {
       <Route path="/oauth/kakao" element={<KakaoRedirectHandler/>} />
       <Route path="/oauth/google" element={<GoogleRedirectHandler/>} />
       <Route path="/register" element={<RegisterPage/>} />
-      <Route path="/recent" element={<Recent />} />
       <Route path="/test" element={<Test />} />
       <Route path="/search/:keyword" element={<Search />} />
 
