@@ -29,7 +29,7 @@ const KakaoRedirectHandler = () => {
     const api = async (code) => {
       console.log("api 작동 요청 중")
     	try {
-            axios.get
+            axios
             ({
                 method: "GET",
                 url: 
