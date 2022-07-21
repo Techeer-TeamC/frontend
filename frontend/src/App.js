@@ -8,9 +8,10 @@ import KakaoRedirectHandler from './assets/OAuth/KakaoRedirectHandler';
 import GoogleRedirectHandler from './assets/OAuth/GoogleRedirectHandler';
 import Test from './pages/Test.tsx';
 import RegisterPage from './pages/Registerpage';
-import Graph from './components/Graph/GraphHandler';
+// import Graph from './components/Graph/GraphHandler';
 // import Tokenfunction from './assets/Tokenfunction';
 import Detail from './pages/Detail'
+import  UserProfile from './pages/UserProfile'
 import Search from './pages/Search'
 import ProductRegisterList from './pages/ProductRegisterPage'
 import axios from 'axios';
@@ -74,10 +75,10 @@ function App() {
       <Route path="/register" element={<RegisterPage/>} />
       <Route path="/test" element={<Test />} />
       <Route path="/search/:keyword" element={<Search />} />
-
+      <Route path="/userprofile" element={<UserProfile/>} />
       <Route path="/products/detail/" element={<Detail />} />
       <Route path="/products/list" element={  <RequireAuth isLogin={localStorage.accessToken != null}>  <ProductRegisterList /> </RequireAuth>} />
-      <Route path="/chart" element={<Graph/>} />
+      {/* <Route path="/chart" element={<Graph/>} /> */}
 
 
 
