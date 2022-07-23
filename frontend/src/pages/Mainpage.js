@@ -25,10 +25,10 @@ function Mainpage() {
               <div id="webname">
                   SEARCH.<span>IT</span>
                 </div>
-            
+
               <div id="container">
                   <input type="search" placeholder="Search..." onChange={(event) => setValue(event.target.value)} />
-                  <button type="button" id="search_btn" onClick={() => window.location.href="/search/"+value}/>
+                  <button type="button" id="search_btn" onClick={() => window.location.href="/search/"+(value.replace(/(\s*)/g, "") ? value.replace(/(\s*)/g, "") :"undefined" )}/>
               </div>
               {/* <style>
                 #search_btn {border-radius:50%}

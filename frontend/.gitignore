@@ -21,5 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.idea/*
 
 #src 각 폴더 속 info파일들 배포 전 추가하기
