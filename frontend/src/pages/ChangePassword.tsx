@@ -1,6 +1,6 @@
-import React, { useEffect, useCallback, useState} from 'react';
+import React, { useState } from 'react';
 import { Button } from "react-bootstrap";
-import { useNavigate, Navigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import CommonNavbar from "../components/CommonNavbar"
 import axios from 'axios';
 
@@ -42,8 +42,6 @@ const ChangePassword = () => {
       .then(response => {
         alert(`비밀번호 변경 완료`);
         setChange(true);
-        // navigate("./userprofile");
-        // return <Navigate to="/userprofile" />;
       })
       .catch(error => {
         const errorType = error.response.data.code;
