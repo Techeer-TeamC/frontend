@@ -22,7 +22,7 @@ function CommonNavbar() {
               <Nav>
                 {isAuthentication ?(
                     <NavDropdown title="회원정보" id="basic-nav-dropdown">
-                      <NavDropdown.Item href="/userprofile">회원 정보</NavDropdown.Item>
+                      <NavDropdown.Item href="/user-profile">회원 정보</NavDropdown.Item>
                       <NavDropdown.Item onClick={logoutFun} href="/">로그아웃</NavDropdown.Item>
                       <NavDropdown.Divider />
                       <NavDropdown.Item href="/products/list">등록한 상품</NavDropdown.Item>
