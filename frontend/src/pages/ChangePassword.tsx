@@ -65,7 +65,7 @@ const ChangePassword = () => {
   
   return (
     change ?
-    <Navigate to="/userprofile" /> :
+    <Navigate to="/user-profile" /> :
 
     <section className="container">
       <CommonNavbar></CommonNavbar>

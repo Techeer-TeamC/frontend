@@ -76,8 +76,8 @@ function App() {
       <Route path="/register" element={<RegisterPage/>} />
       <Route path="/test" element={<Test />} />
       <Route path="/search/:keyword" element={<Search />} />
-      <Route path="/userprofile" element={<UserProfile/>} />
-      <Route path="/changepassword" element={<ChangePassword/>} />
+      <Route path="/user-profile" element={<UserProfile/>} />
+      <Route path="/change-password" element={<ChangePassword/>} />
       <Route path="/products/detail/" element={<Detail />} />
       <Route path="/products/list" element={  <RequireAuth isLogin={localStorage.accessToken != null}>  <ProductRegisterList /> </RequireAuth>} />
       {/* <Route path="/chart" element={<Graph/>} /> */}

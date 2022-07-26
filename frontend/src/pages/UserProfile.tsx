@@ -1,19 +1,14 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import CommonNavbar from "../components/CommonNavbar"
-import { Button } from "react-bootstrap";
 
-import {Link, useParams} from 'react-router-dom';
-
-
+import {Link} from 'react-router-dom';
 import Spinner from '../components/Spinner';
-import ChangePassword from './ChangePassword';
 
 
 function UserProfile() {    
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    // const { id } = useParams();
   
 
     useEffect(() => {
@@ -54,48 +49,9 @@ function UserProfile() {
             {userDetail}
 
             <div>
-                {/* <button className="btn btn-outline-primary" type="button"  onClick={() => window.location.href="/changepassword"} > 비밀번호 변경 </button> */}
-                <button><Link to= '/changepassword' className="links">비밀번호 변경</Link></button>
-                {/* <Button>비밀번호 변경</Button> */}
+                <button><Link to= '/change-password' className="links">비밀번호 변경</Link></button>
             </div>
-
         </section>);
-
-
-
-
-
-    // return (
-    //     <section className="container">
-    //         {
-    //         <CommonNavbar></CommonNavbar>
-    //         }
-
-    //         {
-    //         <div>
-    //         <h2>회원 정보</h2>
-    //         <hr />
-    //         </div>
-    //         }
-
-            
-    //         {
-         
-    //             totalCount ? (
-    //                 <>
-    //                 <div>
-    //                 <div className="row">
-    //                     {products && products.map(product => (<RegisterProduct key={product.productId} parentProp={setChange} productId={product.productId} desiredPrice={product.desiredPrice}/>))}
-    //                 </div>
-    //                 </div>
-    //                 </>
-    //             ) : 
-    //                 '알림을 등록한 상품 내역이 없습니다.'
-
-    //         }
-
-    //     </section>);
-
 }
 
 export default UserProfile;
