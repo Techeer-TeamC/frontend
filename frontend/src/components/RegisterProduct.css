@@ -2,17 +2,14 @@
   position: relative;
 }
 
-.registedCompoent>button {
+.registedCompoent > button {
   float: right;
   width: 20px;
   line-height: 20px;
-  padding:0;
-  border:0;
+  padding: 0;
+  border: 0;
 }
 
-registedCompoent>img{
-  margin:0px;
+registedCompoent > img {
+  margin: 0px;
 }
-
-
-
