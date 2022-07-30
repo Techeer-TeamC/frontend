@@ -1,19 +1,19 @@
 {
   "proxy": "http://localhost:8080",
   "compilerOptions": {
-    "allowJs": true,
+    "allowJs": true, //js파일 컴파일 허용
     "target": "ES6",
     "outDir": "./dist",
     "moduleResolution": "Node",
     "lib": ["ES6", "DOM", "DOM.Iterable"],
 
-    "checkJs": false,
+    "checkJs": false, //js파일 오류 검사 여부
     "noImplicitAny": false, // 타입 체크 엄격x
-    "strict": false,
+    "strict": true, //엄격 모드
     "esModuleInterop": true,
     "jsx": "react" // jsx 지원
   },
-  "include": ["./src/**/*.tsx", "./src/**/*.ts"],
+  "include": ["./src/**/*.tsx", "./src/**/*.ts", "src/index.js", "src/App.js"],
   "exclude": ["node_modules", "dist"]
 }
 
