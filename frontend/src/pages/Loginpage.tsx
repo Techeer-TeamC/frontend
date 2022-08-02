@@ -2,7 +2,7 @@ import "./Loginpage.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { KAKAO_AUTH_URL, GOOGLE_AUTH_URL } from "../assets/OAuth/OAuth";
-import imgA from "../assets/loginpage/IMG_9315.jpg";
+import imgA from "../assets/loginpage/IMG_9315.png";
 import imgB from "../assets/loginpage/btn_google.png";
 import imgC from "../assets/loginpage/kakao_login_large_narrow.png";
 import axios from "axios";
