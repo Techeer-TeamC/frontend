@@ -2,7 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function SearchProductList({ title, url, imageUrl, minimumPrice }) {
+type SearchProductListProps = {
+  title: string;
+  url: string;
+  imageUrl: string;
+  minimumPrice: number;
+};
+
+function SearchProductList({
+  title,
+  url,
+  imageUrl,
+  minimumPrice,
+}: SearchProductListProps) {
   return (
     <div className="col-md-4 border-0">
       <Link
@@ -26,10 +38,5 @@ function SearchProductList({ title, url, imageUrl, minimumPrice }) {
     </div>
   );
 }
-
-SearchProductList.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-};
 
 export default SearchProductList;
