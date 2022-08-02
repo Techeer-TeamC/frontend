@@ -6,17 +6,7 @@ import { AiOutlineSetting, AiOutlineClose } from "react-icons/ai";
 import "./RegisterProduct.css";
 import Alarm from "../components/Alarm";
 import Graph from "../components/Graph";
-
-type productDataProps = {
-  productId: string;
-  name: string;
-  image: string;
-  mallInfo: mallInfoProps[];
-};
-
-type mallInfoProps = {
-  price: number;
-};
+import { registedProductDto } from "../utils/types";
 
 type RegisterProductProps = {
   productId: string;
@@ -29,7 +19,8 @@ function RegisterProduct({
   desiredPrice,
   parentProp,
 }: RegisterProductProps) {
-  const [productData, setDataList] = useState<productDataProps | null>();
+  const [registedProductDatas, setRegistedProductDatas] =
+    useState<registedProductDto | null>();
   const [isVisible, setIsVisible] = useState(false);
   const [isVisibleChart, setIsVisibleChart] = useState(false);
 
@@ -38,7 +29,7 @@ function RegisterProduct({
       const result = await axios(
         `http://3.39.75.19:8080/api/v1/products/${productId}`
       );
-      setDataList(result.data);
+      setRegistedProductDatas(result.data);
     };
     fetchData();
   }, []);
@@ -83,7 +74,7 @@ function RegisterProduct({
 
   return (
     <div className="registedCompoent col-md-4 border-0">
-      {productData && productData.mallInfo ? (
+      {registedProductDatas && registedProductDatas.mallInfo ? (
         <>
           <button className="btn" onClick={confirmDelete}>
             <AiOutlineClose size="22" />
@@ -93,18 +84,18 @@ function RegisterProduct({
           </button>
           <img
             className="img-fluid mx-auto"
-            src={productData.image}
+            src={registedProductDatas.image}
             alt=""
             onClick={() => setIsVisibleChart(true)}
           ></img>
-          <h5 className="text-center">{productData.name}</h5>
+          <h5 className="text-center">{registedProductDatas.name}</h5>
           <p className="text-center">
             설정 가격 :{" "}
             {desiredPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </p>
           <p className="text-center">
             현재 가격 :{" "}
-            {productData.mallInfo[0].price
+            {registedProductDatas.mallInfo[0].price
               .toString()
               .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </p>
@@ -112,16 +103,16 @@ function RegisterProduct({
             <Alarm
               type="patch"
               parentProp={parentProp}
-              title={productData.image}
+              title={registedProductDatas.image}
               modalVisible={setIsVisible}
               productId={productId}
             />
           )}
           {isVisibleChart && (
             <Graph
-              productId={productData.productId}
+              productId={registedProductDatas.productId}
               modalVisible={setIsVisibleChart}
-              productName={productData.name}
+              productName={registedProductDatas.name}
             />
           )}
         </>

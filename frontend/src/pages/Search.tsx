@@ -8,19 +8,15 @@ import SearchBar from "../components/SearchBar";
 import { useParams } from "react-router-dom";
 import CommonNavbar from "../components/CommonNavbar";
 import Loading from "../components/Loading";
-
-type serchProductListProps = {
-  title: string;
-  imageUrl: string;
-  minimumPrice: number;
-  url: string;
-};
+import { searchProductDto } from "../utils/types";
 
 function Search() {
   let { keyword } = useParams();
 
   const [word, setWord] = useState(keyword);
-  const [products, setDataList] = useState<serchProductListProps[] | null>([]);
+  const [setchProducts, setSetchProducts] = useState<searchProductDto[] | null>(
+    []
+  );
   const mounted = useRef(false);
   const [pageSize, setPageSize] = useState(9);
   const [totalCount, setTotalCount] = useState(0);
@@ -33,11 +29,9 @@ function Search() {
       const result = await axios(
         `http://3.39.75.19:8080/api/v1/crawler/search/products?word=${word}`
       );
-      setDataList(result.data.productListDtoList);
+      setSetchProducts(result.data.productListDtoList);
       setTotalCount(result.data.totalNumber);
       setLoading(false);
-      console.log("durl");
-      console.log(result.data.productListDtoList);
     };
     fetchData();
   }, [word, currentPage]);
@@ -61,8 +55,8 @@ function Search() {
       ) : totalCount ? (
         <>
           <div className="row">
-            {products &&
-              currentPosts(products).map((product) => (
+            {setchProducts &&
+              currentPosts(setchProducts).map((product) => (
                 <SearchProductList
                   key={product.url}
                   url={product.url}

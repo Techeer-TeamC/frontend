@@ -7,24 +7,7 @@ import SearchBar from "../components/SearchBar";
 import Alarm from "../components/Alarm";
 import CommonNavbar from "../components/CommonNavbar";
 import Loading from "../components/Loading";
-// import Graph from "../components/Graph"
-
-type detailProductDataProps = {
-  title: string;
-  minimumPrice: string;
-  url: string;
-  image: string;
-  mallDtoInfo: mallInfoProps[];
-};
-
-type mallInfoProps = {
-  delivery: number;
-  interestFree: string;
-  link: string;
-  name: string;
-  paymentOption: string;
-  price: number;
-};
+import { detailProductDto } from "../utils/types";
 
 function Detail() {
   const navigate = useNavigate();
@@ -32,7 +15,8 @@ function Detail() {
 
   const id = (location as any).state.url;
   const [isLoading, setLoading] = useState(true);
-  const [productData, setData] = useState<detailProductDataProps | null>();
+  const [detailProductDatas, setDetailProductDatas] =
+    useState<detailProductDto | null>();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -40,7 +24,7 @@ function Detail() {
       const result = await axios(
         `http://3.39.75.19:8080/api/v1/crawler/search/product?url=${id}`
       );
-      setData(result.data);
+      setDetailProductDatas(result.data);
       setLoading(false);
     };
 
@@ -52,7 +36,7 @@ function Detail() {
       {<CommonNavbar />}
       {isLoading ? (
         <Loading />
-      ) : productData ? (
+      ) : detailProductDatas ? (
         <>
           <div className="container">
             <SearchBar></SearchBar>
@@ -60,7 +44,7 @@ function Detail() {
               <div className="product_image col-md-6">
                 <img
                   className="img-fluid  mx-auto"
-                  src={productData.image}
+                  src={detailProductDatas.image}
                   alt="product-image"
                 />
 
@@ -74,11 +58,11 @@ function Detail() {
               </div>
               <div className="product-detail col-md-6">
                 <div className="top-info">
-                  <h2>{productData.title}</h2>
+                  <h2>{detailProductDatas.title}</h2>
                   <h3>
                     {" "}
                     최저가{" "}
-                    {productData.mallDtoInfo[0].price
+                    {detailProductDatas.mallDtoInfo[0].price
                       .toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </h3>
@@ -94,8 +78,8 @@ function Detail() {
                       </tr>
                     </thead>
                     <tbody>
-                      {productData.mallDtoInfo &&
-                        productData.mallDtoInfo.map((mall) => (
+                      {detailProductDatas.mallDtoInfo &&
+                        detailProductDatas.mallDtoInfo.map((mall) => (
                           <tr
                             onClick={() => window.open(mall.link, "_blank")}
                             key={mall.link}
@@ -121,7 +105,7 @@ function Detail() {
             {isVisible && (
               <Alarm
                 type="post"
-                title={productData.title}
+                title={detailProductDatas.title}
                 urlValue={id}
                 modalVisible={setIsVisible}
               />
