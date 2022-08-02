@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import KLoading from "../../components/KLoading";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { any } from "prop-types";
 
 const KakaoRedirectHandler = () => {
   const [isLoading, setLoading] = useState(true);
@@ -9,7 +10,7 @@ const KakaoRedirectHandler = () => {
   const mounted = useRef(false);
 
   const params = new URL(document.location.toString()).searchParams;
-  const code = params.get("code"); // 인가코드 받는 부분
+  const code: any = params.get("code"); // 인가코드 받는 부분
 
   useEffect(() => {
     if (!mounted.current) {
@@ -21,7 +22,7 @@ const KakaoRedirectHandler = () => {
     }
   }, [code]);
 
-  const api = async (code) => {
+  const api = async (code: string): Promise<void> => {
     console.log("api 작동 요청 중");
     try {
       axios({

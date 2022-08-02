@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
-import { Link } from "react-router-dom";
 import "./Mainpage.css";
 import CommonNavbar from "../components/CommonNavbar";
 
@@ -18,8 +17,6 @@ function Mainpage() {
           <div id="name-box">
             Fish-<span>IT</span>
           </div>
-
-          {/* 여기 */}
           <div id="search-box">
             <input
               className="search-txt"
@@ -37,31 +34,7 @@ function Mainpage() {
               {<BiSearchAlt />}
             </button>
           </div>
-          {/* <style>
-                #search_btn {border-radius:50%}
-              </style> */}
-
-          {/* 여기 */}
-
-          {/* 여디 */}
         </div>
-      </section>
-
-      <section className="section2">
-        {/* <div id="nav_article">
-          <nav>
-            <ul>
-              <li id="recent">
-                <Link to="/recent">Recent</Link>
-              </li>
-              <li>&nbsp;&nbsp;</li>
-              <li>&nbsp;&nbsp;</li>
-              <li id="bag">
-                <Link to="/bag">What&#39;s In My Bag</Link>
-              </li>
-            </ul>
-          </nav>
-        </div> */}
       </section>
     </div>
   );

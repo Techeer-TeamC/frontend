@@ -7,12 +7,7 @@ import imgB from "../assets/loginpage/btn_google.png";
 import imgC from "../assets/loginpage/kakao_login_large_narrow.png";
 import axios from "axios";
 
-// {authenticated, login, location
-
 function LoginPage() {
-  // const dispatch = useDispatch();
-  // const [isLogin, setIsLogin] = useState(false);
-
   const [inputId, setInputId] = useState("");
   const [inputPw, setInputPw] = useState("");
 
@@ -37,7 +32,6 @@ function LoginPage() {
         },
       })
         .then(function (response) {
-          console.log(response.data.accessToken);
           localStorage.setItem("refreshToken", response.data.refreshToken);
           localStorage.setItem("accessToken", response.data.accessToken);
           localStorage.setItem(
@@ -52,7 +46,7 @@ function LoginPage() {
           if (errorType == "M003") {
             window.alert("가입하지 않은 이메일 입니다.");
           } else if (errorType == "M004") {
-            window.alert("비밀번호가 틀립니다.");
+            window.alert("비밀번호가 틀렸습니다.");
           } else {
             window.alert("로그인에 실패하였습니다.");
             console.error(error);
@@ -89,12 +83,6 @@ function LoginPage() {
                 onChange={handleInputPw}
               />
             </div>
-            {/* <div className="bar">
-              <div id="span">
-                <span id="or">Or </span>
-                <span id="sign">SignUp</span>
-              </div>
-            </div> */}
           </div>
           <div className="button-set">
             <button type="button" id="bt" onClick={onClickLogin}>
