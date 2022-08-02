@@ -35,7 +35,7 @@ function Detail() {
     <section className="container">
       {<CommonNavbar />}
       {isLoading ? (
-        <Loading />
+        <Loading text="데이터를 불러오는 중 입니다.." />
       ) : detailProductDatas ? (
         <>
           <div className="container">

@@ -51,7 +51,7 @@ function Search() {
       {<SearchBar></SearchBar>}
 
       {isLoading ? (
-        <Loading />
+        <Loading text="데이터를 불러오는 중 입니다.." />
       ) : totalCount ? (
         <>
           <div className="row">
