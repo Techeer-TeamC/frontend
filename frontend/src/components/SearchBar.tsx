@@ -7,7 +7,7 @@ type SearchBarProps = {
 };
 
 function SearchBar({ keyword }: SearchBarProps) {
-  const [value, setValue] = useState(keyword);
+  const [value, setValue] = useState<string>(keyword as string);
 
   return (
     <div className="search-container">

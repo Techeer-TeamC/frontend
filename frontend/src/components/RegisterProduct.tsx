@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { AiOutlineSetting, AiOutlineClose } from "react-icons/ai";
@@ -34,7 +32,7 @@ function RegisterProduct({
     fetchData();
   }, []);
 
-  const useConfirm = (message = null, onConfirm) => {
+  const useConfirm = (message: string, onConfirm) => {
     if (!onConfirm || typeof onConfirm !== "function") {
       return;
     }
