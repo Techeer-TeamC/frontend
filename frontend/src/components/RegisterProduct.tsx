@@ -7,6 +7,17 @@ import "./RegisterProduct.css";
 import Alarm from "../components/Alarm";
 import Graph from "../components/Graph";
 
+type productDataProps = {
+  productId: string;
+  name: string;
+  image: string;
+  mallInfo: mallInfoProps[];
+};
+
+type mallInfoProps = {
+  price: number;
+};
+
 type RegisterProductProps = {
   productId: string;
   desiredPrice: number;
@@ -18,7 +29,7 @@ function RegisterProduct({
   desiredPrice,
   parentProp,
 }: RegisterProductProps) {
-  const [productData, setDataList] = useState<any | null>([]);
+  const [productData, setDataList] = useState<productDataProps | null>();
   const [isVisible, setIsVisible] = useState(false);
   const [isVisibleChart, setIsVisibleChart] = useState(false);
 
@@ -27,12 +38,7 @@ function RegisterProduct({
       const result = await axios(
         `http://3.39.75.19:8080/api/v1/products/${productId}`
       );
-
       setDataList(result.data);
-
-      if (productData.mallInfo) {
-        console.log(productData.mallInfo[0]);
-      }
     };
     fetchData();
   }, []);
@@ -43,7 +49,7 @@ function RegisterProduct({
     }
 
     const confirmAction = () => {
-      if (window.confirm(message)) {
+      if (window.confirm(message!)) {
         onConfirm();
       }
     };
@@ -77,7 +83,7 @@ function RegisterProduct({
 
   return (
     <div className="registedCompoent col-md-4 border-0">
-      {productData.mallInfo ? (
+      {productData && productData.mallInfo ? (
         <>
           <button className="btn" onClick={confirmDelete}>
             <AiOutlineClose size="22" />
@@ -107,7 +113,6 @@ function RegisterProduct({
               type="patch"
               parentProp={parentProp}
               title={productData.image}
-              urlValue={productData.url}
               modalVisible={setIsVisible}
               productId={productId}
             />

@@ -5,10 +5,26 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "./Detail.css";
 import SearchBar from "../components/SearchBar";
 import Alarm from "../components/Alarm";
-import SearchProductList from "../components/SearchProductList";
 import CommonNavbar from "../components/CommonNavbar";
 import Loading from "../components/Loading";
 // import Graph from "../components/Graph"
+
+type detailProductDataProps = {
+  title: string;
+  minimumPrice: string;
+  url: string;
+  image: string;
+  mallDtoInfo: mallInfoProps[];
+};
+
+type mallInfoProps = {
+  delivery: number;
+  interestFree: string;
+  link: string;
+  name: string;
+  paymentOption: string;
+  price: number;
+};
 
 function Detail() {
   const navigate = useNavigate();
@@ -16,7 +32,7 @@ function Detail() {
 
   const id = (location as any).state.url;
   const [isLoading, setLoading] = useState(true);
-  const [productData, setData] = useState<any | null>({});
+  const [productData, setData] = useState<detailProductDataProps | null>();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {

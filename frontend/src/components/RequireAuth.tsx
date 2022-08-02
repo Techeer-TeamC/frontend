@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 //향후 로그인 children 타입 확인 필요
 
 type RequireAuthProps = {
-  children: any;
+  children: JSX.Element;
   isLogin: boolean;
 };
 

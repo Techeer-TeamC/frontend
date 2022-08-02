@@ -10,7 +10,7 @@ type AlarmProps = {
   type: string;
   title: string;
   modalVisible: (value: boolean) => void;
-  urlValue: string;
+  urlValue?: string;
   productId?: string;
   parentProp?: (value: boolean) => void;
 };
@@ -24,7 +24,7 @@ function Alarm({
   parentProp,
 }: AlarmProps) {
   const apiType = type;
-  const [price, setPrice]: [string, any] = useState();
+  const [price, setPrice] = useState<string>();
 
   const onSubmitBtn = () => {
     modalVisible(false);
@@ -62,7 +62,7 @@ function Alarm({
         method: "post",
         url: `http://3.39.75.19:8080/api/v1/products/register?product=${title}`,
         data: {
-          desiredPrice: parseInt(price),
+          desiredPrice: parseInt(price!),
           url: urlValue,
         },
         headers: { Authorization: "Bearer " + localStorage.accessToken },
@@ -89,12 +89,12 @@ function Alarm({
         method: "patch",
         url: `http://3.39.75.19:8080/api/v1/products/register/${productId}`,
         data: {
-          desiredPrice: parseInt(price),
+          desiredPrice: parseInt(price!),
         },
         headers: { Authorization: "Bearer " + localStorage.accessToken },
       }) //userId값을 헤더로부터 가져와서 넣을 것
         .then(function (response) {
-          parentProp(false);
+          parentProp!(false);
           window.alert("정상적으로 알림 수정이 완료되었습니다.");
           modalVisible(false);
         })

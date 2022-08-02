@@ -39,9 +39,4 @@ function SearchProductList({
   );
 }
 
-SearchProductList.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-};
-
 export default SearchProductList;
