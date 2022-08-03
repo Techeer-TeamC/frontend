@@ -90,8 +90,10 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
     },
   });
 
+  const [chartDate, setChartDate] = useState<number>(0);
+
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData_30m = async () => {
       const result = await axios(
         `http://3.39.75.19:8080/api/v1/products/price-history/${productId}`
       )
@@ -125,8 +127,54 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
           console.log("에러");
         });
     };
-    fetchData();
-  }, []);
+
+    const fetchData_time = async () => {
+      let timeRequestDto = {
+        day: chartDate,
+        month: 0,
+      };
+      const result = await axios
+        .post(
+          `http://3.39.75.19:8080/api/v1/products/price-history/${productId}/month-time`,
+          timeRequestDto
+        )
+        .then(function (response) {
+          response = response.data;
+          setChart({
+            series: [
+              {
+                name: (response as any).mallHistoryInfoList[0].mallName,
+                data: (response as any).mallHistoryInfoList[0].priceList,
+              },
+              {
+                name: (response as any).mallHistoryInfoList[1].mallName,
+                data: (response as any).mallHistoryInfoList[1].priceList,
+              },
+              {
+                name: (response as any).mallHistoryInfoList[2].mallName,
+                data: (response as any).mallHistoryInfoList[2].priceList,
+              },
+            ],
+
+            plotOptions: {
+              series: {
+                pointStart: new Date((response as any).date).getTime(),
+                pointInterval: 1 * 24 * chartDate * 3600 * 1000 * 1,
+              },
+            },
+          });
+        })
+        .catch(function (error) {
+          console.log("에러");
+        });
+    };
+
+    if (chartDate == 0) {
+      fetchData_30m();
+    } else {
+      fetchData_time();
+    }
+  }, [chartDate]);
 
   return (
     <div>
@@ -139,7 +187,7 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
           className="btn-close closeModal"
           onClick={() => modalVisible(false)}
         ></button>
-        <div className="w-100">
+        <div className="w-100 h-auto">
           <HighchartsReact
             containerProps={{
               className: "home_body-chart",
@@ -148,6 +196,26 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
             highcharts={Highcharts}
             options={chart}
           />
+          <div className="inline-block text-center">
+            <button
+              className="w-full btn btn-blue hover:bg-blue-700 font-bold  rounded-full"
+              onClick={() => setChartDate(0)}
+            >
+              30m
+            </button>
+            <button
+              className="w-full btn btn-blue hover:bg-blue-700 font-bold  rounded-full"
+              onClick={() => setChartDate(1)}
+            >
+              1Day
+            </button>
+            <button
+              className="w-full btn btn-blue hover:bg-blue-700 font-bold  rounded-full"
+              onClick={() => setChartDate(7)}
+            >
+              1Week
+            </button>
+          </div>
         </div>
       </Modal>
     </div>
