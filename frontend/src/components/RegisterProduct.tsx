@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../api/axios";
 import { AiOutlineSetting, AiOutlineClose } from "react-icons/ai";
 import "./RegisterProduct.css";
 import Alarm from "../components/Alarm";
@@ -24,9 +24,7 @@ function RegisterProduct({
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios(
-        `http://3.39.75.19:8080/api/v1/products/${productId}`
-      );
+      const result = await axios(`products/${productId}`);
       setRegistedProductDatas(result.data);
     };
     fetchData();
@@ -48,7 +46,7 @@ function RegisterProduct({
 
   const deleteConfirm = () => {
     axios
-      .delete(`/api/v1/products/register/${productId}`, {
+      .delete(`products/register/${productId}`, {
         headers: {
           Authorization: "Bearer " + localStorage.accessToken,
         },

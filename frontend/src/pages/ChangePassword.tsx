@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 import CommonNavbar from "../components/CommonNavbar";
-import axios from "axios";
+import axios from "../api/axios";
 
 const ChangePassword = () => {
   const [change, setChange] = useState(false);
@@ -26,7 +26,7 @@ const ChangePassword = () => {
     try {
       axios({
         method: "put",
-        url: `http://3.39.75.19:8080/api/v1/users/`,
+        url: `users/`,
         headers: {
           Authorization: "Bearer " + localStorage.accessToken,
         },

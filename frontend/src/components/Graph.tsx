@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../api/axios";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import Modal from "react-modal";
@@ -25,12 +25,12 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
       display: "flex",
       justifyContent: "center",
       background: "#ffffe7",
-      overflow: "auto",
+      overflow: "visible",
       padding: "3rem 3rem 0 3rem",
       top: "18vh",
       left: "20vw",
       right: "20vw",
-      bottom: "30vh",
+      bottom: "19vh",
       WebkitOverflowScrolling: "touch",
       borderRadius: "14px",
       outline: "none",
@@ -94,9 +94,7 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
 
   useEffect(() => {
     const fetchData_30m = async () => {
-      const result = await axios(
-        `http://3.39.75.19:8080/api/v1/products/price-history/${productId}`
-      )
+      const result = await axios(`products/price-history/${productId}`)
         .then(function (response) {
           response = response.data;
           setChart({
@@ -156,6 +154,10 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
               },
             ],
 
+            subtitle: {
+              text: productName + `<br><b>${chartDate}일</b>`,
+            },
+
             plotOptions: {
               series: {
                 pointStart: new Date((response as any).date).getTime(),
@@ -187,7 +189,7 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
           className="btn-close closeModal"
           onClick={() => modalVisible(false)}
         ></button>
-        <div className="w-100 h-auto">
+        <div className="w-100">
           <HighchartsReact
             containerProps={{
               className: "home_body-chart",
@@ -196,7 +198,7 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
             highcharts={Highcharts}
             options={chart}
           />
-          <div className="inline-block text-center">
+          <div className="inline-block text-center mt-2">
             <button
               className="w-full btn btn-blue hover:bg-blue-700 font-bold  rounded-full"
               onClick={() => setChartDate(0)}

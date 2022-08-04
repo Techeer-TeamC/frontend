@@ -5,7 +5,7 @@ import { KAKAO_AUTH_URL, GOOGLE_AUTH_URL } from "../assets/OAuth/OAuth";
 import imgA from "../assets/loginpage/IMG_9315.png";
 import imgB from "../assets/loginpage/btn_google.png";
 import imgC from "../assets/loginpage/kakao_login_large_narrow.png";
-import axios from "axios";
+import axios from "../api/axios";
 
 type LoginProps = {
   (userInfo: { id: string; password: string });
@@ -35,7 +35,7 @@ function LoginPage() {
     try {
       axios({
         method: "post",
-        url: `http://3.39.75.19:8080/api/v1/auth/new`,
+        url: `auth/new`,
         data: {
           email: userInfo.id,
           password: userInfo.password,
