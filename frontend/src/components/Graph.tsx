@@ -132,10 +132,7 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
         month: 0,
       };
       const result = await axios
-        .post(
-          `http://3.39.75.19:8080/api/v1/products/price-history/${productId}/month-time`,
-          timeRequestDto
-        )
+        .post(`products/price-history/${productId}/month-time`, timeRequestDto)
         .then(function (response) {
           response = response.data;
           setChart({
@@ -198,23 +195,14 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
             highcharts={Highcharts}
             options={chart}
           />
-          <div className="inline-block text-center mt-2">
-            <button
-              className="w-full btn btn-blue hover:bg-blue-700 font-bold  rounded-full"
-              onClick={() => setChartDate(0)}
-            >
+          <div className=" text-center mt-2 ">
+            <button className="w-10 btn " onClick={() => setChartDate(0)}>
               30m
             </button>
-            <button
-              className="w-full btn btn-blue hover:bg-blue-700 font-bold  rounded-full"
-              onClick={() => setChartDate(1)}
-            >
+            <button className="w-10 btn " onClick={() => setChartDate(1)}>
               1Day
             </button>
-            <button
-              className="w-full btn btn-blue hover:bg-blue-700 font-bold  rounded-full"
-              onClick={() => setChartDate(7)}
-            >
+            <button className="w-10 btn " onClick={() => setChartDate(7)}>
               1Week
             </button>
           </div>
