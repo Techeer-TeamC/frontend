@@ -14,7 +14,7 @@ function Search() {
   let { keyword } = useParams();
 
   const [word, setWord] = useState(keyword);
-  const [searchProducts, setSerchProducts] = useState<
+  const [searchProducts, setSearchProducts] = useState<
     searchProductDto[] | null
   >([]);
   const mounted = useRef(false);
@@ -29,7 +29,7 @@ function Search() {
       const result = await axios(
         `http://3.39.75.19:8080/api/v1/crawler/search/products?word=${word}`
       );
-      setSerchProducts(result.data.productListDtoList);
+      setSearchProducts(result.data.productListDtoList);
       setTotalCount(result.data.totalNumber);
       setLoading(false);
     };
