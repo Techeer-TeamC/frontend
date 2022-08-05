@@ -1,9 +1,18 @@
-export interface registedProductDto {
-  // //상품 알림 등록 페이지에서 사용하는 Dto
-  productId: string;
-  name: string;
+export interface searchProductDto {
+  //seachPage에서 사용하는 각 상품Dto
+  title: string;
+  imageUrl: string;
+  minimumPrice: number;
+  url: string;
+}
+
+export interface detailProductDto {
+  //detailPage에서 사용하는 상품상세 Dto
+  title: string;
+  minimumPrice: string;
+  url: string;
   image: string;
-  mallInfo: mallInfoDto[];
+  mallDtoInfo: mallInfoDto[];
 }
 
 interface mallInfoDto {
@@ -16,19 +25,10 @@ interface mallInfoDto {
   price: number;
 }
 
-export interface detailProductDto {
-  //detailPage에서 사용하는 상품상세 Dto
-  title: string;
-  minimumPrice: string;
-  url: string;
+export interface registedProductDto {
+  // //상품 알림 등록 페이지에서 사용하는 Dto
+  productId: string;
+  name: string;
   image: string;
-  mallDtoInfo: mallInfoDto[];
-}
-
-export interface searchProductDto {
-  //seachPage에서 사용하는 각 상품Dto
-  title: string;
-  imageUrl: string;
-  minimumPrice: number;
-  url: string;
+  mallInfo: mallInfoDto[];
 }
