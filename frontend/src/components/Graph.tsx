@@ -94,7 +94,7 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
 
   useEffect(() => {
     const fetchData_30m = async () => {
-      const result = await axios(`products/price-history/${productId}`)
+      const result = await axios(`product-history/price-history/${productId}`)
         .then(function (response) {
           response = response.data;
           setChart({
@@ -113,6 +113,9 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
               },
             ],
 
+            subtitle: {
+              text: productName + `<br><b>30분</b>`,
+            },
             plotOptions: {
               series: {
                 pointStart: new Date((response as any).date).getTime(),
@@ -127,12 +130,10 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
     };
 
     const fetchData_time = async () => {
-      let timeRequestDto = {
-        day: chartDate,
-        month: 0,
-      };
       const result = await axios
-        .post(`products/price-history/${productId}/month-time`, timeRequestDto)
+        .get(
+          `product-history/price-history/${productId}/month-time?day=${chartDate}&month=0`
+        )
         .then(function (response) {
           response = response.data;
           setChart({
