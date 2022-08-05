@@ -1,13 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { searchProductDto } from "../utils/types";
+import PropTypes from "prop-types";
+
+type SearchProductListProps = {
+  title: string;
+  url: string;
+  imageUrl: string;
+  minimumPrice: number;
+};
 
 function SearchProductList({
   title,
   url,
   imageUrl,
   minimumPrice,
-}: searchProductDto) {
+}: SearchProductListProps) {
   return (
     <div className="col-md-4 border-0">
       <Link
