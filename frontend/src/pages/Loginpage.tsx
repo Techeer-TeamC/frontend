@@ -7,28 +7,38 @@ import imgB from "../assets/loginpage/btn_google.png";
 import imgC from "../assets/loginpage/kakao_login_large_narrow.png";
 import axios from "axios";
 
+type LoginProps = {
+  (userInfo: { id: string; password: string });
+};
+
 function LoginPage() {
-  const [inputId, setInputId] = useState("");
-  const [inputPw, setInputPw] = useState("");
+  const [userInfo, setUserInfo] = useState({
+    id: "",
+    password: "",
+  });
 
   const navigate = useNavigate();
 
-  const handleInputId = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputId(e.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    const { name, value } = target;
+    setUserInfo({
+      ...userInfo,
+      [name]: value,
+    });
   };
 
-  const handleInputPw = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputPw(e.target.value);
-  };
+  const handleSubmit = (e: any) => {
+    console.log(userInfo);
+    e.preventDefault();
 
-  const onClickLogin = () => {
     try {
       axios({
         method: "post",
         url: `http://3.39.75.19:8080/api/v1/auth/new`,
         data: {
-          email: inputId,
-          password: inputPw,
+          email: userInfo.id,
+          password: userInfo.password,
         },
       })
         .then(function (response) {
@@ -69,23 +79,23 @@ function LoginPage() {
               <label htmlFor="input_id">Email : </label>
               <input
                 type="text"
-                name="input_id"
-                value={inputId}
-                onChange={handleInputId}
+                name="id"
+                value={userInfo.id}
+                onChange={handleChange}
               />
             </div>
             <div className="bar">
               <label htmlFor="input_pw">PW : </label>
               <input
                 type="password"
-                name="input_pw"
-                value={inputPw}
-                onChange={handleInputPw}
+                name="password"
+                value={userInfo.password}
+                onChange={handleChange}
               />
             </div>
           </div>
           <div className="button-set">
-            <button type="button" id="bt" onClick={onClickLogin}>
+            <button type="button" id="bt" onClick={handleSubmit}>
               Login
             </button>
             <br></br>
