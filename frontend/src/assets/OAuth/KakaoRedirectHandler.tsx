@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import KLoading from "../../components/KLoading";
+import Loading from "../../components/Loading";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { any } from "prop-types";
@@ -48,6 +48,14 @@ const KakaoRedirectHandler = () => {
     }
   };
 
-  return <div>{isLoading ? <KLoading /> : "페이지 이동 중 입니다 !"}</div>;
+  return (
+    <div>
+      {isLoading ? (
+        <Loading text="로그인 중 입니다!" />
+      ) : (
+        "페이지 이동 중 입니다 !"
+      )}
+    </div>
+  );
 };
 export default KakaoRedirectHandler;
