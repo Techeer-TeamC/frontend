@@ -7,7 +7,6 @@ import LoginPage from "./pages/Loginpage";
 import KakaoRedirectHandler from "./assets/OAuth/KakaoRedirectHandler";
 import GoogleRedirectHandler from "./assets/OAuth/GoogleRedirectHandler";
 import SignUp from "./pages/SignUp";
-// import Graph from './components/Graph/GraphHandler';
 import Detail from "./pages/Detail";
 import UserProfile from "./pages/UserProfile";
 import ChangePassword from "./pages/ChangePassword";
@@ -17,15 +16,11 @@ import axios from "./api/axios";
 import RequireAuth from "./components/RequireAuth";
 
 function App() {
-  const [isLogin, setIsLogin] = useState(false);
   const nowDate = new Date().getTime();
 
   useEffect(() => {
     try {
-      if (!localStorage.accessToken) {
-        setIsLogin(false);
-      } else {
-        setIsLogin(true);
+      if (localStorage.accessToken) {
         if (nowDate > Number(localStorage.tokenValidTime) + 60) {
           axios({
             method: "post",
@@ -44,7 +39,6 @@ function App() {
               console.error("refresh토큰 만료");
               localStorage.removeItem("refreshToken");
               localStorage.removeItem("accessToken");
-              setIsLogin(false);
             });
         }
       }
