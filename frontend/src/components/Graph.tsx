@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../api/axios";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import Modal from "react-modal";
@@ -25,12 +25,12 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
       display: "flex",
       justifyContent: "center",
       background: "#ffffe7",
-      overflow: "auto",
+      overflow: "visible",
       padding: "3rem 3rem 0 3rem",
       top: "18vh",
       left: "20vw",
       right: "20vw",
-      bottom: "30vh",
+      bottom: "19vh",
       WebkitOverflowScrolling: "touch",
       borderRadius: "14px",
       outline: "none",
@@ -90,11 +90,11 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
     },
   });
 
+  const [chartDate, setChartDate] = useState<number>(0);
+
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios(
-        `http://3.39.75.19:8080/api/v1/products/price-history/${productId}`
-      )
+    const fetchData_30m = async () => {
+      const result = await axios(`product-history/price-history/${productId}`)
         .then(function (response) {
           response = response.data;
           setChart({
@@ -113,6 +113,9 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
               },
             ],
 
+            subtitle: {
+              text: productName + `<br><b>30분</b>`,
+            },
             plotOptions: {
               series: {
                 pointStart: new Date((response as any).date).getTime(),
@@ -125,8 +128,53 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
           console.log("에러");
         });
     };
-    fetchData();
-  }, []);
+
+    const fetchData_time = async () => {
+      const result = await axios
+        .get(
+          `product-history/price-history/${productId}/month-time?day=${chartDate}&month=0`
+        )
+        .then(function (response) {
+          response = response.data;
+          setChart({
+            series: [
+              {
+                name: (response as any).mallHistoryInfoList[0].mallName,
+                data: (response as any).mallHistoryInfoList[0].priceList,
+              },
+              {
+                name: (response as any).mallHistoryInfoList[1].mallName,
+                data: (response as any).mallHistoryInfoList[1].priceList,
+              },
+              {
+                name: (response as any).mallHistoryInfoList[2].mallName,
+                data: (response as any).mallHistoryInfoList[2].priceList,
+              },
+            ],
+
+            subtitle: {
+              text: productName + `<br><b>${chartDate}일</b>`,
+            },
+
+            plotOptions: {
+              series: {
+                pointStart: new Date((response as any).date).getTime(),
+                pointInterval: 1 * 24 * chartDate * 3600 * 1000 * 1,
+              },
+            },
+          });
+        })
+        .catch(function (error) {
+          console.log("에러");
+        });
+    };
+
+    if (chartDate == 0) {
+      fetchData_30m();
+    } else {
+      fetchData_time();
+    }
+  }, [chartDate]);
 
   return (
     <div>
@@ -148,6 +196,17 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
             highcharts={Highcharts}
             options={chart}
           />
+          <div className=" text-center mt-2 ">
+            <button className="w-10 btn " onClick={() => setChartDate(0)}>
+              30m
+            </button>
+            <button className="w-10 btn " onClick={() => setChartDate(1)}>
+              1Day
+            </button>
+            <button className="w-10 btn " onClick={() => setChartDate(7)}>
+              1Week
+            </button>
+          </div>
         </div>
       </Modal>
     </div>

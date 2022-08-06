@@ -8,10 +8,7 @@ function Mainpage() {
 
   return (
     <div>
-      <header>
-        <CommonNavbar />
-      </header>
-
+      <CommonNavbar />
       <section className="section1">
         <div id="name_search">
           <div id="name-box">

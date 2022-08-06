@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../api/axios";
 
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -10,7 +10,6 @@ import Loading from "../components/Loading";
 import { detailProductDto } from "../utils/types";
 
 function Detail() {
-  const navigate = useNavigate();
   const location = useLocation();
 
   const id = (location as any).state.url;
@@ -21,9 +20,7 @@ function Detail() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios(
-        `http://3.39.75.19:8080/api/v1/crawler/search/product?url=${id}`
-      );
+      const result = await axios(`crawler/search/product?url=${id}`);
       setDetailProductDatas(result.data);
       setLoading(false);
     };
@@ -50,7 +47,7 @@ function Detail() {
 
                 <button
                   type="button"
-                  className=" btn-primary text-center"
+                  className="btn btn-primary text-center"
                   onClick={() => setIsVisible(true)}
                 >
                   알림 등록

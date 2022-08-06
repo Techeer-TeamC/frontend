@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import axios from "axios";
+import axios from "../api/axios";
 import "./Search.css";
 import "rc-pagination/assets/index.css";
 import CommonNavbar from "../components/CommonNavbar";
@@ -15,24 +15,18 @@ type RegistedroductProps = {
 
 function ProductRegisterList() {
   const [products, setDataList] = useState<RegistedroductProps[]>([]);
-  const mounted = useRef(false);
-  const [pageSize, setPageSize] = useState(9);
   const [totalCount, setTotalCount] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
   const [change, setChange] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       window.scrollTo(0, 0);
       console.log(localStorage.accessToken);
-      const result = await axios.get(
-        `http://3.39.75.19:8080/api/v1/products/list`,
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.accessToken,
-          },
-        }
-      );
+      const result = await axios.get(`products/list`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.accessToken,
+        },
+      });
 
       setDataList(result.data);
       setTotalCount(result.data.length);

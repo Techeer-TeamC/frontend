@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../api/axios";
 
 type RegisterProps = {
   (userInfo: {
@@ -50,7 +50,7 @@ function SignUp() {
         alert("모든 항목을 입력하세요");
       } else {
         axios
-          .post("http://3.39.75.19:8080/api/v1/users/new", {
+          .post("users/new", {
             headers: {
               "Content-Type": "application/json",
             },
