@@ -26,7 +26,7 @@ function Search() {
     const fetchData = async () => {
       window.scrollTo(0, 0);
       const result = await axios(`crawler/search/products?word=${word}`);
-      setSerchProducts(result.data.productListDtoList);
+      setSearchProducts(result.data.productListDtoList);
       setTotalCount(result.data.totalNumber);
       setLoading(false);
     };

@@ -13,7 +13,7 @@ import UserProfile from "./pages/UserProfile";
 import ChangePassword from "./pages/ChangePassword";
 import Search from "./pages/Search";
 import ProductRegisterList from "./pages/ProductRegisterPage";
-import axios from "axios";
+import axios from "./api/axios";
 import RequireAuth from "./components/RequireAuth";
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
         if (nowDate > Number(localStorage.tokenValidTime) + 60) {
           axios({
             method: "post",
-            url: `http://3.39.75.19:8080/api/v1/auth/reissue`,
+            url: `auth/reissue`,
             data: {
               accessToken: localStorage.accessToken,
               refreshToken: localStorage.refreshToken,
