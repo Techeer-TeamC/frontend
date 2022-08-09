@@ -12,7 +12,7 @@
 
 
 ## System Architecture
-![image](https://user-images.githubusercontent.com/57824857/183664426-250137c4-e8c8-4035-82dc-afb069f257d6.png)
+![image](https://user-images.githubusercontent.com/57824857/182030922-79baac24-3ba5-4efc-b386-1d11c9df0336.png)
 
 
 
@@ -20,11 +20,9 @@
 
 |                           Frontend                           |                        Backend (API)                         |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | 
-| ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white) ![React Query](https://img.shields.io/badge/React%20Query-FF4154?style=flat-square&logo=react-query&logoColor=white) ![Heroku](https://img.shields.io/badge/Heroku-430098?style=flat-square&logo=heroku&logoColor=white) | ![Spring Boot](https://img.shields.io/badge/springboot-6DB33F?style=flat-square&logo=springboot&color=#6DB33F) ![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat&logo=amazon-aws&logoColor=white)  ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white) ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white)  
+| ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white) ![HighCharts](https://img.shields.io/badge/HighCharts-13324B?style=flat-square&logo=Chart.js&logoColor=white) ![Heroku](https://img.shields.io/badge/Heroku-430098?style=flat-square&logo=heroku&logoColor=white) | ![Spring Boot](https://img.shields.io/badge/springboot-6DB33F?style=flat-square&logo=springboot&color=#6DB33F) ![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat&logo=amazon-aws&logoColor=white)  ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white) ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white) ![Jsoup](https://img.shields.io/badge/JSoup-007396?style=flat-square&logo=OpenJDK&logoColor=white)  
 
 
-
-# Frontend
 
 ## 주요기능
 
@@ -64,6 +62,7 @@
 
 
 
+  
 
 
 
@@ -81,7 +80,7 @@
 <br>
 
 ## 배포 서버
-https://fish-it-c.herokuapp.com
+http://fish-it-c.herokuapp.com
 
 테스트용 계정
 - email: test@test.com
@@ -103,7 +102,7 @@ http://3.39.75.19:8080/swagger-ui.html
 ## Getting Started
 
 `spring: 2.6.6`  
-`npm: 6.14.11`
+`react: 18.1.0`
 
 ### 1. Cloning
 
@@ -148,21 +147,20 @@ $ docker-compose up --build
 
 ### MySQL ERD
 
-![image](https://user-images.githubusercontent.com/57824857/183662142-d3efd7d0-fc7f-4846-bf10-567664225876.png)
-
-
+![image](https://user-images.githubusercontent.com/57824857/182031224-e58a7c3b-3388-47b4-9eb9-bc1d7296af03.png)
 
 
 ### Medium.com Docs
 👉 https://medium.com/@techeerteamc/fish-it-get-notification-when-the-product-reaches-the-price-you-want-17b9239282b7
 
 
+
 ## Contributors
 
-|                 손정민                 |                  정태원                  |                    김소미                    |               오홍기                |               장현우                |
+|                 김소미                 |                  손정민                  |                    정태원                    |               오홍기                |               장현우                |
 | :------------------------------------: | :--------------------------------------: | :------------------------------------------: | :------------------------------------: | :------------------------------------: |
-| [@jungmaan](https://github.com/jungmaan) | [@teawon](https://github.com/teawon) | [@somii009](https://github.com/somii009) | [@ohhondgi](https://github.com/ohhondgi) | [@aswooo](https://github.com/aswooo) |
-|               Frontend                |               Frontend, Backend                |                 Frontend, Backend                   |              Backend, DevOps               |              Backend, DevOps               |
+| [@somii009](https://github.com/somii009) | [@jungmaan](https://github.com/jungmaan) | [@teawon](https://github.com/teawon) | [@ohhondgi](https://github.com/ohhondgi) | [@aswooo](https://github.com/aswooo) |
+|               Frontend, Backend                |               Frontend                |                 Frontend, Backend                   |              Backend, DevOps               |              Backend, DevOps               |
 
 
 
