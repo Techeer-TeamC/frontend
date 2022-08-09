@@ -11,6 +11,7 @@ type GraphProps = {
 };
 
 function Graph({ productId, modalVisible, productName }: GraphProps) {
+  const KR_TIME_DIFF = 9 * 60 * 60 * 1000; //UTC to KST (UTC + 9시간)
   const modalStyle = {
     overlay: {
       position: "fixed",
@@ -118,7 +119,8 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
             },
             plotOptions: {
               series: {
-                pointStart: new Date((response as any).date).getTime(),
+                pointStart:
+                  new Date((response as any).date).getTime() + KR_TIME_DIFF,
                 pointInterval: 0.5 * 3600 * 1000 * 1,
               },
             },
@@ -158,7 +160,8 @@ function Graph({ productId, modalVisible, productName }: GraphProps) {
 
             plotOptions: {
               series: {
-                pointStart: new Date((response as any).date).getTime(),
+                pointStart:
+                  new Date((response as any).date).getTime() + KR_TIME_DIFF,
                 pointInterval: 1 * 24 * chartDate * 3600 * 1000 * 1,
               },
             },
